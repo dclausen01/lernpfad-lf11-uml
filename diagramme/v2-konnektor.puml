@@ -1,0 +1,11 @@
+@startuml
+!include stil.iuml
+start
+:Schritt 1;
+(A)
+note right: Konnektor: Der Fluss geht\nbeim gleichnamigen Konnektor weiter
+detach
+(A)
+:Schritt 2;
+stop
+@enduml

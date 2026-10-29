@@ -13,6 +13,6 @@ wk --> ib : antwortErhalten
 ib --> gel : loesen
 gel --> ib : wiedereroeffnen
 gel --> ges : bestaetigen
-gel --> ges : after 7 Tage
+gel --> ges : after(7 Tage)
 ges --> [*] : archivieren
 @enduml

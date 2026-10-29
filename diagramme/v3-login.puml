@@ -16,7 +16,7 @@ group loop(1,3) [nicht angemeldet]
     P -->> U : "Anmeldung erfolgreich"
   else versuche < 3
     P -->> U : "Daten falsch"
-  else sonst
+  else else
     P -->> U : "Konto gesperrt"
   end
   deactivate P

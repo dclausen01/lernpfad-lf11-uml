@@ -32,7 +32,7 @@ stufen:
   - id: struktur
     name: Strukturdiagramme
     icon: "🧱"
-    text: Klassen-, Objekt-, Komponenten- und Verteilungsdiagramm – der Aufbau eines Systems.
+    text: Das Klassendiagramm in allen Facetten – dazu Objekt-, Komponenten- und Verteilungsdiagramm als Zusatzwissen.
     module: [s1, s2, s3, s4, s5]
   - id: verhalten
     name: Verhaltensdiagramme

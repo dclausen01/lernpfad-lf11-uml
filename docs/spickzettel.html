@@ -26,7 +26,7 @@
 <tbody>
 <tr>
 <td>Attribut</td>
-<td><code>- name : String [= Startwert]</code></td>
+<td><code>- name : String [= Startwert] {Eigenschaften}</code></td>
 </tr>
 <tr>
 <td>Methode</td>
@@ -38,7 +38,11 @@
 </tr>
 <tr>
 <td>statisch</td>
-<td>unterstrichen</td>
+<td>unterstrichen oder <code>{static}</code></td>
+</tr>
+<tr>
+<td>Konstante</td>
+<td><code>{final}</code>, z. B. <code>+ MWST : double = 0.19 {final}</code></td>
 </tr>
 <tr>
 <td>abstrakt</td>
@@ -46,7 +50,7 @@
 </tr>
 <tr>
 <td>Interface / Aufzählung</td>
-<td><code>«interface»</code> / <code>«enumeration»</code> über dem Namen</td>
+<td><code>«interface»</code> (Name kursiv) / <code>«enumeration»</code> über dem Namen</td>
 </tr>
 </tbody>
 </table></div>
@@ -85,7 +89,7 @@
 <td>hohles Dreieck an der <strong>Oberklasse</strong></td>
 </tr>
 <tr>
-<td>Realisierung (Interface)</td>
+<td>Realisierung / Implementierung (Interface)</td>
 <td>- - - -▷</td>
 <td>hohles Dreieck am <strong>Interface</strong></td>
 </tr>
@@ -96,10 +100,10 @@
 </tr>
 </tbody>
 </table></div>
-<p>Multiplizitäten: <code>1</code> · <code>0..1</code> · <code>*</code> = <code>0..*</code> · <code>1..*</code> · <code>2..10</code> – an <strong>beiden</strong> Enden.</p>
-<h2>Objektdiagramm</h2>
+<p>Multiplizitäten (Kardinalitäten): <code>1</code> · <code>0..1</code> · <code>*</code> = <code>0..*</code> · <code>1..*</code> · <code>2..10</code> – an <strong>beiden</strong> Enden.</p>
+<h2>Objektdiagramm (Zusatz, nicht im Prüfungskatalog)</h2>
 <p><code>anna : Kunde</code> <strong>unterstrichen</strong> · Attribute mit Werten (<code>name = &quot;Anna&quot;</code>) · Links ohne Multiplizitäten.</p>
-<h2>Komponenten- und Verteilungsdiagramm</h2>
+<h2>Komponenten- und Verteilungsdiagramm (Zusatz, nicht im Prüfungskatalog)</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -191,15 +195,19 @@
 <td>Raute, Guards <code>[…]</code> an den Kanten</td>
 </tr>
 <tr>
-<td>Gabelung / Vereinigung</td>
-<td>dicker Balken (parallel; Join wartet auf alle)</td>
+<td>Teilung / Synchronisation</td>
+<td>dicker Balken (Fork: parallel; Join wartet auf alle)</td>
+</tr>
+<tr>
+<td>Konnektor</td>
+<td>Kreis mit Buchstabe Ⓐ → Ⓐ (Sprungmarke)</td>
 </tr>
 <tr>
 <td>Objektknoten</td>
 <td>eckiges Rechteck</td>
 </tr>
 <tr>
-<td>Partition (Swimlane)</td>
+<td>Partition (Swimlane, Schwimmbahn)</td>
 <td>Bahn mit Namen des Verantwortlichen</td>
 </tr>
 </tbody>
@@ -231,7 +239,7 @@
 </tr>
 <tr>
 <td>Erzeugung</td>
-<td>- - - -&gt; <code>«create»</code> auf den Kopf des neuen Objekts</td>
+<td>- - - -&gt; <code>create</code> auf den Kopf des neuen Objekts</td>
 </tr>
 <tr>
 <td>Zerstörung</td>
@@ -239,7 +247,7 @@
 </tr>
 <tr>
 <td>Fragmente</td>
-<td><code>alt</code> (if/else) · <code>opt</code> (if) · <code>loop(min,max) [Bed.]</code> · <code>par</code> · <code>break</code></td>
+<td><code>alt [Bed.] … [else]</code> · <code>opt [Bed.]</code> · <code>loop [Bed.]</code> · <code>loop(10)</code> · <code>loop(min,max) [Bed.]</code> · <code>par</code> · <code>break</code></td>
 </tr>
 </tbody>
 </table></div>
@@ -262,7 +270,7 @@
 </tr>
 <tr>
 <td>Transition</td>
-<td><code>ereignis [bedingung] / aktion</code></td>
+<td><code>ereignis [bedingung] / aktion</code> (Auslöser [Bedingung] / Verhalten)</td>
 </tr>
 <tr>
 <td>im Zustand</td>
@@ -270,7 +278,7 @@
 </tr>
 <tr>
 <td>Zeitereignis</td>
-<td><code>after 15 min</code></td>
+<td><code>after(15 min)</code></td>
 </tr>
 <tr>
 <td>Entscheidung</td>

@@ -36,12 +36,12 @@
 <tbody>
 <tr>
 <td>Attribut</td>
-<td><code>Sichtbarkeit name : Typ [= Startwert]</code></td>
+<td><code>Sichtbarkeit name : Typ [= Startwert] {Eigenschaften}</code></td>
 <td><code>- name : String</code></td>
 </tr>
 <tr>
 <td>Methode</td>
-<td><code>Sichtbarkeit name(param : Typ, …) : Rückgabetyp</code></td>
+<td><code>Sichtbarkeit name(param : Typ, …) : Rückgabetyp {Eigenschaften}</code></td>
 <td><code>+ leiheAus(rad : Fahrrad) : Ausleihe</code></td>
 </tr>
 <tr>
@@ -91,16 +91,20 @@ lies die Aufgabenstellung genau.</p>
 </div><h2>3. Statisch, abstrakt, Interface, Aufzählung</h2>
 <ul>
 <li><strong>static</strong> (Klassenattribut, Klassenmethode): gehört zur Klasse, nicht zu einem einzelnen Objekt –
-<strong>unterstrichen</strong>. Beispiel: ein Zähler <code>anzahlKunden</code>, der für alle Objekte gleich ist.</li>
+<strong>unterstrichen</strong> oder mit der Eigenschaft <code>{static}</code> dahinter: <code>- anzahlKunden : int {static}</code>.
+Beispiel: ein Zähler, der für alle Objekte gleich ist.</li>
+<li><strong>final</strong> (Konstante): Wert kann nicht mehr geändert werden – <code>+ MWST : double = 0.19 {final}</code>.</li>
 <li><strong>abstrakte Klasse</strong>: von ihr kann man keine Objekte erzeugen. Name <strong>kursiv</strong> oder mit <code>{abstract}</code>.
 Abstrakte Methoden (ohne Rumpf) stehen ebenfalls kursiv.</li>
 <li><strong>Interface</strong> (Schnittstelle): nur Methodensignaturen, die eine Klasse umsetzen muss. Über dem Namen steht
-das Schlüsselwort <code>«interface»</code>.</li>
+das Schlüsselwort <code>«interface»</code>. Im Notationsblatt der Prüfung ist der Interfacename zusätzlich kursiv – ein
+Interface ist ja auch abstrakt. Beides ist richtig.</li>
 <li><strong>Aufzählung</strong> (Enum): feste Liste von Werten mit <code>«enumeration»</code> über dem Namen.</li>
 </ul>
 <figure class="shot" data-src="material/s1-abstrakt-interface.svg" data-desc="Links: abstrakte Klasse „Fahrrad“ (kursiv) mit der Unterklasse „EBike“. Mitte: Interface „Zahlungsart“, das die Klasse „Kreditkarte“ realisiert (gestrichelte Linie, hohles Dreieck). Rechts: die Aufzählung „RadZustand“."></figure>
 <div class="box warn"><div class="box-title">Kursiv oder unterstrichen?</div><p><strong>Kursiv = abstrakt. Unterstrichen = statisch.</strong> Diese beiden werden in der Prüfung gern vertauscht. Auf Papier
-ist kursiv schwer zu schreiben – dann schreibst du <code>{abstract}</code> hinter den Namen.</p>
+sind kursiv und unterstrichen schwer zu erkennen. Schreib dann die Eigenschaft in geschweiften Klammern dazu:
+<code>{abstract}</code> bzw. <code>{static}</code> – so steht es auch im Notationsblatt des Prüfungskatalogs.</p>
 </div><h2>4. Detailstufen</h2>
 <p>Nicht jedes Klassendiagramm zeigt alles. Je nach Zweck lässt man Teile weg:</p>
 <figure class="shot" data-src="material/s1-detailstufen.svg" data-desc="Dieselbe Klasse „Station“ dreimal: nur der Name (für Übersichten), mit Attributen und Methoden ohne Typen (Analyse) und vollständig mit Sichtbarkeiten und Datentypen (Entwurf)."></figure>
@@ -110,6 +114,7 @@ ist kursiv schwer zu schreiben – dann schreibst du <code>{abstract}</code> hin
 <ul>
 <li>private Attribute: Kennzeichen (Text), Kilometerstand (Ganzzahl), Baujahr (Ganzzahl)</li>
 <li>ein statisches, privates Attribut, das zählt, wie viele Fahrzeuge angelegt wurden</li>
+<li>eine öffentliche Konstante für die Höchstgeschwindigkeit in der Werkstatt (10 km/h)</li>
 <li>ein öffentlicher Konstruktor mit Kennzeichen und Baujahr</li>
 <li>eine öffentliche Methode, die den Kilometerstand um einen übergebenen Wert erhöht</li>
 <li>eine öffentliche Methode, die das Alter in Jahren zurückgibt</li>
@@ -117,7 +122,7 @@ ist kursiv schwer zu schreiben – dann schreibst du <code>{abstract}</code> hin
 <div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
 <li>Der Name steht im Singular und oben.</li>
 <li>Alle Typen stehen hinter dem Namen, mit Doppelpunkt.</li>
-<li>Das statische Attribut ist unterstrichen.</li>
+<li>Das statische Attribut ist unterstrichen oder mit <code>{static}</code> gekennzeichnet, die Konstante mit <code>{final}</code>.</li>
 <li>Der Konstruktor hat keinen Rückgabetyp.</li>
 </ul>
 </div><details><summary>Lösung</summary><pre><code>               Fahrzeug
@@ -125,7 +130,8 @@ ist kursiv schwer zu schreiben – dann schreibst du <code>{abstract}</code> hin
 - kennzeichen : String
 - kilometerstand : int
 - baujahr : int
-- anzahl : int            (unterstrichen)
+- anzahl : int {static}            (oder unterstrichen)
++ MAX_TEMPO : int = 10 {final}
 -----------------------------------------
 + Fahrzeug(kennzeichen : String, baujahr : int)
 + fahren(km : int) : void
@@ -150,7 +156,7 @@ Wenn du Buch und DVD einzeln mit dem Interface verbindest, ist das auch richtig.
 </details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Deine Ausbildungsfirma</h3><span class="lvl time">10 min</span></div><p>Wähle ein Objekt aus deinem Ausbildungsbetrieb (z. B. Ticket, Server, Auftrag, Lizenz) und modelliere es als
 vollständige Klasse mit mindestens vier Attributen, einem Konstruktor und drei Methoden – mit Sichtbarkeiten und
 Datentypen. Überlege: Gibt es ein sinnvolles statisches Element?</p>
-</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Was bedeutet das Zeichen # vor einem Attribut?</p><ol><li>private</li><li>protected</li><li>package</li></ol><p class="fb" data-ok="Richtig. protected – sichtbar in der Klasse selbst und in ihren Unterklassen." data-no="Merke: - private, + public, # protected, ~ package."></p></div><div class="qa" data-right="2"><p class="q">Wie erkennst du im Klassendiagramm ein statisches Attribut?</p><ol><li>Es ist kursiv geschrieben.</li><li>Es ist unterstrichen.</li><li>Es steht in «static»-Klammern.</li></ol><p class="fb" data-ok="Genau – unterstrichen heißt static. Kursiv bedeutet abstrakt." data-no="Kursiv steht für abstrakt. Statische Attribute und Methoden werden unterstrichen."></p></div><div class="qa" data-right="2"><p class="q">Welche Schreibweise für eine Methode ist UML-konform?</p><ol><li>+ double berechnePreis(int minuten)</li><li>+ berechnePreis(minuten : int) : double</li><li>+ berechnePreis(int) -&gt; double</li></ol><p class="fb" data-ok="Richtig. In UML steht der Typ hinter dem Namen, getrennt durch einen Doppelpunkt." data-no="Das erste ist Java-Schreibweise. UML: name(parameter : Typ) : Rückgabetyp."></p></div></div>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Was bedeutet das Zeichen # vor einem Attribut?</p><ol><li>private</li><li>protected</li><li>package</li></ol><p class="fb" data-ok="Richtig. protected – sichtbar in der Klasse selbst und in ihren Unterklassen." data-no="Merke: - private, + public, # protected, ~ package."></p></div><div class="qa" data-right="2"><p class="q">Wie erkennst du im Klassendiagramm ein statisches Attribut?</p><ol><li>Es ist kursiv geschrieben.</li><li>Es ist unterstrichen oder trägt die Eigenschaft {static}.</li><li>Über dem Klassennamen steht «static».</li></ol><p class="fb" data-ok="Genau – unterstrichen oder {static} hinter dem Attribut. Kursiv bedeutet abstrakt." data-no="Kursiv steht für abstrakt. Statische Attribute und Methoden werden unterstrichen."></p></div><div class="qa" data-right="2"><p class="q">Welche Schreibweise für eine Methode ist UML-konform?</p><ol><li>+ double berechnePreis(int minuten)</li><li>+ berechnePreis(minuten : int) : double</li><li>+ berechnePreis(int) -&gt; double</li></ol><p class="fb" data-ok="Richtig. In UML steht der Typ hinter dem Namen, getrennt durch einen Doppelpunkt." data-no="Das erste ist Java-Schreibweise. UML: name(parameter : Typ) : Rückgabetyp."></p></div></div>
 </main>
 </div>
 <footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>

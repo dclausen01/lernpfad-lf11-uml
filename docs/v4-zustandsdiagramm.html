@@ -50,7 +50,7 @@ Ein Zustand ist etwas, das eine Zeit lang <strong>andauert</strong> („ausgelie
 <tr>
 <td>Transition</td>
 <td>Pfeil <code>Ereignis [Bedingung] / Aktion</code></td>
-<td>Zustandswechsel; alle drei Teile sind optional</td>
+<td>Zustandswechsel; alle drei Teile sind optional. Das Ereignis heißt auch <strong>Auslöser (Trigger)</strong>, oft eine Operation; die Aktion heißt auch <strong>Verhalten</strong></td>
 </tr>
 <tr>
 <td>Endzustand</td>
@@ -84,12 +84,15 @@ Ein Zustand ist etwas, das eine Zeit lang <strong>andauert</strong> („ausgelie
 </tr>
 <tr>
 <td>Zeitereignis</td>
-<td><code>after 15 min</code> als Ereignis</td>
+<td><code>after(15 min)</code> als Ereignis</td>
 <td>Wechsel nach Ablauf einer Zeit</td>
 </tr>
 </tbody>
 </table></div>
-<div class="box note"><div class="box-title">Begriff</div><p>Der Zustandswechsel heißt in UML <strong>Transition</strong>. Manche Lehrbücher schreiben „Transaktion“ – gemeint ist
+<div class="box note"><div class="box-title">Schreibweise in der Prüfung</div><p>Das Notationsblatt des Prüfungskatalogs schreibt Zeitereignisse als <code>after(Zeitdauer)</code> – mit Klammern. Die
+UML-Norm schreibt <code>after 15 min</code> ohne Klammern. Gemeint ist dasselbe; in der Prüfung nimmst du die Form mit
+Klammern.</p>
+</div><div class="box note"><div class="box-title">Begriff</div><p>Der Zustandswechsel heißt in UML <strong>Transition</strong>. Manche Lehrbücher schreiben „Transaktion“ – gemeint ist
 dasselbe, aber in der Prüfung solltest du den richtigen Begriff verwenden.</p>
 </div><h2>3. Das Fahrrad als Zustandsautomat</h2>
 <figure class="shot" data-src="material/v4-fahrrad.svg" data-desc="Zustandsdiagramm eines Fahrrads bei RadWerk mit den Zuständen verfügbar (entry / Schloss verriegeln), reserviert, ausgeliehen (entry / Uhr starten, exit / Uhr stoppen, interne Transition standortMelden / Position speichern), wird geladen (do / Akku laden) und in Wartung. Nach „zurueckgeben“ entscheidet eine Raute: [akku &lt; 20 %] führt zu „wird geladen“, [sonst] zu „verfügbar“. Eine Reservierung verfällt nach 15 Minuten. Aus „in Wartung“ führt „ausmustern“ in den Endzustand."></figure>
@@ -98,7 +101,7 @@ dasselbe, aber in der Prüfung solltest du den richtigen Begriff verwenden.</p>
 <li><code>standortMelden / Position speichern</code> ist eine <strong>interne Transition</strong>. Wäre es eine Selbsttransition (Pfeil
 auf sich selbst), würde bei jeder Standortmeldung <code>exit / Uhr stoppen</code> und <code>entry / Uhr starten</code> laufen – die
 Ausleihzeit würde jedes Mal neu beginnen.</li>
-<li><code>after 15 min</code> ist ein <strong>Zeitereignis</strong>: Holt der Premiumkunde das Rad nicht ab, wird es wieder verfügbar.</li>
+<li><code>after(15 min)</code> ist ein <strong>Zeitereignis</strong>: Holt der Premiumkunde das Rad nicht ab, wird es wieder verfügbar.</li>
 <li>Von „wird geladen“ geht es mit dem Ereignis <code>geladen</code> weiter. Hier würde auch eine Transition <strong>ohne</strong> Ereignis
 passen – sie feuert automatisch, sobald das <code>do</code>-Verhalten fertig ist.</li>
 </ul>
@@ -123,7 +126,7 @@ kann es wiedereröffnen oder die Lösung bestätigen. Bestätigt er nicht innerh
 <li>Die Rückfrage hat eine Aktion hinter dem Schrägstrich.</li>
 <li>Für die 7 Tage gibt es ein Zeitereignis.</li>
 </ul>
-</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v4-ticket.svg" data-desc="Lösung Support-Ticket: Vom Anfangszustand zu „neu“. „zuweisen [Bearbeiter verfügbar]“ führt zu „in Bearbeitung“. „rueckfrage / E-Mail senden“ führt zu „wartet auf Kunde“, „antwortErhalten“ zurück. „loesen“ führt zu „gelöst“, von dort „wiedereroeffnen“ zurück zu „in Bearbeitung“ oder „bestaetigen“ bzw. „after 7 Tage“ zu „geschlossen“ und mit „archivieren“ zum Endzustand."></figure>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v4-ticket.svg" data-desc="Lösung Support-Ticket: Vom Anfangszustand zu „neu“. „zuweisen [Bearbeiter verfügbar]“ führt zu „in Bearbeitung“. „rueckfrage / E-Mail senden“ führt zu „wartet auf Kunde“, „antwortErhalten“ zurück. „loesen“ führt zu „gelöst“, von dort „wiedereroeffnen“ zurück zu „in Bearbeitung“ oder „bestaetigen“ bzw. „after(7 Tage)“ zu „geschlossen“ und mit „archivieren“ zum Endzustand."></figure>
 </details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Getränkeautomat</h3><span class="lvl time">15 min</span></div><p>Ein Getränkeautomat ist <strong>bereit</strong>. Wirft jemand eine Münze ein, merkt er sich den Betrag als Guthaben und ist
 <strong>kassiert</strong>. Weitere Münzen erhöhen das Guthaben, ohne dass sich der Zustand ändert. Wird ein Getränk gewählt und
 reicht das Guthaben, geht der Automat in <strong>Ausgabe</strong> und gibt das Getränk aus. Reicht es nicht, zeigt er „zu

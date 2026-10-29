@@ -10,7 +10,7 @@ state "wird geladen" as laden : do / Akku laden
 state "in Wartung" as wartung
 state c <<choice>>
 verfuegbar --> reserviert : reservieren
-reserviert --> verfuegbar : after 15 min
+reserviert --> verfuegbar : after(15 min)
 reserviert --> ausgeliehen : ausleihen
 verfuegbar --> ausgeliehen : ausleihen
 ausgeliehen --> c : zurueckgeben

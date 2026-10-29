@@ -107,7 +107,7 @@ parkt. Wenn du <code>1</code> gewählt und das begründet hast, ist das auch in 
 Ablauf der Ausfahrt (Aufgabe 3). In der Praxis wächst das Klassendiagramm mit jedem Sequenzdiagramm mit.</li>
 </ul>
 </details></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Pflicht</span><h3>3 · Sequenzdiagramm „Ausfahren“</h3><span class="lvl time">15 min</span></div><p>Zeichne das Sequenzdiagramm für die Ausfahrt.</p>
-<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-seq.svg" data-desc="Lösung: Die Kennzeichenkamera (Akteur) schickt asynchron kennzeichenErkannt(kz) an :Parkhaus. Das Parkhaus sucht per Selbstaufruf den Parkvorgang pv und ruft istBezahlt() auf. Im alt-Fragment [bezahlt] ruft es oeffnen() an der Schranke und abschliessen(jetzt) am Parkvorgang auf, im Zweig [sonst] schickt es zeige(&quot;Bitte zuerst bezahlen&quot;) asynchron an das Display."></figure>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-seq.svg" data-desc="Lösung: Die Kennzeichenkamera (Akteur) schickt asynchron kennzeichenErkannt(kz) an :Parkhaus. Das Parkhaus sucht per Selbstaufruf den Parkvorgang pv und ruft istBezahlt() auf. Im alt-Fragment [bezahlt] ruft es oeffnen() an der Schranke und abschliessen(jetzt) am Parkvorgang auf, im Zweig [else] schickt es zeige(&quot;Bitte zuerst bezahlen&quot;) asynchron an das Display."></figure>
 <ul>
 <li>„ohne auf eine Antwort zu warten“ → <strong>asynchrone</strong> Nachricht von der Kamera.</li>
 <li>Zwei Fälle („Ist bezahlt … sonst …“) → <code>alt</code> mit zwei Zweigen.</li>
@@ -117,7 +117,7 @@ Empfängers (<code>istBezahlt()</code> und <code>abschliessen()</code> in <code>
 Diagrammen werden in der Prüfung gern abgefragt.</li>
 </ul>
 </details></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Pflicht</span><h3>4 · Zustandsdiagramm „Stellplatz“</h3><span class="lvl time">10 min</span></div><p>Zeichne das Zustandsdiagramm eines Stellplatzes.</p>
-<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-zustand.svg" data-desc="Lösung: Start in „frei“. reservieren führt zu „reserviert“ (entry / Anzeige rot schalten), „after 30 min“ zurück zu „frei“, „einparken [Kennzeichen passt]“ zu „belegt“. Von „frei“ führt einparken direkt zu „belegt“ (entry / Anzeige rot schalten, exit / Anzeige grün schalten), ausparken zurück zu „frei“. sperren und entsperren wechseln zwischen „frei“ und „gesperrt“."></figure>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-zustand.svg" data-desc="Lösung: Start in „frei“. reservieren führt zu „reserviert“ (entry / Anzeige rot schalten), „after(30 min)“ zurück zu „frei“, „einparken [Kennzeichen passt]“ zu „belegt“. Von „frei“ führt einparken direkt zu „belegt“ (entry / Anzeige rot schalten, exit / Anzeige grün schalten), ausparken zurück zu „frei“. sperren und entsperren wechseln zwischen „frei“ und „gesperrt“."></figure>
 <ul>
 <li>Die Anzeige als <code>entry</code>/<code>exit</code>-Verhalten spart Aktionen an jeder einzelnen Transition.</li>
 <li>Ein Endzustand ist nicht nötig – ein Stellplatz „stirbt“ nicht im laufenden Betrieb.</li>

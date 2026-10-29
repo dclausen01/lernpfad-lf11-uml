@@ -8,12 +8,13 @@ reihenfolge: 1
 
 | Was | Schreibweise |
 | --- | --- |
-| Attribut | `- name : String [= Startwert]` |
+| Attribut | `- name : String [= Startwert] {Eigenschaften}` |
 | Methode | `+ name(param : Typ) : Rückgabetyp` |
 | Sichtbarkeit | `+` public · `-` private · `#` protected · `~` package |
-| statisch | unterstrichen |
+| statisch | unterstrichen oder `{static}` |
+| Konstante | `{final}`, z. B. `+ MWST : double = 0.19 {final}` |
 | abstrakt | kursiv oder `{abstract}` |
-| Interface / Aufzählung | `«interface»` / `«enumeration»` über dem Namen |
+| Interface / Aufzählung | `«interface»` (Name kursiv) / `«enumeration»` über dem Namen |
 
 | Beziehung | Linie | Ende |
 | --- | --- | --- |
@@ -22,16 +23,16 @@ reihenfolge: 1
 | Aggregation (Teil lebt weiter) | ◇——— | hohle Raute **am Ganzen** |
 | Komposition (Teil stirbt mit) | ◆——— | gefüllte Raute **am Ganzen**, dort `1` / `0..1` |
 | Generalisierung (ist ein) | ———▷ | hohles Dreieck an der **Oberklasse** |
-| Realisierung (Interface) | - - - -▷ | hohles Dreieck am **Interface** |
+| Realisierung / Implementierung (Interface) | - - - -▷ | hohles Dreieck am **Interface** |
 | Abhängigkeit (benutzt) | - - - -> | offene Spitze |
 
-Multiplizitäten: `1` · `0..1` · `*` = `0..*` · `1..*` · `2..10` – an **beiden** Enden.
+Multiplizitäten (Kardinalitäten): `1` · `0..1` · `*` = `0..*` · `1..*` · `2..10` – an **beiden** Enden.
 
-## Objektdiagramm
+## Objektdiagramm (Zusatz, nicht im Prüfungskatalog)
 
 `anna : Kunde` **unterstrichen** · Attribute mit Werten (`name = "Anna"`) · Links ohne Multiplizitäten.
 
-## Komponenten- und Verteilungsdiagramm
+## Komponenten- und Verteilungsdiagramm (Zusatz, nicht im Prüfungskatalog)
 
 | Was | Symbol |
 | --- | --- |
@@ -60,9 +61,10 @@ Multiplizitäten: `1` · `0..1` · `*` = `0..*` · `1..*` · `2..10` – an **be
 | Start / Ende / Ablaufende | ● / ◉ (alles endet) / ⊗ (nur dieser Zweig) |
 | Aktion | Rechteck mit runden Ecken |
 | Verzweigung / Zusammenführung | Raute, Guards `[…]` an den Kanten |
-| Gabelung / Vereinigung | dicker Balken (parallel; Join wartet auf alle) |
+| Teilung / Synchronisation | dicker Balken (Fork: parallel; Join wartet auf alle) |
+| Konnektor | Kreis mit Buchstabe Ⓐ → Ⓐ (Sprungmarke) |
 | Objektknoten | eckiges Rechteck |
-| Partition (Swimlane) | Bahn mit Namen des Verantwortlichen |
+| Partition (Swimlane, Schwimmbahn) | Bahn mit Namen des Verantwortlichen |
 
 ## Sequenzdiagramm
 
@@ -72,9 +74,9 @@ Multiplizitäten: `1` · `0..1` · `*` = `0..*` · `1..*` · `2..10` – an **be
 | synchron (wartet) | ———▶ gefüllte Spitze |
 | asynchron (wartet nicht) | ———> offene Spitze |
 | Antwort | - - - -> gestrichelt |
-| Erzeugung | - - - -> `«create»` auf den Kopf des neuen Objekts |
+| Erzeugung | - - - -> `create` auf den Kopf des neuen Objekts |
 | Zerstörung | ✕ am Ende der Lebenslinie |
-| Fragmente | `alt` (if/else) · `opt` (if) · `loop(min,max) [Bed.]` · `par` · `break` |
+| Fragmente | `alt [Bed.] … [else]` · `opt [Bed.]` · `loop [Bed.]` · `loop(10)` · `loop(min,max) [Bed.]` · `par` · `break` |
 
 ## Zustandsdiagramm
 
@@ -82,8 +84,8 @@ Multiplizitäten: `1` · `0..1` · `*` = `0..*` · `1..*` · `2..10` – an **be
 | --- | --- |
 | Anfang / Ende | ● (Transition ohne Ereignis) / ◉ |
 | Zustand | Rechteck mit runden Ecken, Name als Zustand („ausgeliehen“) |
-| Transition | `ereignis [bedingung] / aktion` |
+| Transition | `ereignis [bedingung] / aktion` (Auslöser [Bedingung] / Verhalten) |
 | im Zustand | `entry / …` · `do / …` · `exit / …` · `ereignis / aktion` (intern) |
-| Zeitereignis | `after 15 min` |
+| Zeitereignis | `after(15 min)` |
 | Entscheidung | Raute mit `[…]`-Guards |
 | Selbsttransition | verlässt den Zustand → exit und entry laufen erneut |

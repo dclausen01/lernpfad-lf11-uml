@@ -15,7 +15,7 @@
 <div class="layout">
 <nav id="sidebar" aria-label="Lernpfad"></nav>
 <main>
-<div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>erklären, wozu UML in der Softwareentwicklung dient,</li><li>Struktur- und Verhaltensdiagramme unterscheiden,</li><li>die sieben AP2-relevanten Diagrammtypen benennen und einordnen.</li></ul></div><h2>1. Wozu UML?</h2>
+<div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>erklären, wozu UML in der Softwareentwicklung dient,</li><li>Struktur- und Verhaltensdiagramme unterscheiden,</li><li>die fünf Diagrammtypen aus dem AP2-Prüfungskatalog benennen und einordnen.</li></ul></div><h2>1. Wozu UML?</h2>
 <p>In einem Softwareprojekt reden viele Menschen miteinander: Kund:innen, Entwickler:innen, Tester:innen, die
 Projektleitung. Damit alle dasselbe meinen, braucht es eine gemeinsame Sprache. Die <strong>Unified Modeling Language
 (UML)</strong> ist so eine Sprache – allerdings eine grafische. Sie hilft dir, Software zu</p>
@@ -60,10 +60,12 @@ objektorientierten Programmierung (Java, C#, Python …).</p>
 </table></div>
 <p>Die <strong>Interaktionsdiagramme</strong> sind eine Untergruppe der Verhaltensdiagramme. Sie zeigen, wie Objekte miteinander
 Nachrichten austauschen. Das wichtigste davon ist das Sequenzdiagramm.</p>
-<figure class="shot" data-src="material/g1-diagrammarten.svg" data-desc="Die 14 UML-Diagrammtypen als Hierarchie. Mit ★ und blauem Kasten markiert: die Diagramme aus dem AP2-Themenkatalog. Die Pfeile mit hohlem Dreieck bedeuten „ist ein“ – das ist selbst UML-Notation (Generalisierung)."></figure>
+<figure class="shot" data-src="material/g1-diagrammarten.svg" data-desc="Die 14 UML-Diagrammtypen als Hierarchie. Mit ★ und blauem Kasten markiert: die fünf Diagramme aus dem AP2-Prüfungskatalog. Die Pfeile mit hohlem Dreieck bedeuten „ist ein“ – das ist selbst UML-Notation (Generalisierung)."></figure>
 <h2>3. Was kommt in der AP2 dran?</h2>
-<p>Im Prüfungsbereich <strong>„Planen eines Softwareproduktes“</strong> (90 Minuten) musst du UML-Diagramme lesen, ergänzen,
-korrigieren und selbst erstellen. Im Themenkatalog werden diese sieben Diagramme genannt:</p>
+<p>Teil 2 der Abschlussprüfung hat zwei fachliche Prüfungsbereiche: <strong>„Planen eines Softwareproduktes“</strong> und
+<strong>„Entwicklung und Umsetzung von Algorithmen“</strong> (je 90 Minuten, je vier ungebundene Aufgaben). In beiden kann UML
+vorkommen: Du musst Diagramme lesen, ergänzen, korrigieren und selbst erstellen. Der Prüfungskatalog der ZPA
+(2. Auflage, Stand 10/2024) nennt diese <strong>fünf</strong> UML-Diagramme:</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -77,16 +79,6 @@ korrigieren und selbst erstellen. Im Themenkatalog werden diese sieben Diagramme
 <td>Klassendiagramm</td>
 <td>Welche Klassen gibt es, wie hängen sie zusammen?</td>
 <td><a href="s1-klassendiagramm-i-die-klasse.html">S1</a>, <a href="s2-klassendiagramm-ii-beziehungen.html">S2</a>, <a href="s3-code-klassendiagramm.html">S3</a></td>
-</tr>
-<tr>
-<td>Komponentendiagramm</td>
-<td>Aus welchen Softwarebausteinen besteht das System, über welche Schnittstellen reden sie?</td>
-<td><a href="s5-komponenten-und-verteilungsdiagramm.html">S5</a></td>
-</tr>
-<tr>
-<td>Verteilungsdiagramm</td>
-<td>Welche Software läuft auf welcher Hardware?</td>
-<td><a href="s5-komponenten-und-verteilungsdiagramm.html">S5</a></td>
 </tr>
 <tr>
 <td>Anwendungsfalldiagramm</td>
@@ -110,9 +102,16 @@ korrigieren und selbst erstellen. Im Themenkatalog werden diese sieben Diagramme
 </tr>
 </tbody>
 </table></div>
-<p>Das <strong>Objektdiagramm</strong> (<a href="s4-objektdiagramm.html">S4</a>) steht nicht ausdrücklich im Katalog. Es hilft dir aber sehr, das
-Klassendiagramm zu verstehen – deshalb ist es trotzdem dabei.</p>
-<div class="box tip"><div class="box-title">So arbeiten die Prüfungsaufgaben</div><p>Typisch sind Aufgaben wie: „Ergänzen Sie das Klassendiagramm um …“, „Erstellen Sie aus dem Quelltext ein
+<p>Anwendungsfall-, Klassen- und Aktivitätsdiagramm kennst du schon aus der AP1 – in der AP2 kommen Sequenz- und
+Zustandsdiagramm dazu, und die Aufgaben werden umfangreicher.</p>
+<div class="box note"><div class="box-title">Zusatzwissen</div><p>Das <strong>Objektdiagramm</strong> (<a href="s4-objektdiagramm.html">S4</a>) und das <strong>Komponenten- und Verteilungsdiagramm</strong> (<a href="s5-komponenten-und-verteilungsdiagramm.html">S5</a>) stehen
+nicht im Prüfungskatalog. Das Objektdiagramm hilft dir aber sehr, das Klassendiagramm zu verstehen. Komponenten-
+und Verteilungsdiagramm brauchst du in der Praxis und oft in der Dokumentation deines Abschlussprojekts. Wenn die
+Zeit knapp ist, lass S5 weg.</p>
+</div><div class="box tip"><div class="box-title">Das Notationsblatt der Prüfung</div><p>Im <strong>Anhang des Prüfungskatalogs</strong> gibt es für alle fünf Diagramme eine Übersicht der Symbole. Daran halten
+sich die Prüfungsaufgaben. Dieser Lernpfad verwendet dieselbe Schreibweise. Wo sie von der UML-Norm oder von
+Lehrbüchern abweicht, steht es im jeweiligen Modul.</p>
+</div><div class="box tip"><div class="box-title">So arbeiten die Prüfungsaufgaben</div><p>Typisch sind Aufgaben wie: „Ergänzen Sie das Klassendiagramm um …“, „Erstellen Sie aus dem Quelltext ein
 Sequenzdiagramm“, „Welche Fehler enthält das Anwendungsfalldiagramm?“ oder „Modellieren Sie die Zustände eines
 Auftrags“. Fast immer bekommst du dazu eine <strong>Situationsbeschreibung</strong>. Die wichtigste Fähigkeit ist also:
 Text lesen und die passenden Elemente herausziehen.</p>

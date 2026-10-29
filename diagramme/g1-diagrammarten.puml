@@ -16,9 +16,9 @@ abstract class "Interaktionsdiagramm" as I
 class "★ Klassendiagramm" as K <<ap2>>
 class "Objektdiagramm" as O
 class "Paketdiagramm" as P
-class "★ Komponentendiagramm" as C <<ap2>>
+class "Komponentendiagramm" as C
 class "Kompositionsstrukturdiagramm" as KS
-class "★ Verteilungsdiagramm" as VT <<ap2>>
+class "Verteilungsdiagramm" as VT
 class "Profildiagramm" as PR
 class "★ Anwendungsfalldiagramm" as A <<ap2>>
 class "★ Aktivitätsdiagramm" as AK <<ap2>>

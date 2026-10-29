@@ -76,9 +76,13 @@ Anmeldung oder die Kommunikation zwischen App und Server erklären willst.</p>
 </tr>
 </tbody>
 </table></div>
-<div class="box note"><div class="box-title">Laut UML-Norm</div><p>Die Erzeugungsnachricht ist nach UML 2.5.1 <strong>gestrichelt</strong> mit offener Spitze. Manche Lehrbücher zeichnen sie
-durchgezogen – in der Prüfung wird das in der Regel nicht als Fehler gewertet, solange das neue Objekt erst an der
-Pfeilspitze beginnt.</p>
+<div class="box note"><div class="box-title">Schreibweise in der Prüfung</div><ul>
+<li>Die <strong>Erzeugungsnachricht</strong> ist gestrichelt mit offener Spitze und mit <code>create</code> beschriftet – so steht es in der
+UML-Norm und im Notationsblatt des Prüfungskatalogs. Manche Lehrbücher zeichnen sie durchgezogen.</li>
+<li><strong>Aktivierungsbalken</strong> sind optional. Wenn du sie zeichnest, dann vollständig: vom Aufruf bis zur Antwort.</li>
+<li>Antworten dürfen weggelassen werden, wenn nichts zurückgegeben wird. An die Antwort schreibst du den
+Rückgabewert oder die Variable, in der er landet.</li>
+</ul>
 </div><h2>2. Kombinierte Fragmente</h2>
 <p>Bedingungen und Schleifen zeichnest du als <strong>Rahmen</strong> um die betroffenen Nachrichten. Links oben steht der
 Operator, die Bedingung (Guard) steht in eckigen Klammern.</p>
@@ -93,7 +97,7 @@ Operator, die Bedingung (Guard) steht in eckigen Klammern.</p>
 <tbody>
 <tr>
 <td><code>alt</code></td>
-<td>Alternativen, durch gestrichelte Linien getrennt – genau eine wird ausgeführt</td>
+<td>Alternativen, durch gestrichelte Linien getrennt – genau eine wird ausgeführt; der letzte Zweig heißt meist <code>[else]</code></td>
 <td><code>if … else if … else</code></td>
 </tr>
 <tr>
@@ -103,7 +107,7 @@ Operator, die Bedingung (Guard) steht in eckigen Klammern.</p>
 </tr>
 <tr>
 <td><code>loop</code></td>
-<td>Wiederholung; <code>loop(min,max) [Bedingung]</code></td>
+<td>Wiederholung: <code>loop [Bedingung]</code>, <code>loop(10)</code> für genau 10-mal oder <code>loop(min,max) [Bedingung]</code></td>
 <td><code>while</code>, <code>for</code></td>
 </tr>
 <tr>
@@ -118,7 +122,7 @@ Operator, die Bedingung (Guard) steht in eckigen Klammern.</p>
 </tr>
 </tbody>
 </table></div>
-<figure class="shot" data-src="material/v3-ausleihe.svg" data-desc="Sequenzdiagramm „Rad ausleihen“: Der Kunde ruft in der App radAusleihen(radId) auf. Die App ruft synchron ausleihen(kundeId, radId) am Ausleihservice auf, der seine Verfügbarkeit per Selbstaufruf prüft. Im alt-Fragment [verfuegbar] erzeugt der Ausleihservice ein Objekt a:Ausleihe, schickt asynchron oeffnen() an das Schloss und antwortet der App mit a. Im Zweig [sonst] antwortet er mit null, und die App meldet „Rad nicht verfügbar“."></figure>
+<figure class="shot" data-src="material/v3-ausleihe.svg" data-desc="Sequenzdiagramm „Rad ausleihen“: Der Kunde ruft in der App radAusleihen(radId) auf. Die App ruft synchron ausleihen(kundeId, radId) am Ausleihservice auf, der seine Verfügbarkeit per Selbstaufruf prüft. Im alt-Fragment [verfuegbar] erzeugt der Ausleihservice ein Objekt a:Ausleihe, schickt asynchron oeffnen() an das Schloss und antwortet der App mit a. Im Zweig [else] antwortet er mit null, und die App meldet „Rad nicht verfügbar“."></figure>
 <div class="box warn"><div class="box-title">Typische Fehler</div><ul>
 <li>Antwort mit durchgezogener Linie gezeichnet – Antworten sind <strong>immer gestrichelt</strong>.</li>
 <li>Synchron und asynchron verwechselt. Frag dich: Wartet der Sender auf ein Ergebnis?</li>
@@ -167,7 +171,7 @@ höchstens dreimal. Nach dem dritten Fehlversuch meldet das Portal „Konto gesp
 <li>Darin ein <code>alt</code>-Fragment mit drei Zweigen und Guards.</li>
 <li>Alle Antworten gestrichelt.</li>
 </ul>
-</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v3-login.svg" data-desc="Lösung: loop(1,3) [nicht angemeldet] um den Ablauf login(name, pw) vom Benutzer an das Onlineportal und pruefe(name, pw) vom Portal an die Datenbank mit der Antwort ergebnis. Darin ein alt-Fragment mit den Zweigen [ergebnis = ok] „Anmeldung erfolgreich“, [versuche &lt; 3] „Daten falsch“ und [sonst] „Konto gesperrt“."></figure>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v3-login.svg" data-desc="Lösung: loop(1,3) [nicht angemeldet] um den Ablauf login(name, pw) vom Benutzer an das Onlineportal und pruefe(name, pw) vom Portal an die Datenbank mit der Antwort ergebnis. Darin ein alt-Fragment mit den Zweigen [ergebnis = ok] „Anmeldung erfolgreich“, [versuche &lt; 3] „Daten falsch“ und [else] „Konto gesperrt“."></figure>
 <p>Achte auf die Logik der Bedingung: Die Schleife läuft, solange der Benutzer <strong>nicht</strong> angemeldet ist <strong>und</strong>
 noch Versuche übrig sind – die Höchstzahl regelt <code>loop(1,3)</code>. Ein „oder“ an dieser Stelle wäre falsch, weil die
 Schleife dann nach einer erfolgreichen Anmeldung weiterliefe.</p>

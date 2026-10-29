@@ -45,24 +45,34 @@ kann aber zusätzlich Parallelität und Verantwortlichkeiten darstellen.</p>
 <td>Reihenfolge (Kontrollfluss)</td>
 </tr>
 <tr>
-<td>Verzweigung</td>
+<td>Verzweigung (Entscheidung)</td>
 <td>Raute, <strong>ein</strong> Eingang, mehrere Ausgänge mit <code>[Bedingung]</code></td>
 <td>genau ein Weg wird genommen</td>
 </tr>
 <tr>
-<td>Zusammenführung</td>
+<td>Zusammenführung („Oder“)</td>
 <td>Raute, mehrere Eingänge, <strong>ein</strong> Ausgang</td>
 <td>Wege laufen wieder zusammen</td>
 </tr>
 <tr>
-<td>Gabelung (Fork)</td>
+<td>Entscheidung und Zusammenführung</td>
+<td>eine Raute mit mehreren Ein- <strong>und</strong> Ausgängen</td>
+<td>beides in einem Symbol, z. B. am Schleifenkopf</td>
+</tr>
+<tr>
+<td>Gabelung (Fork, Teilung, Splitting)</td>
 <td>dicker Balken, ein Eingang, mehrere Ausgänge</td>
 <td>ab hier laufen Zweige <strong>parallel</strong></td>
 </tr>
 <tr>
-<td>Vereinigung (Join)</td>
+<td>Vereinigung (Join, Synchronisation, „Und“)</td>
 <td>dicker Balken, mehrere Eingänge, ein Ausgang</td>
 <td>wartet, bis <strong>alle</strong> Zweige fertig sind</td>
+</tr>
+<tr>
+<td>Teilung und Synchronisation</td>
+<td>ein Balken mit mehreren Ein- <strong>und</strong> Ausgängen</td>
+<td>erst warten, dann wieder parallel</td>
 </tr>
 <tr>
 <td>Objektknoten</td>
@@ -79,18 +89,24 @@ kann aber zusätzlich Parallelität und Verantwortlichkeiten darstellen.</p>
 <td>Kreis mit X ⊗</td>
 <td>nur dieser Zweig endet</td>
 </tr>
+<tr>
+<td>Konnektor (Sprungmarke)</td>
+<td>kleiner Kreis mit Buchstabe, z. B. Ⓐ</td>
+<td>der Fluss geht beim gleichnamigen Konnektor weiter – praktisch bei Seitenwechsel oder langen Kanten</td>
+</tr>
 </tbody>
 </table></div>
+<figure class="shot" data-src="material/v2-konnektor.svg" data-desc="Konnektor: Nach „Schritt 1“ endet der Fluss in einem Kreis mit dem Buchstaben A. Ein zweiter Kreis A an anderer Stelle setzt den Fluss mit „Schritt 2“ fort."></figure>
 <div class="box warn"><div class="box-title">Typische Fehler bei Verzweigungen</div><ul>
 <li>Die Bedingungen müssen sich <strong>gegenseitig ausschließen</strong> und <strong>alle Fälle abdecken</strong>. <code>[x &gt; 0]</code> und <code>[x &lt; 0]</code>
-reicht nicht – was ist mit 0? Im Zweifel <code>[sonst]</code> (oder <code>[else]</code>) verwenden.</li>
+reicht nicht – was ist mit 0? Im Zweifel <code>[sonst]</code> bzw. <code>[else]</code> verwenden – beides ist üblich.</li>
 <li>Raute und Balken nicht verwechseln: <strong>Raute = entweder–oder</strong>, <strong>Balken = gleichzeitig</strong>.</li>
 </ul>
 </div><h2>2. Endknoten oder Ablaufende?</h2>
 <figure class="shot" data-src="material/v2-ablaufende.svg" data-desc="Nach „Bestellung speichern“ teilt eine Gabelung in zwei parallele Zweige: „Nutzungsstatistik schreiben“ endet mit einem Ablaufende (Kreis mit X), „Bestätigung anzeigen“ mit einem Endknoten (Kreis mit Punkt)."></figure>
 <p>Achtung: Erreicht der rechte Zweig den <strong>Endknoten</strong>, ist die ganze Aktivität vorbei – auch wenn die Statistik
 noch nicht fertig geschrieben ist. Soll die Statistik sicher fertig werden, brauchst du vorher einen Join.</p>
-<h2>3. Partitionen (Swimlanes)</h2>
+<h2>3. Partitionen (Swimlanes, Schwimmbahnen)</h2>
 <p>Mit <strong>Partitionen</strong> zeigst du, <strong>wer</strong> eine Aktion ausführt – eine Person, eine Abteilung oder ein System. Die
 Aktion steht in der Bahn des Verantwortlichen.</p>
 <figure class="shot" data-src="material/v2-rueckgabe.svg" data-desc="Aktivitätsdiagramm „Rad zurückgeben“ mit den Partitionen Kunde und RadWerk-System. Der Kunde stellt das Rad ab und schließt das Schloss. Das System prüft den Standort; ist das Rad nicht an einer Station, geht es zurück zum Abstellen. Danach laufen parallel „Rechnung erstellen“, „Betrag abbuchen“ und „Akkustand prüfen“ (bei Akku unter 20 % mit Ladeauftrag). Nach dem Join erhält der Kunde die Bestätigung."></figure>

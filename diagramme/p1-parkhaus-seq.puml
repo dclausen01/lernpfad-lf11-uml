@@ -25,7 +25,7 @@ alt bezahlt
   activate PV
   PV -->> ST
   deactivate PV
-else sonst
+else else
   ST ->> DIS : zeige("Bitte zuerst bezahlen")
 end
 deactivate ST

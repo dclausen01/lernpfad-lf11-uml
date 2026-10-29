@@ -40,13 +40,16 @@
   geprueft_am: 2026-10-29
   belegt: Prüfungsbereich „Planen eines Softwareproduktes“ (90 Minuten) in Teil 2 der Abschlussprüfung
 
-- id: q-ap2-themen
-  titel: "IT-Berufe-Podcast (Stefan Macke): Mögliche Themen von Teil 2 der GAP für Fachinformatiker Anwendungsentwicklung"
-  url: https://it-berufe-podcast.de/vorbereitung-auf-die-ihk-abschlusspruefung-der-it-berufe/moegliche-themen-von-teil-2-der-gestreckten-abschlusspruefung-gap-fuer-fachinformatiker-anwendungsentwicklung/
-  art: fachliteratur
-  status: zu_pruefen
+- id: q-zpa-katalog
+  titel: "ZPA Nord-West: Prüfungskatalog für die IHK-Abschlussprüfung Fachinformatiker/-in Anwendungsentwicklung, 2. Auflage, Stand 2024-10-07 (u-form Verlag, Best.-Nr. 6392)"
+  url: https://www.u-form-shop.de
+  art: lehrplan
+  status: verifiziert
   geprueft_am: 2026-10-29
   belegt: >-
-    Liste der prüfungsrelevanten UML-Diagramme (Klassen-, Aktivitäts-, Anwendungsfall-, Sequenz-, Zustands-,
-    Komponenten-, Verteilungsdiagramm) und Klassenbeziehungen. Sekundärquelle auf Basis des AkA-Prüfungskatalogs –
-    gegen den aktuellen offiziellen Prüfungskatalog prüfen.
+    AP2-Prüfungsbereiche „Planen eines Softwareproduktes“ und „Entwicklung und Umsetzung von Algorithmen“
+    (je 90 Minuten, vier ungebundene Aufgaben, je 10 %). UML in AP2: Klassen-, Anwendungsfall-, Aktivitäts-,
+    Sequenz- und Zustandsdiagramm (Fragenkomplexe 03 und 04); in AP1: Anwendungsfall-, Klassen-,
+    Aktivitätsdiagramm. Notationsblatt im Anhang (S. 40–42): {static}/{final} als Eigenschaften, Implementierung,
+    Konnektoren, [else], loop(10), create gestrichelt, after(Zeitdauer). Kein Komponenten-, Verteilungs- oder
+    Objektdiagramm.

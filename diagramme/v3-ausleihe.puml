@@ -19,7 +19,7 @@ alt verfuegbar
   AS ->> SL : oeffnen()
   AS -->> App : a
   App -->> K : "Rad entriegelt"
-else sonst
+else else
   AS -->> App : null
   App -->> K : "Rad nicht verfügbar"
 end
