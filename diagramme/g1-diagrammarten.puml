@@ -1,0 +1,47 @@
+@startuml
+!include stil.iuml
+hide members
+hide stereotype
+left to right direction
+skinparam ranksep 45
+skinparam nodesep 14
+skinparam class {
+  BackgroundColor<<ap2>> #DCEEFF
+  BorderThickness<<ap2>> 2
+}
+abstract class "Diagramm" as D
+abstract class "Strukturdiagramm" as S
+abstract class "Verhaltensdiagramm" as V
+abstract class "Interaktionsdiagramm" as I
+class "★ Klassendiagramm" as K <<ap2>>
+class "Objektdiagramm" as O
+class "Paketdiagramm" as P
+class "★ Komponentendiagramm" as C <<ap2>>
+class "Kompositionsstrukturdiagramm" as KS
+class "★ Verteilungsdiagramm" as VT <<ap2>>
+class "Profildiagramm" as PR
+class "★ Anwendungsfalldiagramm" as A <<ap2>>
+class "★ Aktivitätsdiagramm" as AK <<ap2>>
+class "★ Zustandsdiagramm" as Z <<ap2>>
+class "★ Sequenzdiagramm" as SQ <<ap2>>
+class "Kommunikationsdiagramm" as KO
+class "Zeitverlaufsdiagramm" as ZV
+class "Interaktionsübersichtsdiagramm" as IU
+D <|-- S
+D <|-- V
+S <|-- K
+S <|-- O
+S <|-- P
+S <|-- C
+S <|-- KS
+S <|-- VT
+S <|-- PR
+V <|-- A
+V <|-- AK
+V <|-- Z
+V <|-- I
+I <|-- SQ
+I <|-- KO
+I <|-- ZV
+I <|-- IU
+@enduml

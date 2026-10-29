@@ -1,0 +1,16 @@
+@startuml
+!include stil.iuml
+object "<u>r1 : Rechnung</u>" as r1 {
+  datum = 2026-05-04
+}
+object "<u>p1 : Rechnungsposition</u>" as p1 {
+  text = "E-Bike 45 min"
+  betrag = 6.75
+}
+object "<u>p2 : Rechnungsposition</u>" as p2 {
+  text = "Helmverleih"
+  betrag = 1.50
+}
+r1 -- p1
+r1 -- p2
+@enduml

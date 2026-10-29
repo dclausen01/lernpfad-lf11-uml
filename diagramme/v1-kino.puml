@@ -1,0 +1,25 @@
+@startuml
+!include stil.iuml
+left to right direction
+skinparam nodesep 25
+actor Kunde
+actor Kassenkraft
+rectangle "Zahlungsanbieter" <<actor>> as ZA
+rectangle "Kino-Ticketsystem" {
+  usecase "Programm ansehen" as P
+  usecase "Ticket kaufen" as T
+  usecase "Sitzplatz wählen" as S
+  usecase "Bezahlen\n--\n<i>extension points</i>\nRabatt" as B
+  usecase "Rabattcode einlösen" as R
+  usecase "Ticket stornieren" as St
+}
+Kunde -- P
+Kunde -- T
+Kunde -- St
+Kassenkraft -- T
+Kassenkraft -- St
+T ..> S : <<include>>
+T ..> B : <<include>>
+R ..> B : <<extend>>
+B -- ZA
+@enduml

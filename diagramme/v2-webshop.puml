@@ -1,0 +1,24 @@
+@startuml
+!include stil.iuml
+|Kunde|
+start
+:Bestellung absenden;
+|Webshop|
+:Bestellung prüfen;
+if () then ([nicht vorrätig])
+  :Kunde über Lieferzeit informieren;
+  stop
+else ([vorrätig])
+endif
+fork
+  :Rechnung senden;
+fork again
+  |Lager|
+  :Ware verpacken;
+end fork
+|Lager|
+:Ware versenden;
+|Kunde|
+:Ware empfangen;
+stop
+@enduml

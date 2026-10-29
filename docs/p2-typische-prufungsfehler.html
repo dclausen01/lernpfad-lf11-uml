@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typische Prüfungsfehler – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="p2">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>die häufigsten Notationsfehler in allen UML-Diagrammen erkennen und korrigieren,</li><li>fremde Diagramme systematisch auf Fehler prüfen,</li><li>die eigene Lösung vor der Abgabe mit einer Checkliste kontrollieren.</li></ul></div><h2>1. Die Klassiker im Klassendiagramm</h2>
+<figure class="shot" data-src="material/p2-fehler-raute.svg" data-desc="Links falsch: Die Raute der Komposition sitzt an der Rechnungsposition, an der Rechnung steht 1..*. Rechts richtig: Die gefüllte Raute sitzt an der Rechnung (dem Ganzen), dort steht 1, an der Rechnungsposition 1..*."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fehler</th>
+<th>So ist es richtig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raute am Teil</td>
+<td>Raute <strong>am Ganzen</strong></td>
+</tr>
+<tr>
+<td>Komposition mit <code>*</code> am Ganzen</td>
+<td>am Ganzen nur <code>1</code> oder <code>0..1</code></td>
+</tr>
+<tr>
+<td>Vererbungspfeil zeigt zur Unterklasse</td>
+<td>Dreieck an der <strong>Oberklasse</strong></td>
+</tr>
+<tr>
+<td>Interface mit durchgezogener Linie umgesetzt</td>
+<td>Realisierung <strong>gestrichelt</strong></td>
+</tr>
+<tr>
+<td><code>- String name</code> (Java-Reihenfolge)</td>
+<td><code>- name : String</code></td>
+</tr>
+<tr>
+<td>Multiplizität nur an einer Seite</td>
+<td>an <strong>beiden</strong> Enden</td>
+</tr>
+<tr>
+<td>Beziehung <strong>und</strong> gleiches Attribut</td>
+<td>entweder Linie (mit Rollennamen) oder Attribut</td>
+</tr>
+<tr>
+<td>Klassenname im Plural („Kunden“)</td>
+<td>Singular („Kunde“)</td>
+</tr>
+<tr>
+<td>statisch kursiv, abstrakt unterstrichen</td>
+<td><strong>statisch unterstrichen, abstrakt kursiv</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2>2. Die Klassiker im Anwendungsfalldiagramm</h2>
+<figure class="shot" data-src="material/p2-fehler-usecase.svg" data-desc="Oben richtig: Der Kunde ist mit „Artikel suchen“ und „Bestellung aufgeben“ verbunden, „Bestellung aufgeben“ inkludiert „Bezahlen“. Unten falsch: Einloggen, Artikel suchen und Bezahlen sind mit Pfeilen zu einem Ablauf verkettet."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Fehler</th>
+<th>So ist es richtig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anwendungsfälle als Ablaufkette</td>
+<td>jeder Fall einzeln am Akteur; Ablauf → Aktivitätsdiagramm</td>
+</tr>
+<tr>
+<td>«extend»-Pfeil zeigt zum Erweiterer</td>
+<td>vom Erweiterer <strong>zum Basisfall</strong></td>
+</tr>
+<tr>
+<td>«includes» / «extends»</td>
+<td><strong>«include» / «extend»</strong></td>
+</tr>
+<tr>
+<td>Akteur innerhalb der Systemgrenze</td>
+<td>Akteure stehen <strong>außerhalb</strong></td>
+</tr>
+<tr>
+<td>konkrete Person als Akteur („Frau Meier“)</td>
+<td>Rolle („Sachbearbeiter:in“)</td>
+</tr>
+<tr>
+<td>Anwendungsfall als Substantiv („Bestellung“)</td>
+<td>Verb-Phrase („Bestellung aufgeben“)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Die Klassiker in Aktivitäts-, Sequenz- und Zustandsdiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Diagramm</th>
+<th>Fehler</th>
+<th>So ist es richtig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivität</td>
+<td>Bedingung in der Raute („verfügbar?“), ohne Guards</td>
+<td>Guards in <code>[ ]</code> an den <strong>ausgehenden</strong> Kanten</td>
+</tr>
+<tr>
+<td>Aktivität</td>
+<td>Guards decken nicht alle Fälle ab</td>
+<td><code>[sonst]</code> ergänzen oder <code>&lt;</code>/<code>&gt;=</code> sauber trennen</td>
+</tr>
+<tr>
+<td>Aktivität</td>
+<td>Raute statt Balken für Parallelität</td>
+<td><strong>Balken</strong> = gleichzeitig, <strong>Raute</strong> = entweder–oder</td>
+</tr>
+<tr>
+<td>Aktivität</td>
+<td>Endknoten in einem parallelen Zweig, der eigentlich nur diesen Zweig beenden soll</td>
+<td><strong>Ablaufende ⊗</strong></td>
+</tr>
+<tr>
+<td>Sequenz</td>
+<td>Antwort durchgezogen</td>
+<td>Antwort <strong>gestrichelt</strong></td>
+</tr>
+<tr>
+<td>Sequenz</td>
+<td>synchron/asynchron verwechselt</td>
+<td>gefüllt = wartet, offen = wartet nicht</td>
+</tr>
+<tr>
+<td>Sequenz</td>
+<td><code>alt</code> ohne Guards oder ohne Trennlinie</td>
+<td><code>[Bedingung]</code> je Zweig, gestrichelte Trennlinie</td>
+</tr>
+<tr>
+<td>Sequenz</td>
+<td>neues Objekt steht schon oben</td>
+<td>erzeugtes Objekt beginnt <strong>auf Höhe der create-Nachricht</strong></td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td>Zustand als Tätigkeit („ausleihen“)</td>
+<td>als Zustand („ausgeliehen“)</td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td><code>[Ereignis] Bedingung / Aktion</code> vertauscht</td>
+<td><code>Ereignis [Bedingung] / Aktion</code></td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td>Ereignis an der Transition aus dem Anfangszustand</td>
+<td>dort höchstens eine Aktion</td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td>Selbsttransition, obwohl entry/exit nicht erneut laufen sollen</td>
+<td><strong>interne Transition</strong> im Zustand</td>
+</tr>
+</tbody>
+</table></div>
+<h2>4. Deine Abgabe-Checkliste</h2>
+<div class="checkliste"><div class="check-title">Vor dem Abgeben – für jedes Diagramm</div><ul class="check">
+<li>Habe ich das Diagramm gezeichnet, nach dem gefragt war?</li>
+<li>Hat das Diagramm einen Namen (Systemgrenze, Rahmen, Überschrift)?</li>
+<li>Habe ich jede Information aus der Aufgabe untergebracht? (Text noch einmal Satz für Satz abhaken.)</li>
+<li>Stimmen alle Pfeilspitzen und Linienarten (durchgezogen / gestrichelt)?</li>
+<li>Haben alle Verzweigungen und Fragmente Bedingungen in eckigen Klammern?</li>
+<li>Stehen Multiplizitäten an beiden Enden jeder Assoziation?</li>
+<li>Passen die Namen zu den anderen Diagrammen der Aufgabe (Klassen, Methoden, Zustände)?</li>
+<li>Ist alles lesbar – auch für jemanden, der den Aufgabentext nicht kennt?</li>
+</ul>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Fehlerjagd Klassendiagramm</h3><span class="lvl time">10 min</span></div><p>Finde die fünf Fehler in dieser Beschreibung eines Klassendiagramms:</p>
+<ul>
+<li>Klasse <code>Kunden</code> mit den Attributen <code>- String name</code> und <code>- adresse : Adresse</code> sowie einer Linie zur Klasse
+<code>Adresse</code>.</li>
+<li><code>Girokonto</code> ist mit <code>Konto</code> durch eine durchgezogene Linie verbunden; das hohle Dreieck sitzt an <code>Girokonto</code>.</li>
+<li>Komposition <code>Bestellung</code> ◆— <code>Position</code>, an <code>Bestellung</code> steht <code>1..*</code>.</li>
+<li>Die abstrakte Methode <code>berechneZins()</code> ist unterstrichen.</li>
+</ul>
+<details><summary>Lösung</summary><ol>
+<li><code>Kunden</code> → Singular <code>Kunde</code>.</li>
+<li><code>- String name</code> → <code>- name : String</code>.</li>
+<li><code>adresse</code> ist doppelt modelliert (Attribut <strong>und</strong> Linie) – eins von beiden weglassen.</li>
+<li>Das Dreieck gehört an die Oberklasse <code>Konto</code>, nicht an <code>Girokonto</code>.</li>
+<li>An der Seite des Ganzen (<code>Bestellung</code>) darf bei einer Komposition nur <code>1</code> (oder <code>0..1</code>) stehen.</li>
+</ol>
+<p>Bonus: Abstrakte Methoden sind <strong>kursiv</strong>, nicht unterstrichen (unterstrichen = static).</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Fehlerjagd Verhalten</h3><span class="lvl time">10 min</span></div><p>Was ist jeweils falsch, und wie wäre es richtig?</p>
+<ol>
+<li>Aktivitätsdiagramm: Eine Raute trägt die Aufschrift „Betrag &gt; 100?“, die beiden Kanten sind mit „ja“ und
+„nein“ beschriftet.</li>
+<li>Sequenzdiagramm: <code>:App</code> ruft <code>speichern()</code> an <code>:Datenbank</code> auf und wartet auf das Ergebnis. Der Pfeil hat
+eine offene Spitze.</li>
+<li>Zustandsdiagramm: Die Transition vom Zustand „offen“ nach „bezahlt“ ist mit <code>[zahlungEingegangen] / Beleg drucken</code> beschriftet. <code>zahlungEingegangen</code> ist ein Ereignis.</li>
+<li>Zustandsdiagramm: Der Zustand „in Prüfung“ hat keine ausgehende Transition und ist kein Endzustand.</li>
+</ol>
+<details><summary>Lösung</summary><ol>
+<li>In UML gehören die Bedingungen als Guards an die Kanten: <code>[betrag &gt; 100]</code> und <code>[sonst]</code>. (Ein Text an der
+Raute ist als Notiz erlaubt, ersetzt aber die Guards nicht.)</li>
+<li>Wer wartet, schickt eine <strong>synchrone</strong> Nachricht – gefüllte Pfeilspitze. Dazu gehört eine gestrichelte
+Antwort.</li>
+<li>Ereignisse stehen <strong>ohne</strong> Klammern vorne: <code>zahlungEingegangen / Beleg drucken</code>. In eckige Klammern gehören nur
+Bedingungen.</li>
+<li>Das Objekt bliebe für immer „in Prüfung“. Es fehlt eine Transition (z. B. <code>pruefungAbgeschlossen</code>) – oder der
+Zustand ist überflüssig.</li>
+</ol>
+</details></div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Bei einer Komposition Rechnung – Rechnungsposition steht an der Rechnung „1..*“. Was ist falsch?</p><ol><li>Nichts.</li><li>Bei einer Komposition gehört ein Teil zu höchstens einem Ganzen – am Ganzen steht 1 oder 0..1.</li><li>Bei einer Komposition gibt es keine Multiplizitäten.</li></ol><p class="fb" data-ok="Richtig. Ein Teil kann nicht zu mehreren Ganzen gleichzeitig gehören." data-no="Bei der Komposition ist das Teil exklusiv – an der Seite des Ganzen steht höchstens 1."></p></div><div class="qa" data-right="2"><p class="q">Ein Zustand heißt „Rechnung schreiben“. Was ist daran problematisch?</p><ol><li>Nichts – Zustände dürfen beliebig heißen.</li><li>Das ist eine Tätigkeit. Ein Zustand dauert an und heißt z. B. „in Rechnungsstellung“ oder „abgerechnet“.</li><li>Zustandsnamen müssen großgeschrieben werden.</li></ol><p class="fb" data-ok="Genau. Tätigkeiten gehören ins Aktivitätsdiagramm oder als do-/Aktion in den Zustand." data-no="Ein Zustand beschreibt, wie etwas ist – nicht, was getan wird."></p></div><div class="qa" data-right="1"><p class="q">Im Sequenzdiagramm ist die Antwort einer Methode als durchgezogener Pfeil gezeichnet. Wie ist es richtig?</p><ol><li>Gestrichelter Pfeil mit offener Spitze</li><li>Durchgezogener Pfeil mit gefüllter Spitze</li><li>Antworten werden nie gezeichnet.</li></ol><p class="fb" data-ok="Richtig. Antworten sind gestrichelt." data-no="Antworten (Rückgaben) zeichnest du gestrichelt mit offener Spitze. Sie dürfen weggelassen werden, wenn nichts zurückkommt – aber nie durchgezogen."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

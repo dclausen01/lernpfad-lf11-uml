@@ -1,0 +1,19 @@
+@startuml
+!include stil.iuml
+left to right direction
+skinparam nodesep 50
+skinparam ranksep 60
+component "RadWerk-App" as App
+component "Ausleihservice" as AS
+component "Zahlungsservice" as ZS
+component "Datenhaltung" as DH
+interface "IAusleihe" as IA
+interface "IZahlung" as IZ
+interface "IRadDaten" as IR
+App --( IA
+IA -- AS
+AS --( IZ
+IZ -- ZS
+AS --( IR
+IR -- DH
+@enduml

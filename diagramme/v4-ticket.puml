@@ -1,0 +1,18 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 60
+[*] --> neu
+state "neu" as neu
+state "in Bearbeitung" as ib
+state "wartet auf Kunde" as wk
+state "gelöst" as gel
+state "geschlossen" as ges
+neu --> ib : zuweisen [Bearbeiter verfügbar]
+ib --> wk : rueckfrage / E-Mail senden
+wk --> ib : antwortErhalten
+ib --> gel : loesen
+gel --> ib : wiedereroeffnen
+gel --> ges : bestaetigen
+gel --> ges : after 7 Tage
+ges --> [*] : archivieren
+@enduml

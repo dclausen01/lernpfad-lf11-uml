@@ -1,0 +1,16 @@
+@startuml
+!include stil.iuml
+hide members
+left to right direction
+class Kunde
+class Ausleihe
+Kunde "1" -- "0..*" Ausleihe : tätigt >
+note bottom of Kunde
+  Ein Kunde tätigt
+  <b>beliebig viele</b> (0..*) Ausleihen.
+end note
+note bottom of Ausleihe
+  Jede Ausleihe gehört zu
+  <b>genau einem</b> (1) Kunden.
+end note
+@enduml

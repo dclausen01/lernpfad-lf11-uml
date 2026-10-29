@@ -1,0 +1,30 @@
+@startuml
+!include stil.iuml
+skinparam ranksep 90
+skinparam nodesep 60
+skinparam nodesep 40
+class Kunde {
+  - name : String
+  + getName() : String
+}
+class Bestellung {
+  - nummer : int
+  - datum : LocalDate
+  + Bestellung(nummer : int, kunde : Kunde)
+  + hinzufuegen(artikel : Artikel, menge : int) : void
+  + gesamtpreis() : double
+}
+class Position {
+  - menge : int
+  + Position(artikel : Artikel, menge : int)
+  + preis() : double
+}
+class Artikel {
+  - bezeichnung : String
+  - preis : double
+  + getPreis() : double
+}
+Bestellung "0..*" --> "1\n-kunde" Kunde
+Bestellung "1" *--> "0..*\n-positionen" Position
+Position "0..*" --> "1\n-artikel" Artikel
+@enduml

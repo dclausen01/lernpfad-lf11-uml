@@ -1,0 +1,64 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 50
+skinparam ranksep 60
+class Parkhaus {
+  - name : String
+  + freiePlaetze() : int
+  + kennzeichenErkannt(kz : String) : void
+  - sucheVorgang(kz : String) : Parkvorgang
+}
+class Schranke {
+  + oeffnen() : void
+}
+class Display {
+  + zeige(text : String) : void
+}
+class Ebene {
+  - nummer : int
+}
+class Stellplatz {
+  - nummer : int
+  - status : PlatzStatus
+  + belegen() : void
+  + freigeben() : void
+}
+class Ladeplatz {
+  - leistungKW : double
+}
+class Parkvorgang {
+  - einfahrt : LocalDateTime
+  - ausfahrt : LocalDateTime
+  - bezahlt : boolean
+  + dauerMinuten() : int
+  + istBezahlt() : boolean
+  + abschliessen(zeit : LocalDateTime) : void
+}
+class Fahrzeug {
+  - kennzeichen : String
+}
+class Tarif <<interface>> {
+  + berechne(minuten : int) : double
+}
+class Stundentarif {
+  - preisProStunde : double
+  + berechne(minuten : int) : double
+}
+enum PlatzStatus <<enumeration>> {
+  FREI
+  RESERVIERT
+  BELEGT
+  GESPERRT
+}
+hide PlatzStatus methods
+Parkhaus "1" *-- "1..*" Ebene
+Ebene "1" *-- "1..*" Stellplatz
+Stellplatz <|-- Ladeplatz
+Parkhaus "1" --> "1" Tarif
+Tarif <|.. Stundentarif
+Parkvorgang "0..*" --> "1" Fahrzeug
+Parkvorgang "0..*" --> "0..1" Stellplatz
+Parkhaus "1" -- "0..*" Parkvorgang
+Parkhaus "1" --> "1..*" Schranke
+Parkhaus "1" --> "1..*" Display
+@enduml

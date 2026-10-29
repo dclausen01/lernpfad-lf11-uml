@@ -1,0 +1,22 @@
+@startuml
+!include stil.iuml
+skinparam style strictuml
+hide footbox
+actor ":Benutzer" as U
+participant ":Portal" as P
+participant ":Benutzerverwaltung" as BV
+participant ":Mailserver" as MS
+U -> P : passwortVergessen(email)
+activate P
+P -> BV : finde(email)
+activate BV
+BV -->> P : benutzer
+deactivate BV
+opt benutzer != null
+  create participant "t:Token" as T
+  P -->> T : <<create>>
+  P ->> MS : sendeLink(email, t)
+end
+P -->> U : "Falls die Adresse existiert,\nwurde ein Link gesendet."
+deactivate P
+@enduml

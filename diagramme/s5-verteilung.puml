@@ -1,0 +1,25 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 60
+skinparam ranksep 70
+node "Smartphone" <<device>> as Phone {
+  artifact "radwerk.apk"
+}
+node "Smartes Fahrradschloss" <<device>> as Lock {
+  artifact "schloss-firmware.bin"
+}
+node "App-Server" <<device>> as Srv {
+  node "Docker" <<executionEnvironment>> as Dock {
+    artifact "ausleihservice.jar"
+    artifact "zahlungsservice.jar"
+  }
+}
+node "DB-Server" <<device>> as DB {
+  node "PostgreSQL" <<executionEnvironment>> as PG {
+    artifact "radwerk-schema.sql"
+  }
+}
+Phone -- Srv : <<HTTPS>>
+Lock -- Srv : <<MQTT>>
+Srv -- DB : <<TCP/IP>>
+@enduml

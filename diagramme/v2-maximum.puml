@@ -1,0 +1,15 @@
+@startuml
+!include stil.iuml
+start
+:max := werte[0];
+:i := 1;
+while () is ([i < laenge])
+  if () then ([werte[i] > max])
+    :max := werte[i];
+  else ([sonst])
+  endif
+  :i := i + 1;
+endwhile ([sonst])
+:max zurückgeben;
+stop
+@enduml

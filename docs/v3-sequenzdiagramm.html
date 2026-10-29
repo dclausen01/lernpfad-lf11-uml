@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sequenzdiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="v3">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Lebenslinien, Aktivierungen und die Nachrichtenarten synchron, asynchron, Antwort und create unterscheiden,</li><li>Alternativen, Optionen und Schleifen mit kombinierten Fragmenten (alt, opt, loop) darstellen,</li><li>ein Sequenzdiagramm aus Quelltext oder einer Ablaufbeschreibung erstellen.</li></ul></div><h2>1. Die Elemente</h2>
+<p>Das Sequenzdiagramm zeigt, <strong>welche Objekte sich in welcher Reihenfolge Nachrichten schicken</strong>. Die Zeit läuft
+von oben nach unten. Es ist das wichtigste Interaktionsdiagramm und passt gut, wenn du einen Methodenaufruf, eine
+Anmeldung oder die Kommunikation zwischen App und Server erklären willst.</p>
+<figure class="shot" data-src="material/v3-elemente.svg" data-desc="Grundelemente: Lebenslinien :A, :B und :C, Aktivierungsbalken, eine synchrone Nachricht mit Antwort, eine asynchrone Nachricht, ein Selbstaufruf, die Erzeugung von :C mit «create» und die Zerstörung von :C (X am Ende der Lebenslinie)."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Darstellung</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lebenslinie</td>
+<td>Rechteck <code>name : Klasse</code> + gestrichelte senkrechte Linie</td>
+<td>ein beteiligtes Objekt; <code>: Klasse</code> heißt „irgendein Objekt dieser Klasse“</td>
+</tr>
+<tr>
+<td>Akteur</td>
+<td>Strichmännchen mit Lebenslinie</td>
+<td>ein Mensch oder externes System, das von außen auslöst</td>
+</tr>
+<tr>
+<td>Aktivierung</td>
+<td>schmaler Balken auf der Lebenslinie</td>
+<td>das Objekt arbeitet gerade (eine Methode läuft)</td>
+</tr>
+<tr>
+<td>synchrone Nachricht</td>
+<td>durchgezogen, <strong>gefüllte</strong> Spitze</td>
+<td>Methodenaufruf; der Sender <strong>wartet</strong></td>
+</tr>
+<tr>
+<td>asynchrone Nachricht</td>
+<td>durchgezogen, <strong>offene</strong> Spitze</td>
+<td>Signal; der Sender <strong>wartet nicht</strong></td>
+</tr>
+<tr>
+<td>Antwort</td>
+<td><strong>gestrichelt</strong>, offene Spitze</td>
+<td>Rückgabe an den Aufrufer</td>
+</tr>
+<tr>
+<td>Erzeugung</td>
+<td><strong>gestrichelt</strong>, offene Spitze, auf den <strong>Kopf</strong> des neuen Objekts</td>
+<td><code>new</code> – das Objekt beginnt erst hier</td>
+</tr>
+<tr>
+<td>Zerstörung</td>
+<td>X am Ende der Lebenslinie</td>
+<td>das Objekt wird gelöscht</td>
+</tr>
+<tr>
+<td>Selbstaufruf</td>
+<td>Pfeil zurück auf die eigene Lebenslinie</td>
+<td>das Objekt ruft eine eigene Methode auf</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box note"><div class="box-title">Laut UML-Norm</div><p>Die Erzeugungsnachricht ist nach UML 2.5.1 <strong>gestrichelt</strong> mit offener Spitze. Manche Lehrbücher zeichnen sie
+durchgezogen – in der Prüfung wird das in der Regel nicht als Fehler gewertet, solange das neue Objekt erst an der
+Pfeilspitze beginnt.</p>
+</div><h2>2. Kombinierte Fragmente</h2>
+<p>Bedingungen und Schleifen zeichnest du als <strong>Rahmen</strong> um die betroffenen Nachrichten. Links oben steht der
+Operator, die Bedingung (Guard) steht in eckigen Klammern.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Bedeutung</th>
+<th>Entspricht im Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alt</code></td>
+<td>Alternativen, durch gestrichelte Linien getrennt – genau eine wird ausgeführt</td>
+<td><code>if … else if … else</code></td>
+</tr>
+<tr>
+<td><code>opt</code></td>
+<td>wird ausgeführt oder nicht</td>
+<td><code>if</code> ohne <code>else</code></td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td>Wiederholung; <code>loop(min,max) [Bedingung]</code></td>
+<td><code>while</code>, <code>for</code></td>
+</tr>
+<tr>
+<td><code>par</code></td>
+<td>parallele Abschnitte</td>
+<td>Threads</td>
+</tr>
+<tr>
+<td><code>break</code></td>
+<td>Abbruch: Fragment ausführen, dann den umgebenden Ablauf verlassen</td>
+<td><code>break</code> / <code>return</code></td>
+</tr>
+</tbody>
+</table></div>
+<figure class="shot" data-src="material/v3-ausleihe.svg" data-desc="Sequenzdiagramm „Rad ausleihen“: Der Kunde ruft in der App radAusleihen(radId) auf. Die App ruft synchron ausleihen(kundeId, radId) am Ausleihservice auf, der seine Verfügbarkeit per Selbstaufruf prüft. Im alt-Fragment [verfuegbar] erzeugt der Ausleihservice ein Objekt a:Ausleihe, schickt asynchron oeffnen() an das Schloss und antwortet der App mit a. Im Zweig [sonst] antwortet er mit null, und die App meldet „Rad nicht verfügbar“."></figure>
+<div class="box warn"><div class="box-title">Typische Fehler</div><ul>
+<li>Antwort mit durchgezogener Linie gezeichnet – Antworten sind <strong>immer gestrichelt</strong>.</li>
+<li>Synchron und asynchron verwechselt. Frag dich: Wartet der Sender auf ein Ergebnis?</li>
+<li>Guards ohne eckige Klammern oder bei <code>alt</code> vergessen, die Zweige mit einer gestrichelten Linie zu trennen.</li>
+<li>Aktivierungsbalken enden, bevor die Antwort zurück ist.</li>
+</ul>
+</div><h2>3. Vom Code zum Sequenzdiagramm</h2>
+<p>Eine sehr typische AP2-Aufgabe: „Erstellen Sie zu der Methode <code>abrechnen</code> ein Sequenzdiagramm.“</p>
+<pre><code class="language-java">public class Kasse {
+    private Drucker drucker;
+
+    public double abrechnen(Warenkorb wk) {
+        double summe = wk.summe();
+        Beleg b = new Beleg(summe);
+        drucker.drucke(b);          // asynchron: die Kasse wartet nicht
+        return summe;
+    }
+}
+
+public class Warenkorb {
+    private List&lt;Position&gt; positionen;
+
+    public double summe() {
+        double s = 0;
+        for (Position p : positionen) {
+            s += p.preis();
+        }
+        return s;
+    }
+}
+</code></pre>
+<div class="schritte"><ol class="steps">
+<li>Lege die Lebenslinien fest: Wer ruft auf (hier ein Akteur „Kassierer“), welche Objekte sind beteiligt
+(Kasse, Warenkorb, Position, Drucker, Beleg)?</li>
+<li>Gehe den Code <strong>Zeile für Zeile</strong> durch. Jeder Methodenaufruf auf einem anderen Objekt wird ein Pfeil.</li>
+<li><code>return</code> wird zur gestrichelten Antwort. <code>new</code> wird zur Erzeugungsnachricht auf den Kopf des neuen Objekts.</li>
+<li>Die <code>for</code>-Schleife wird ein <code>loop</code>-Fragment, ein <code>if</code> ein <code>opt</code>- oder <code>alt</code>-Fragment.</li>
+</ol>
+</div><figure class="shot" data-src="material/v3-kasse.svg" data-desc="Sequenzdiagramm zur Methode abrechnen: Der Kassierer ruft abrechnen(wk) an der Kasse auf. Die Kasse ruft summe() am Warenkorb auf, der in einem loop-Fragment [für jede Position p] preis() an der Position aufruft. Danach erzeugt die Kasse b:Beleg mit «create», schickt drucke(b) asynchron an den Drucker und antwortet mit der Summe."></figure>
+<div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Login mit drei Versuchen</h3><span class="lvl time">15 min</span></div><p>Zeichne ein Sequenzdiagramm: Ein <strong>Benutzer</strong> gibt Name und Passwort im <strong>Onlineportal</strong> ein. Das Portal lässt
+die Daten von der <strong>Datenbank</strong> prüfen und bekommt ein Ergebnis zurück. Ist es in Ordnung, meldet das Portal
+„Anmeldung erfolgreich“. Sonst meldet es „Daten falsch“, und der Benutzer darf es erneut versuchen – insgesamt
+höchstens dreimal. Nach dem dritten Fehlversuch meldet das Portal „Konto gesperrt“.</p>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li>Ein <code>loop</code>-Fragment mit Höchstzahl und Bedingung.</li>
+<li>Darin ein <code>alt</code>-Fragment mit drei Zweigen und Guards.</li>
+<li>Alle Antworten gestrichelt.</li>
+</ul>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v3-login.svg" data-desc="Lösung: loop(1,3) [nicht angemeldet] um den Ablauf login(name, pw) vom Benutzer an das Onlineportal und pruefe(name, pw) vom Portal an die Datenbank mit der Antwort ergebnis. Darin ein alt-Fragment mit den Zweigen [ergebnis = ok] „Anmeldung erfolgreich“, [versuche &lt; 3] „Daten falsch“ und [sonst] „Konto gesperrt“."></figure>
+<p>Achte auf die Logik der Bedingung: Die Schleife läuft, solange der Benutzer <strong>nicht</strong> angemeldet ist <strong>und</strong>
+noch Versuche übrig sind – die Höchstzahl regelt <code>loop(1,3)</code>. Ein „oder“ an dieser Stelle wäre falsch, weil die
+Schleife dann nach einer erfolgreichen Anmeldung weiterliefe.</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Passwort zurücksetzen</h3><span class="lvl time">15 min</span></div><p>Ein <strong>Benutzer</strong> klickt im <strong>Portal</strong> auf „Passwort vergessen“ und gibt seine E-Mail-Adresse an. Das Portal
+fragt die <strong>Benutzerverwaltung</strong>, ob es einen Benutzer mit dieser Adresse gibt, und wartet auf die Antwort. Nur
+wenn es ihn gibt, erzeugt das Portal ein Objekt <code>t:Token</code> und lässt den <strong>Mailserver</strong> einen Link verschicken –
+ohne auf den Versand zu warten. In jedem Fall antwortet das Portal: „Falls die Adresse existiert, wurde ein Link
+gesendet.“</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/v3-passwort.svg" data-desc="Lösung: Der Benutzer ruft passwortVergessen(email) am Portal auf. Das Portal ruft synchron finde(email) an der Benutzerverwaltung auf und erhält benutzer zurück. Im opt-Fragment [benutzer != null] erzeugt das Portal t:Token mit «create» und schickt asynchron sendeLink(email, t) an den Mailserver. Danach antwortet das Portal dem Benutzer."></figure>
+<ul>
+<li><code>opt</code> statt <code>alt</code>, weil es nur einen bedingten Zweig gibt.</li>
+<li>Der Versand ist <strong>asynchron</strong> (offene Spitze, keine Antwort) – das Portal wartet nicht.</li>
+<li>Die Antwort an den Benutzer verrät absichtlich nicht, ob die Adresse existiert. Das ist eine bewusste
+Sicherheitsentscheidung, die dir im Diagramm auffallen darf.</li>
+</ul>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Bezahlen an der Kasse</h3><span class="lvl time">15 min</span></div><p>Modelliere, was zwischen Kartenterminal, Kassensystem und Bank passiert, wenn du im Supermarkt mit Karte bezahlst
+– inklusive PIN-Eingabe, Fehlversuch und Abbruch. Entscheide bewusst, welche Nachrichten synchron und welche
+asynchron sind.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="1"><p class="q">Woran erkennst du eine synchrone Nachricht?</p><ol><li>Durchgezogene Linie mit gefüllter Pfeilspitze</li><li>Durchgezogene Linie mit offener Pfeilspitze</li><li>Gestrichelte Linie mit offener Pfeilspitze</li></ol><p class="fb" data-ok="Richtig. Gefüllte Spitze = synchron, der Sender wartet auf die Antwort." data-no="Gefüllt = synchron (Sender wartet), offen = asynchron (Sender macht weiter), gestrichelt = Antwort."></p></div><div class="qa" data-right="2"><p class="q">Ein Ablauf soll höchstens dreimal wiederholt werden, solange die Anmeldung fehlschlägt. Welches Fragment passt?</p><ol><li>alt [Anmeldung falsch]</li><li>loop(1,3) [nicht angemeldet]</li><li>opt [3 Versuche]</li></ol><p class="fb" data-ok="Genau. loop(min,max) [Bedingung] – mindestens einmal, höchstens dreimal, solange die Bedingung gilt." data-no="alt ist Entweder-oder, opt ist „einmal oder gar nicht“. Für Wiederholungen nimmst du loop."></p></div><div class="qa" data-right="1"><p class="q">Wofür steht das X am Ende einer Lebenslinie?</p><ol><li>Das Objekt wird zerstört.</li><li>Die Nachricht ist fehlgeschlagen.</li><li>Das Objekt wartet.</li></ol><p class="fb" data-ok="Richtig – die Lebenslinie endet, das Objekt existiert nicht mehr." data-no="Das X ist das Zerstörungsereignis – das Objekt wird gelöscht."></p></div><div class="qa" data-right="2"><p class="q">In welche Richtung verläuft die Zeit im Sequenzdiagramm?</p><ol><li>Von links nach rechts</li><li>Von oben nach unten</li><li>Es gibt keine Zeitachse.</li></ol><p class="fb" data-ok="Richtig. Was weiter unten steht, passiert später." data-no="Die Zeit läuft von oben nach unten. Die Anordnung von links nach rechts ist frei wählbar."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

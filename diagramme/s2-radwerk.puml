@@ -1,0 +1,70 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 50
+skinparam ranksep 60
+class Kunde {
+  - kundenNr : int
+  - name : String
+  - email : String
+  + leiheAus(rad : Fahrrad) : Ausleihe
+}
+class Ausleihe {
+  - start : LocalDateTime
+  - ende : LocalDateTime
+  + beenden(ziel : Station) : Rechnung
+  + dauerInMinuten() : int
+}
+abstract class Fahrrad {
+  - rahmennummer : String
+  # zustand : RadZustand
+  + {abstract} berechnePreis(minuten : int) : double
+}
+class EBike {
+  - akkustand : int
+  + berechnePreis(minuten : int) : double
+}
+class Lastenrad {
+  - zuladungKg : int
+  + berechnePreis(minuten : int) : double
+}
+class Station {
+  - name : String
+  - kapazitaet : int
+  + rueckgabeMoeglich() : boolean
+}
+class Rechnung {
+  - datum : LocalDate
+  + summe() : double
+}
+class Rechnungsposition {
+  - text : String
+  - betrag : double
+}
+class Zahlungsart <<interface>> {
+  + bezahlen(betrag : double) : boolean
+}
+class Kreditkarte {
+  - nummer : String
+  + bezahlen(betrag : double) : boolean
+}
+class PayPal {
+  - konto : String
+  + bezahlen(betrag : double) : boolean
+}
+enum RadZustand <<enumeration>> {
+  VERFUEGBAR
+  AUSGELIEHEN
+  IN_WARTUNG
+}
+hide RadZustand methods
+Kunde "1" -- "0..*" Ausleihe : tätigt >
+Ausleihe "0..*" --> "1" Fahrrad
+Station "0..1" o-- "0..*" Fahrrad : steht an <
+Ausleihe "1" --> "0..1" Rechnung
+Rechnung "1" *-- "1..*" Rechnungsposition
+Kunde "1" --> "1..*" Zahlungsart
+Fahrrad <|-- EBike
+Fahrrad <|-- Lastenrad
+Zahlungsart <|.. Kreditkarte
+Zahlungsart <|.. PayPal
+@enduml

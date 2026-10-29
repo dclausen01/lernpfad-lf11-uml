@@ -1,0 +1,52 @@
+- id: q-omg-uml
+  titel: "OMG Unified Modeling Language (UML), Version 2.5.1 (Dezember 2017)"
+  url: https://www.omg.org/spec/UML/2.5.1/PDF
+  art: norm
+  status: verifiziert
+  geprueft_am: 2026-10-29
+  belegt: >-
+    Diagrammübersicht (Anhang A), Aggregation/Komposition (Kap. 9.5, 11.5: Teil in höchstens einem Ganzen),
+    offene Pfeilspitze = navigierbar (11.5), Nachrichtenarten im Sequenzdiagramm (17.4: synchron gefüllt,
+    asynchron offen, Antwort gestrichelt, create gestrichelt mit offener Spitze), loop(min,max) (17.6),
+    Zustände/Transitionen (14.2: Initial-Transition ohne Trigger und Guard, interne vs. Selbsttransition,
+    Zeitereignis „after …“), «include»/«extend» mit condition und extension point (18.1)
+
+- id: q-bibox-lf8
+  titel: "Gratzke u. a.: IT-Berufe, Fachstufe Lernfelder 6–9, Bildungsverlag EINS/Westermann 2022, Kap. 3.3.3–3.3.6 (LF 8)"
+  url: ""
+  art: fachliteratur
+  status: verifiziert
+  geprueft_am: 2026-10-29
+  belegt: >-
+    Einteilung in Struktur- und Verhaltensdiagramme, Notationselemente Anwendungsfall-, Klassen- und
+    Aktivitätsdiagramm, Multiplizitäten. Hinweis: Das Buch schreibt «includes»/«extends»; nach UML 2.5.1 heißen die
+    Schlüsselwörter «include»/«extend».
+
+- id: q-bibox-lf11
+  titel: "Gratzke u. a.: IT-Berufe, Fachstufe II Anwendungsentwicklung, Lernfelder 10–12, Westermann 2026, Kap. 3.2.1 (LF 11a)"
+  url: ""
+  art: fachliteratur
+  status: verifiziert
+  geprueft_am: 2026-10-29
+  belegt: >-
+    Zustands- und Sequenzdiagramm (Notationselemente, Interaktionsfragmente alt/loop/opt/par). Hinweis: Das Buch
+    nennt Zustandsübergänge „Transaktion“; der UML-Begriff ist „Transition“.
+
+- id: q-ihk-aka
+  titel: "IHK-AkA: Fachinformatiker/-in Anwendungsentwicklung – Prüfungsbereiche Teil 2"
+  url: https://www.ihk-aka.de/pruefungen/ap/berufe/detail/b1201
+  art: lehrplan
+  status: verifiziert
+  geprueft_am: 2026-10-29
+  belegt: Prüfungsbereich „Planen eines Softwareproduktes“ (90 Minuten) in Teil 2 der Abschlussprüfung
+
+- id: q-ap2-themen
+  titel: "IT-Berufe-Podcast (Stefan Macke): Mögliche Themen von Teil 2 der GAP für Fachinformatiker Anwendungsentwicklung"
+  url: https://it-berufe-podcast.de/vorbereitung-auf-die-ihk-abschlusspruefung-der-it-berufe/moegliche-themen-von-teil-2-der-gestreckten-abschlusspruefung-gap-fuer-fachinformatiker-anwendungsentwicklung/
+  art: fachliteratur
+  status: zu_pruefen
+  geprueft_am: 2026-10-29
+  belegt: >-
+    Liste der prüfungsrelevanten UML-Diagramme (Klassen-, Aktivitäts-, Anwendungsfall-, Sequenz-, Zustands-,
+    Komponenten-, Verteilungsdiagramm) und Klassenbeziehungen. Sekundärquelle auf Basis des AkA-Prüfungskatalogs –
+    gegen den aktuellen offiziellen Prüfungskatalog prüfen.

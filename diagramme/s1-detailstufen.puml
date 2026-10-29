@@ -1,0 +1,19 @@
+@startuml
+!include stil.iuml
+class "Station" as A
+hide A members
+class "Station" as B {
+  name
+  kapazitaet
+  freiePlaetze()
+}
+class "Station" as C {
+  - name : String
+  - kapazitaet : int
+  + Station(name : String, kapazitaet : int)
+  + freiePlaetze() : int
+  + rueckgabeMoeglich() : boolean
+}
+A -[hidden]right- B
+B -[hidden]right- C
+@enduml

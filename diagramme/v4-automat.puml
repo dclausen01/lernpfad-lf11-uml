@@ -1,0 +1,12 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 60
+[*] --> bereit
+state "bereit" as bereit
+state "kassiert" as kassiert : muenze(b) / guthaben := guthaben + b\nwahl(p) [guthaben < preis(p)] / "zu wenig" anzeigen
+state "Ausgabe" as ausgabe : do / Getränk ausgeben
+bereit --> kassiert : muenze(b) / guthaben := b
+kassiert --> ausgabe : wahl(p) [guthaben >= preis(p)]
+kassiert --> bereit : abbrechen / Geld zurückgeben
+ausgabe --> bereit : / Wechselgeld ausgeben
+@enduml

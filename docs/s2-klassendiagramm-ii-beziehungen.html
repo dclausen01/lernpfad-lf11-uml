@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klassendiagramm II: Beziehungen – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="s2">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Assoziation, Aggregation, Komposition, Generalisierung, Realisierung und Abhängigkeit unterscheiden und zeichnen,</li><li>Multiplizitäten, Rollennamen und Navigierbarkeit korrekt angeben,</li><li>ein Klassendiagramm zu einer Situationsbeschreibung entwerfen.</li></ul></div><h2>1. Die sieben Beziehungen</h2>
+<p>Klassen stehen nicht allein. Wie sie zusammenhängen, zeigen Linien mit unterschiedlichen Enden. Das ist <strong>das</strong>
+Prüfungsthema schlechthin:</p>
+<figure class="shot" data-src="material/s2-beziehungen.svg" data-desc="Die sieben Beziehungsarten im Klassendiagramm, jeweils mit einem Beispiel aus dem RadWerk-Verleih."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Beziehung</th>
+<th>Bedeutung</th>
+<th>Linie</th>
+<th>Ende</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assoziation</td>
+<td>„kennt“, „hat zu tun mit“</td>
+<td>durchgezogen</td>
+<td>ohne Spitze</td>
+</tr>
+<tr>
+<td>gerichtete Assoziation</td>
+<td>nur eine Seite kennt die andere</td>
+<td>durchgezogen</td>
+<td>offene Pfeilspitze</td>
+</tr>
+<tr>
+<td>Aggregation</td>
+<td>Teil-Ganzes, Teil kann allein existieren</td>
+<td>durchgezogen</td>
+<td><strong>hohle Raute</strong> am Ganzen</td>
+</tr>
+<tr>
+<td>Komposition</td>
+<td>Teil-Ganzes, Teil stirbt mit dem Ganzen</td>
+<td>durchgezogen</td>
+<td><strong>gefüllte Raute</strong> am Ganzen</td>
+</tr>
+<tr>
+<td>Generalisierung</td>
+<td>„ist ein“ (Vererbung)</td>
+<td>durchgezogen</td>
+<td>hohles Dreieck an der Oberklasse</td>
+</tr>
+<tr>
+<td>Realisierung</td>
+<td>Klasse setzt Interface um</td>
+<td>gestrichelt</td>
+<td>hohles Dreieck am Interface</td>
+</tr>
+<tr>
+<td>Abhängigkeit</td>
+<td>„benutzt kurz“ (z. B. als Parameter)</td>
+<td>gestrichelt</td>
+<td>offene Pfeilspitze</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Aggregation oder Komposition?</h3>
+<p>Frag dich: <strong>Kann das Teil ohne das Ganze existieren – und kann es zu mehreren Ganzen gehören?</strong></p>
+<ul>
+<li>Ein <strong>Fahrrad</strong> steht an einer <strong>Station</strong>. Wird die Station abgebaut, gibt es das Fahrrad weiter. →
+<strong>Aggregation</strong> (hohle Raute an Station).</li>
+<li>Eine <strong>Rechnungsposition</strong> gehört zu genau einer <strong>Rechnung</strong>. Wird die Rechnung gelöscht, sind auch ihre
+Positionen weg. → <strong>Komposition</strong> (gefüllte Raute an Rechnung).</li>
+</ul>
+<div class="box warn"><div class="box-title">Typischer Fehler: Komposition mit „viele Ganze“</div><p>Bei einer Komposition gehört ein Teil zu <strong>höchstens einem</strong> Ganzen. An der Seite des Ganzen steht deshalb nur
+<code>1</code> oder <code>0..1</code> – nie <code>*</code> oder <code>1..*</code>.</p>
+</div><h3>Generalisierung („ist ein“)</h3>
+<p>Ein E-Bike <strong>ist ein</strong> Fahrrad. Die Unterklasse erbt alle Attribute und Methoden der Oberklasse und kann eigene
+ergänzen oder Methoden überschreiben. Der Pfeil zeigt <strong>von der Unterklasse zur Oberklasse</strong>. In Java heißt das
+<code>extends</code>, beim Interface <code>implements</code>.</p>
+<div class="box tip"><div class="box-title">Eselsbrücke Pfeilrichtung</div><p>Das Kind zeigt auf die Mutter: Die Unterklasse „weiß“, von wem sie erbt – die Oberklasse kennt ihre Unterklassen
+nicht.</p>
+</div><h2>2. Multiplizitäten, Rollen, Navigierbarkeit</h2>
+<p>Eine <strong>Multiplizität</strong> sagt, wie viele Objekte auf einer Seite beteiligt sind. Sie steht <strong>an der Seite, deren
+Anzahl sie angibt</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Angabe</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>genau eins</td>
+</tr>
+<tr>
+<td><code>0..1</code></td>
+<td>keins oder eins</td>
+</tr>
+<tr>
+<td><code>*</code> oder <code>0..*</code></td>
+<td>beliebig viele (auch keins)</td>
+</tr>
+<tr>
+<td><code>1..*</code></td>
+<td>mindestens eins</td>
+</tr>
+<tr>
+<td><code>2..10</code></td>
+<td>zwei bis zehn</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="shot" data-src="material/s2-multiplizitaet.svg" data-desc="Kunde und Ausleihe mit Multiplizitäten 1 und 0..* sowie dem Assoziationsnamen „tätigt“. Das kleine Dreieck zeigt die Leserichtung."></figure>
+<p>So liest du die Beziehung in beide Richtungen:</p>
+<ul>
+<li><strong>Ein</strong> Kunde tätigt <strong>0..*</strong> Ausleihen.</li>
+<li><strong>Eine</strong> Ausleihe wird von <strong>genau einem</strong> (1) Kunden getätigt.</li>
+</ul>
+<p>Ein <strong>Rollenname</strong> an einem Ende sagt, welche Rolle das Objekt dort spielt. Im Code wird daraus meist der
+Attributname. Die <strong>offene Pfeilspitze</strong> zeigt, in welche Richtung man navigieren kann:</p>
+<figure class="shot" data-src="material/s2-rollen-navigation.svg" data-desc="Gerichtete Assoziation von Ausleihe zu Fahrrad mit dem Rollennamen „rad“ und den Multiplizitäten 0..* und 1."></figure>
+<h2>3. Das vollständige Beispiel</h2>
+<p>So sieht das Klassendiagramm für den RadWerk-Verleih aus. Nimm dir zwei Minuten und lies jede Beziehung einmal
+laut in beide Richtungen.</p>
+<figure class="shot" data-src="material/s2-radwerk.svg" data-desc="Klassendiagramm des E-Bike-Verleihs RadWerk mit den Klassen Kunde, Ausleihe, Fahrrad (abstrakt) mit EBike und Lastenrad, Station, Rechnung, Rechnungsposition, Interface Zahlungsart mit Kreditkarte und PayPal sowie der Aufzählung RadZustand."></figure>
+<details><summary>So liest man es</summary><ul>
+<li>Ein Kunde tätigt 0..* Ausleihen, jede Ausleihe gehört zu genau einem Kunden.</li>
+<li>Eine Ausleihe bezieht sich auf genau ein Fahrrad; ein Fahrrad kann in 0..* Ausleihen vorkommen (über die Zeit).</li>
+<li>Ein Fahrrad steht an keiner oder einer Station (0..1 – unterwegs an keiner), an einer Station stehen 0..* Räder.
+Aggregation: Die Räder gibt es auch ohne die Station.</li>
+<li>Aus einer Ausleihe entsteht keine oder eine Rechnung. Eine Rechnung besteht aus mindestens einer Position
+(Komposition).</li>
+<li>Ein Kunde hinterlegt mindestens eine Zahlungsart. Kreditkarte und PayPal realisieren das Interface.</li>
+<li>EBike und Lastenrad sind Fahrräder und müssen die abstrakte Methode <code>berechnePreis</code> umsetzen.</li>
+</ul>
+</details><h2>4. Vorgehen in der Prüfung</h2>
+<div class="schritte"><ol class="steps">
+<li>Unterstreiche im Text alle <strong>Substantive</strong> – das sind Kandidaten für Klassen und Attribute.</li>
+<li>Entscheide: Hat das Ding eigene Eigenschaften und Verhalten (→ Klasse) oder ist es nur ein Wert (→ Attribut)?</li>
+<li>Suche <strong>„ist ein“</strong>-Sätze → Generalisierung.</li>
+<li>Suche <strong>„besteht aus“, „hat“, „gehört zu“</strong> → Assoziation, Aggregation oder Komposition.</li>
+<li>Trage für jede Beziehung <strong>beide</strong> Multiplizitäten ein.</li>
+<li>Ergänze Attribute und Methoden mit Datentypen, wenn verlangt.</li>
+</ol>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Welche Beziehung?</h3><span class="lvl time">10 min</span></div><p>Bestimme jeweils die Beziehung und wo die Raute oder das Dreieck sitzt.</p>
+<ol>
+<li>Ein Girokonto ist ein Konto.</li>
+<li>Ein Warenkorb enthält Artikel. Die Artikel gibt es im Shop auch ohne den Warenkorb.</li>
+<li>Eine Bestellung besteht aus Bestellpositionen, die ohne Bestellung keinen Sinn haben.</li>
+<li>Ein Lehrer unterrichtet Klassen.</li>
+<li>Die Klasse <code>Drucker</code> setzt das Interface <code>Druckbar</code> um.</li>
+<li>Die Methode <code>Rechnung.drucke(d : Drucker)</code> benutzt einen Drucker nur während des Aufrufs.</li>
+</ol>
+<details><summary>Lösung</summary><ol>
+<li>Generalisierung, hohles Dreieck an <code>Konto</code></li>
+<li>Aggregation, hohle Raute an <code>Warenkorb</code></li>
+<li>Komposition, gefüllte Raute an <code>Bestellung</code></li>
+<li>Assoziation (keine Raute, kein Dreieck)</li>
+<li>Realisierung, gestrichelte Linie, hohles Dreieck an <code>Druckbar</code></li>
+<li>Abhängigkeit, gestrichelter Pfeil von <code>Rechnung</code> zu <code>Drucker</code></li>
+</ol>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Fuhrpark einer Spedition</h3><span class="lvl time">20 min</span></div><p>Zeichne ein Klassendiagramm <strong>ohne Attribute und Methoden</strong>, aber mit allen Multiplizitäten:</p>
+<p>Eine <strong>Spedition</strong> besitzt mindestens ein <strong>Fahrzeug</strong>. Fahrzeuge sind entweder <strong>LKW</strong> oder <strong>Transporter</strong>;
+ein „Fahrzeug an sich“ gibt es nicht. Jede <strong>Tour</strong> wird mit genau einem Fahrzeug gefahren; ein Fahrzeug fährt im
+Lauf der Zeit beliebig viele Touren. Eine Tour besteht aus zwei bis zwanzig <strong>Stopps</strong>, die nur zu dieser Tour
+gehören. Jede Tour hat genau einen <strong>Fahrer</strong> als Verantwortlichen; ein Fahrer kann für mehrere Touren eingeteilt
+sein. Wird eine Spedition aufgelöst, werden die Fahrzeuge verkauft.</p>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li><code>Fahrzeug</code> ist abstrakt.</li>
+<li>Zwischen Tour und Stopp steht eine Komposition mit <code>2..20</code>.</li>
+<li>Jede Linie hat an beiden Enden eine Multiplizität.</li>
+</ul>
+</div><details><summary>Lösung</summary><ul>
+<li><code>Spedition</code> 1 ◇— 1..* <code>Fahrzeug</code> (<strong>Aggregation</strong>: Die Fahrzeuge werden verkauft, existieren also weiter.
+Eine einfache Assoziation ist auch vertretbar.)</li>
+<li><code>LKW</code> und <code>Transporter</code> erben von <code>Fahrzeug</code> (hohles Dreieck an <code>Fahrzeug</code>); <code>Fahrzeug</code> ist abstrakt (kursiv).</li>
+<li><code>Tour</code> 0..* — 1 <code>Fahrzeug</code></li>
+<li><code>Tour</code> 1 ◆— 2..20 <code>Stopp</code> (<strong>Komposition</strong>, gefüllte Raute an <code>Tour</code>)</li>
+<li><code>Tour</code> 0..* — 1 <code>Fahrer</code></li>
+</ul>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Kino</h3><span class="lvl time">15 min</span></div><p>Setze diese Klassen sinnvoll in Beziehung und begründe jede Entscheidung in einem Satz:
+<code>Kino</code>, <code>Saal</code>, <code>Sitzplatz</code>, <code>Film</code>, <code>Vorstellung</code>, <code>Ticket</code>, <code>Kunde</code>, <code>Stammkunde</code>.
+Es gibt mehrere richtige Lösungen – entscheidend ist, dass deine Begründung zur Beziehungsart passt.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Ein Haus besteht aus Räumen. Wird das Haus abgerissen, gibt es die Räume nicht mehr. Welche Beziehung ist das?</p><ol><li>Aggregation</li><li>Komposition</li><li>Generalisierung</li></ol><p class="fb" data-ok="Richtig – die Teile existieren nicht ohne das Ganze. Komposition, gefüllte Raute am Haus." data-no="Wenn die Teile mit dem Ganzen „sterben“, ist es eine Komposition (gefüllte Raute). Generalisierung wäre „ist ein“."></p></div><div class="qa" data-right="2"><p class="q">An welcher Seite sitzt die Raute bei Aggregation und Komposition?</p><ol><li>Am Teil</li><li>Am Ganzen</li><li>Das ist egal.</li></ol><p class="fb" data-ok="Genau. Die Raute sitzt immer beim Ganzen – „das Ganze hält seine Teile“." data-no="Die Raute sitzt am Ganzen, also z. B. an der Rechnung, nicht an der Rechnungsposition."></p></div><div class="qa" data-right="1"><p class="q">Was bedeutet die Multiplizität 0..* an der Klasse Ausleihe in der Beziehung Kunde – Ausleihe?</p><ol><li>Ein Kunde hat keine oder beliebig viele Ausleihen.</li><li>Eine Ausleihe gehört zu keinem oder beliebig vielen Kunden.</li><li>Es gibt höchstens eine Ausleihe.</li></ol><p class="fb" data-ok="Richtig. Die Zahl steht an der Seite, deren Anzahl sie angibt – gelesen vom anderen Ende aus." data-no="Lies so: Ein Kunde (von links) hat 0..* Ausleihen (Zahl rechts an Ausleihe)."></p></div><div class="qa" data-right="2"><p class="q">Welche Linie gehört zur Realisierung eines Interfaces?</p><ol><li>Durchgezogene Linie mit hohlem Dreieck</li><li>Gestrichelte Linie mit hohlem Dreieck</li><li>Gestrichelte Linie mit offener Pfeilspitze</li></ol><p class="fb" data-ok="Richtig. Gestrichelt plus hohles Dreieck = Realisierung. Durchgezogen wäre Vererbung." data-no="Durchgezogen + hohles Dreieck = Vererbung, gestrichelt + offene Spitze = Abhängigkeit, gestrichelt + hohles Dreieck = Realisierung."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

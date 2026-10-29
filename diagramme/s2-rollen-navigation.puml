@@ -1,0 +1,14 @@
+@startuml
+!include stil.iuml
+hide members
+left to right direction
+class Ausleihe
+class Fahrrad
+Ausleihe "0..*" --> "1\n+rad" Fahrrad
+note bottom of Fahrrad
+  Pfeil = navigierbar in Pfeilrichtung:
+  Eine Ausleihe kennt ihr Fahrrad.
+  Der Rollenname <i>rad</i> wird im
+  Code zum Attribut der Ausleihe.
+end note
+@enduml

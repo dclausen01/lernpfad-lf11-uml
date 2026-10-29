@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spickzettel: UML-Notation – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body>
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<h1>Spickzettel: UML-Notation</h1><h2>Klassendiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Schreibweise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attribut</td>
+<td><code>- name : String [= Startwert]</code></td>
+</tr>
+<tr>
+<td>Methode</td>
+<td><code>+ name(param : Typ) : Rückgabetyp</code></td>
+</tr>
+<tr>
+<td>Sichtbarkeit</td>
+<td><code>+</code> public · <code>-</code> private · <code>#</code> protected · <code>~</code> package</td>
+</tr>
+<tr>
+<td>statisch</td>
+<td>unterstrichen</td>
+</tr>
+<tr>
+<td>abstrakt</td>
+<td>kursiv oder <code>{abstract}</code></td>
+</tr>
+<tr>
+<td>Interface / Aufzählung</td>
+<td><code>«interface»</code> / <code>«enumeration»</code> über dem Namen</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Beziehung</th>
+<th>Linie</th>
+<th>Ende</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assoziation</td>
+<td>———</td>
+<td>–</td>
+</tr>
+<tr>
+<td>gerichtete Assoziation</td>
+<td>———&gt;</td>
+<td>offene Spitze</td>
+</tr>
+<tr>
+<td>Aggregation (Teil lebt weiter)</td>
+<td>◇———</td>
+<td>hohle Raute <strong>am Ganzen</strong></td>
+</tr>
+<tr>
+<td>Komposition (Teil stirbt mit)</td>
+<td>◆———</td>
+<td>gefüllte Raute <strong>am Ganzen</strong>, dort <code>1</code> / <code>0..1</code></td>
+</tr>
+<tr>
+<td>Generalisierung (ist ein)</td>
+<td>———▷</td>
+<td>hohles Dreieck an der <strong>Oberklasse</strong></td>
+</tr>
+<tr>
+<td>Realisierung (Interface)</td>
+<td>- - - -▷</td>
+<td>hohles Dreieck am <strong>Interface</strong></td>
+</tr>
+<tr>
+<td>Abhängigkeit (benutzt)</td>
+<td>- - - -&gt;</td>
+<td>offene Spitze</td>
+</tr>
+</tbody>
+</table></div>
+<p>Multiplizitäten: <code>1</code> · <code>0..1</code> · <code>*</code> = <code>0..*</code> · <code>1..*</code> · <code>2..10</code> – an <strong>beiden</strong> Enden.</p>
+<h2>Objektdiagramm</h2>
+<p><code>anna : Kunde</code> <strong>unterstrichen</strong> · Attribute mit Werten (<code>name = &quot;Anna&quot;</code>) · Links ohne Multiplizitäten.</p>
+<h2>Komponenten- und Verteilungsdiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Komponente</td>
+<td>Rechteck mit Komponentensymbol / <code>«component»</code></td>
+</tr>
+<tr>
+<td>bereitgestellte Schnittstelle</td>
+<td>Kreis ○ („Lolli“)</td>
+</tr>
+<tr>
+<td>benötigte Schnittstelle</td>
+<td>Halbkreis ( („Socket“)</td>
+</tr>
+<tr>
+<td>Knoten</td>
+<td>Quader, <code>«device»</code> oder <code>«executionEnvironment»</code></td>
+</tr>
+<tr>
+<td>Artefakt</td>
+<td>Rechteck mit Eselsohr / <code>«artifact»</code>, z. B. <code>app.jar</code></td>
+</tr>
+<tr>
+<td>Kommunikationspfad</td>
+<td>Linie, z. B. <code>«HTTPS»</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Anwendungsfalldiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Akteur</td>
+<td>Strichmännchen (Person) oder Rechteck <code>«actor»</code> (System) – <strong>außerhalb</strong></td>
+</tr>
+<tr>
+<td>Anwendungsfall</td>
+<td>Ellipse, Verb-Phrase („Rad ausleihen“)</td>
+</tr>
+<tr>
+<td>Systemgrenze</td>
+<td>Rechteck mit Namen</td>
+</tr>
+<tr>
+<td>«include» (immer)</td>
+<td>Basisfall - - -&gt; inkludierter Fall</td>
+</tr>
+<tr>
+<td>«extend» (manchmal)</td>
+<td>erweiternder Fall - - -&gt; Basisfall, mit <code>condition: {…}</code></td>
+</tr>
+<tr>
+<td>Generalisierung</td>
+<td>hohles Dreieck am allgemeinen Akteur/Fall</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Aktivitätsdiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start / Ende / Ablaufende</td>
+<td>● / ◉ (alles endet) / ⊗ (nur dieser Zweig)</td>
+</tr>
+<tr>
+<td>Aktion</td>
+<td>Rechteck mit runden Ecken</td>
+</tr>
+<tr>
+<td>Verzweigung / Zusammenführung</td>
+<td>Raute, Guards <code>[…]</code> an den Kanten</td>
+</tr>
+<tr>
+<td>Gabelung / Vereinigung</td>
+<td>dicker Balken (parallel; Join wartet auf alle)</td>
+</tr>
+<tr>
+<td>Objektknoten</td>
+<td>eckiges Rechteck</td>
+</tr>
+<tr>
+<td>Partition (Swimlane)</td>
+<td>Bahn mit Namen des Verantwortlichen</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Sequenzdiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lebenslinie</td>
+<td><code>name : Klasse</code> + gestrichelte Linie nach unten</td>
+</tr>
+<tr>
+<td>synchron (wartet)</td>
+<td>———▶ gefüllte Spitze</td>
+</tr>
+<tr>
+<td>asynchron (wartet nicht)</td>
+<td>———&gt; offene Spitze</td>
+</tr>
+<tr>
+<td>Antwort</td>
+<td>- - - -&gt; gestrichelt</td>
+</tr>
+<tr>
+<td>Erzeugung</td>
+<td>- - - -&gt; <code>«create»</code> auf den Kopf des neuen Objekts</td>
+</tr>
+<tr>
+<td>Zerstörung</td>
+<td>✕ am Ende der Lebenslinie</td>
+</tr>
+<tr>
+<td>Fragmente</td>
+<td><code>alt</code> (if/else) · <code>opt</code> (if) · <code>loop(min,max) [Bed.]</code> · <code>par</code> · <code>break</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Zustandsdiagramm</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Schreibweise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anfang / Ende</td>
+<td>● (Transition ohne Ereignis) / ◉</td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td>Rechteck mit runden Ecken, Name als Zustand („ausgeliehen“)</td>
+</tr>
+<tr>
+<td>Transition</td>
+<td><code>ereignis [bedingung] / aktion</code></td>
+</tr>
+<tr>
+<td>im Zustand</td>
+<td><code>entry / …</code> · <code>do / …</code> · <code>exit / …</code> · <code>ereignis / aktion</code> (intern)</td>
+</tr>
+<tr>
+<td>Zeitereignis</td>
+<td><code>after 15 min</code></td>
+</tr>
+<tr>
+<td>Entscheidung</td>
+<td>Raute mit <code>[…]</code>-Guards</td>
+</tr>
+<tr>
+<td>Selbsttransition</td>
+<td>verlässt den Zustand → exit und entry laufen erneut</td>
+</tr>
+</tbody>
+</table></div>
+
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

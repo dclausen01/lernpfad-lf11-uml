@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Komponenten- und Verteilungsdiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="s5">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Komponenten mit bereitgestellten und benötigten Schnittstellen zeichnen,</li><li>Knoten, Ausführungsumgebungen, Artefakte und Kommunikationspfade im Verteilungsdiagramm darstellen,</li><li>die beiden Diagramme voneinander und vom Klassendiagramm abgrenzen.</li></ul></div><h2>1. Komponentendiagramm</h2>
+<p>Ein <strong>Komponentendiagramm</strong> zeigt die großen Bausteine einer Software und wie sie über <strong>Schnittstellen</strong>
+zusammenarbeiten. Eine Komponente ist ein austauschbarer Teil des Systems, z. B. ein Microservice, eine
+Bibliothek oder ein Modul. Was <strong>in</strong> der Komponente passiert (welche Klassen sie enthält), ist hier egal.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Darstellung</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Komponente</td>
+<td>Rechteck mit Komponentensymbol oder <code>«component»</code></td>
+<td>austauschbarer Softwarebaustein</td>
+</tr>
+<tr>
+<td>bereitgestellte Schnittstelle</td>
+<td>Kreis („Lolli“) an einer Linie</td>
+<td>Das biete ich anderen an.</td>
+</tr>
+<tr>
+<td>benötigte Schnittstelle</td>
+<td>Halbkreis („Socket“) an einer Linie</td>
+<td>Das brauche ich von anderen.</td>
+</tr>
+<tr>
+<td>Montage (Assembly)</td>
+<td>Kreis steckt im Halbkreis</td>
+<td>Die Schnittstelle passt zusammen.</td>
+</tr>
+<tr>
+<td>Abhängigkeit</td>
+<td>gestrichelter Pfeil</td>
+<td>A benutzt B, ohne festgelegte Schnittstelle</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="shot" data-src="material/s5-komponenten.svg" data-desc="Komponentendiagramm RadWerk: Die RadWerk-App benötigt IAusleihe, die der Ausleihservice bereitstellt. Der Ausleihservice benötigt IZahlung (bereitgestellt vom Zahlungsservice) und IRadDaten (bereitgestellt von der Datenhaltung)."></figure>
+<p>So liest du das Bild: Die App weiß nur, dass es <strong>irgendwen</strong> gibt, der <code>IAusleihe</code> anbietet. Der
+Ausleihservice kann ausgetauscht werden, solange der Ersatz dieselbe Schnittstelle bereitstellt. Genau das ist der
+Nutzen: <strong>lose Kopplung</strong>.</p>
+<div class="box tip"><div class="box-title">Lolli und Socket merken</div><p>Der <strong>Lolli</strong> ist das, was man <strong>hergibt</strong> (anbietet). Der <strong>Socket</strong> ist die offene Hand, die etwas <strong>haben will</strong>.</p>
+</div><h2>2. Verteilungsdiagramm</h2>
+<p>Ein <strong>Verteilungsdiagramm</strong> (Deployment Diagram) zeigt die <strong>Hardware und Laufzeitumgebungen</strong> und welche
+Software-Dateien darauf laufen. Du brauchst es z. B. für die Planung eines Servers, für den Betrieb oder für die
+Dokumentation deines IHK-Projekts.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Darstellung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knoten – Gerät</td>
+<td>Quader mit <code>«device»</code></td>
+<td>Smartphone, Server, Router</td>
+</tr>
+<tr>
+<td>Knoten – Ausführungsumgebung</td>
+<td>Quader mit <code>«executionEnvironment»</code>, im Gerät</td>
+<td>Docker, JVM, Webserver, DBMS</td>
+</tr>
+<tr>
+<td>Artefakt</td>
+<td>Rechteck mit Eselsohr oder <code>«artifact»</code></td>
+<td><code>ausleihservice.jar</code>, <code>index.html</code>, <code>schema.sql</code></td>
+</tr>
+<tr>
+<td>Kommunikationspfad</td>
+<td>Linie zwischen Knoten, oft mit Protokoll</td>
+<td><code>«HTTPS»</code>, <code>«MQTT»</code>, <code>«TCP/IP»</code></td>
+</tr>
+</tbody>
+</table></div>
+<figure class="shot" data-src="material/s5-verteilung.svg" data-desc="Verteilungsdiagramm RadWerk: Smartphone mit radwerk.apk und Smartes Fahrradschloss mit Firmware kommunizieren über HTTPS bzw. MQTT mit dem App-Server. Darauf läuft Docker mit ausleihservice.jar und zahlungsservice.jar. Der App-Server ist über TCP/IP mit dem DB-Server verbunden, auf dem PostgreSQL mit dem Datenbankschema läuft."></figure>
+<div class="box warn"><div class="box-title">Typischer Fehler: Diagramme verwechseln</div><ul>
+<li><strong>Komponentendiagramm:</strong> logische Softwarebausteine und ihre Schnittstellen – keine Hardware.</li>
+<li><strong>Verteilungsdiagramm:</strong> Hardware, Laufzeitumgebungen und Dateien – wo läuft was?</li>
+<li><strong>Klassendiagramm:</strong> Klassen im Inneren der Software.
+Wer in ein Verteilungsdiagramm Klassen zeichnet, hat das Thema verfehlt.</li>
+</ul>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Verteilungsdiagramm lesen</h3><span class="lvl time">5 min</span></div><p>Beantworte mithilfe des Verteilungsdiagramms oben:</p>
+<ol>
+<li>Über welches Protokoll kommuniziert das Fahrradschloss mit dem Server?</li>
+<li>Welche Artefakte laufen in der Ausführungsumgebung Docker?</li>
+<li>Kann das Smartphone direkt auf die Datenbank zugreifen?</li>
+</ol>
+<details><summary>Lösung</summary><ol>
+<li>MQTT</li>
+<li><code>ausleihservice.jar</code> und <code>zahlungsservice.jar</code></li>
+<li>Nein. Es gibt keinen Kommunikationspfad zwischen Smartphone und DB-Server – alles läuft über den App-Server.</li>
+</ol>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Webshop als Komponenten</h3><span class="lvl time">15 min</span></div><p>Zeichne ein Komponentendiagramm: Das <strong>Shop-Frontend</strong> benötigt die Schnittstelle <code>IKatalog</code>, die der
+<strong>Katalogservice</strong> bereitstellt, und <code>IBestellung</code>, die der <strong>Bestellservice</strong> bereitstellt. Der Bestellservice
+benötigt <code>ILager</code> vom <strong>Lagerservice</strong> und <code>IPayment</code> vom externen <strong>Zahlungsanbieter</strong>.</p>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li>Fünf Komponenten, vier Schnittstellen.</li>
+<li>An jeder Schnittstelle hängt genau ein Lolli (Anbieter) und mindestens ein Socket (Nutzer).</li>
+</ul>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/s5-webshop.svg" data-desc="Komponentendiagramm Webshop: Shop-Frontend benötigt IKatalog (vom Katalogservice) und IBestellung (vom Bestellservice). Der Bestellservice benötigt ILager (vom Lagerservice) und IPayment (vom externen Zahlungsanbieter)."></figure>
+<p>Halbkreis = benötigt, Kreis = bereitgestellt. Wo der Kreis im Halbkreis sitzt, ist die Montage. Den externen
+Anbieter kannst du zusätzlich mit <code>«external»</code> kennzeichnen – das ist ein frei gewählter Stereotyp, kein Muss.</p>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Dein Projekt</h3><span class="lvl time">15 min</span></div><p>Zeichne das Verteilungsdiagramm für dein IHK-Abschlussprojekt (oder ein Projekt aus dem Betrieb): Welche Geräte,
+welche Laufzeitumgebungen, welche Dateien, welche Protokolle? So ein Diagramm macht sich auch in der
+Projektdokumentation gut.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Im Komponentendiagramm hängt an der Komponente ein Kreis („Lolli“). Was bedeutet das?</p><ol><li>Die Komponente benötigt diese Schnittstelle.</li><li>Die Komponente stellt diese Schnittstelle bereit.</li><li>Die Komponente ist abstrakt.</li></ol><p class="fb" data-ok="Richtig. Kreis = bereitgestellt (provided), Halbkreis = benötigt (required)." data-no="Der volle Kreis heißt: Ich biete das an. Der Halbkreis (Socket) heißt: Ich brauche das."></p></div><div class="qa" data-right="1"><p class="q">Wie wird ein Knoten (Hardware oder Ausführungsumgebung) im Verteilungsdiagramm gezeichnet?</p><ol><li>Als Quader (3D-Kasten)</li><li>Als Rechteck mit Komponentensymbol</li><li>Als Rechteck mit Eselsohr</li></ol><p class="fb" data-ok="Genau. Knoten sind Quader. Das Eselsohr gehört zum Artefakt, das Komponentensymbol zur Komponente." data-no="Knoten sind Quader. Das Rechteck mit Eselsohr ist ein Artefakt (z. B. eine .jar-Datei)."></p></div><div class="qa" data-right="1"><p class="q">Was ist ein Artefakt?</p><ol><li>Eine physische Datei wie ausleihe.jar oder schema.sql</li><li>Ein Server</li><li>Eine Schnittstelle zwischen zwei Komponenten</li></ol><p class="fb" data-ok="Richtig. Artefakte sind konkrete Dateien, die auf einem Knoten installiert (deployed) werden." data-no="Ein Server ist ein Knoten. Ein Artefakt ist eine Datei, die auf einem Knoten liegt und läuft."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

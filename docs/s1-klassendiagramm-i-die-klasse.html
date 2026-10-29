@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klassendiagramm I: Die Klasse – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="s1">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>eine Klasse mit Attributen, Methoden und Datentypen korrekt notieren,</li><li>die vier Sichtbarkeiten + -</li><li>statische und abstrakte Elemente, Interfaces und Aufzählungen erkennen und zeichnen.</li></ul></div><h2>1. Aufbau einer Klasse</h2>
+<p>Eine <strong>Klasse</strong> ist der Bauplan für Objekte. Im Klassendiagramm ist sie ein Rechteck mit drei Bereichen
+(Abteilungen):</p>
+<ol>
+<li><strong>Klassenname</strong> – im Singular, mit großem Anfangsbuchstaben, fett und zentriert (<code>Kunde</code>, nicht <code>Kunden</code>).</li>
+<li><strong>Attribute</strong> – die Eigenschaften, die jedes Objekt hat.</li>
+<li><strong>Methoden</strong> (in UML: Operationen) – was die Objekte können.</li>
+</ol>
+<figure class="shot" data-src="material/s1-klasse-aufbau.svg" data-desc="Klasse „Kunde“ mit Attributen und Methoden. Die gelben Notizen erklären die Schreibweise."></figure>
+<p>Die Schreibweise ist immer gleich:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Schreibweise</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attribut</td>
+<td><code>Sichtbarkeit name : Typ [= Startwert]</code></td>
+<td><code>- name : String</code></td>
+</tr>
+<tr>
+<td>Methode</td>
+<td><code>Sichtbarkeit name(param : Typ, …) : Rückgabetyp</code></td>
+<td><code>+ leiheAus(rad : Fahrrad) : Ausleihe</code></td>
+</tr>
+<tr>
+<td>Konstruktor</td>
+<td>wie eine Methode, Name = Klassenname, ohne Rückgabetyp</td>
+<td><code>+ Kunde(name : String, email : String)</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="box warn"><div class="box-title">Typischer Fehler: Java-Schreibweise</div><p>In Java steht der Typ <strong>vor</strong> dem Namen (<code>private String name;</code>). In UML steht er <strong>dahinter</strong>, mit Doppelpunkt
+(<code>- name : String</code>). Wer in der Prüfung die Java-Reihenfolge ins Diagramm schreibt, verliert Punkte.</p>
+</div><h2>2. Sichtbarkeiten</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeichen</th>
+<th>Name</th>
+<th>Wer darf zugreifen?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>public</td>
+<td>alle</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>private</td>
+<td>nur die Klasse selbst</td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td>protected</td>
+<td>die Klasse und ihre Unterklassen</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>package</td>
+<td>alle Klassen im selben Paket</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box tip"><div class="box-title">Faustregel Kapselung</div><p>Attribute sind fast immer <strong>private</strong> (<code>-</code>), Methoden meist <strong>public</strong> (<code>+</code>). Von außen kommt man über Getter und
+Setter an die Werte. Getter und Setter darfst du in Prüfungsdiagrammen weglassen, wenn die Aufgabe das erlaubt –
+lies die Aufgabenstellung genau.</p>
+</div><h2>3. Statisch, abstrakt, Interface, Aufzählung</h2>
+<ul>
+<li><strong>static</strong> (Klassenattribut, Klassenmethode): gehört zur Klasse, nicht zu einem einzelnen Objekt –
+<strong>unterstrichen</strong>. Beispiel: ein Zähler <code>anzahlKunden</code>, der für alle Objekte gleich ist.</li>
+<li><strong>abstrakte Klasse</strong>: von ihr kann man keine Objekte erzeugen. Name <strong>kursiv</strong> oder mit <code>{abstract}</code>.
+Abstrakte Methoden (ohne Rumpf) stehen ebenfalls kursiv.</li>
+<li><strong>Interface</strong> (Schnittstelle): nur Methodensignaturen, die eine Klasse umsetzen muss. Über dem Namen steht
+das Schlüsselwort <code>«interface»</code>.</li>
+<li><strong>Aufzählung</strong> (Enum): feste Liste von Werten mit <code>«enumeration»</code> über dem Namen.</li>
+</ul>
+<figure class="shot" data-src="material/s1-abstrakt-interface.svg" data-desc="Links: abstrakte Klasse „Fahrrad“ (kursiv) mit der Unterklasse „EBike“. Mitte: Interface „Zahlungsart“, das die Klasse „Kreditkarte“ realisiert (gestrichelte Linie, hohles Dreieck). Rechts: die Aufzählung „RadZustand“."></figure>
+<div class="box warn"><div class="box-title">Kursiv oder unterstrichen?</div><p><strong>Kursiv = abstrakt. Unterstrichen = statisch.</strong> Diese beiden werden in der Prüfung gern vertauscht. Auf Papier
+ist kursiv schwer zu schreiben – dann schreibst du <code>{abstract}</code> hinter den Namen.</p>
+</div><h2>4. Detailstufen</h2>
+<p>Nicht jedes Klassendiagramm zeigt alles. Je nach Zweck lässt man Teile weg:</p>
+<figure class="shot" data-src="material/s1-detailstufen.svg" data-desc="Dieselbe Klasse „Station“ dreimal: nur der Name (für Übersichten), mit Attributen und Methoden ohne Typen (Analyse) und vollständig mit Sichtbarkeiten und Datentypen (Entwurf)."></figure>
+<p>In der Analyse geht es um Begriffe und Zusammenhänge, im Entwurf um die genaue Umsetzung. Wenn die Aufgabe
+„vollständig“ oder „mit Datentypen“ sagt, brauchst du die rechte Variante.</p>
+<div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Klasse „Fahrzeug“</h3><span class="lvl time">10 min</span></div><p>Zeichne die Klasse <strong>Fahrzeug</strong> für eine Werkstattsoftware:</p>
+<ul>
+<li>private Attribute: Kennzeichen (Text), Kilometerstand (Ganzzahl), Baujahr (Ganzzahl)</li>
+<li>ein statisches, privates Attribut, das zählt, wie viele Fahrzeuge angelegt wurden</li>
+<li>ein öffentlicher Konstruktor mit Kennzeichen und Baujahr</li>
+<li>eine öffentliche Methode, die den Kilometerstand um einen übergebenen Wert erhöht</li>
+<li>eine öffentliche Methode, die das Alter in Jahren zurückgibt</li>
+</ul>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li>Der Name steht im Singular und oben.</li>
+<li>Alle Typen stehen hinter dem Namen, mit Doppelpunkt.</li>
+<li>Das statische Attribut ist unterstrichen.</li>
+<li>Der Konstruktor hat keinen Rückgabetyp.</li>
+</ul>
+</div><details><summary>Lösung</summary><pre><code>               Fahrzeug
+-----------------------------------------
+- kennzeichen : String
+- kilometerstand : int
+- baujahr : int
+- anzahl : int            (unterstrichen)
+-----------------------------------------
++ Fahrzeug(kennzeichen : String, baujahr : int)
++ fahren(km : int) : void
++ alter() : int
+</code></pre>
+<p>Andere sinnvolle Namen (z. B. <code>erhoeheKilometer</code>) sind natürlich auch richtig.</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Abstrakt und Interface</h3><span class="lvl time">10 min</span></div><p>Eine Software verwaltet <strong>Medien</strong> in einer Bibliothek. Jedes Medium hat einen Titel und eine Signatur.
+Es gibt <strong>Bücher</strong> (mit Seitenzahl) und <strong>DVDs</strong> (mit Laufzeit in Minuten). Ein „Medium“ an sich wird nie angelegt.
+Jedes Medium muss die Methode <code>leihfrist() : int</code> anbieten, die bei Büchern 28 und bei DVDs 7 Tage liefert.
+Außerdem sollen Bücher und DVDs das Interface <strong>Ausleihbar</strong> mit <code>ausleihen(ausweisNr : String) : boolean</code>
+umsetzen.</p>
+<p>Zeichne die Klassen mit Attributen und Methoden. Die Beziehungen zeichnest du als Pfeile – wie im Bild oben.</p>
+<details><summary>Lösung</summary><ul>
+<li><code>Medium</code> ist <strong>abstrakt</strong> (Name kursiv), Attribute <code>- titel : String</code>, <code>- signatur : String</code>, die Methode
+<code>+ leihfrist() : int</code> ist ebenfalls abstrakt (kursiv).</li>
+<li><code>Buch</code> mit <code>- seiten : int</code> und <code>+ leihfrist() : int</code>, <code>DVD</code> mit <code>- laufzeit : int</code> und <code>+ leihfrist() : int</code>.
+Beide erben von <code>Medium</code> (durchgezogene Linie, hohles Dreieck an <code>Medium</code>).</li>
+<li><code>«interface» Ausleihbar</code> mit <code>+ ausleihen(ausweisNr : String) : boolean</code>. Eleganter Weg: <code>Medium</code> realisiert
+das Interface (gestrichelte Linie mit hohlem Dreieck an <code>Ausleihbar</code>) – dann erben Buch und DVD die Pflicht mit.
+Wenn du Buch und DVD einzeln mit dem Interface verbindest, ist das auch richtig.</li>
+</ul>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Deine Ausbildungsfirma</h3><span class="lvl time">10 min</span></div><p>Wähle ein Objekt aus deinem Ausbildungsbetrieb (z. B. Ticket, Server, Auftrag, Lizenz) und modelliere es als
+vollständige Klasse mit mindestens vier Attributen, einem Konstruktor und drei Methoden – mit Sichtbarkeiten und
+Datentypen. Überlege: Gibt es ein sinnvolles statisches Element?</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Was bedeutet das Zeichen # vor einem Attribut?</p><ol><li>private</li><li>protected</li><li>package</li></ol><p class="fb" data-ok="Richtig. protected – sichtbar in der Klasse selbst und in ihren Unterklassen." data-no="Merke: - private, + public, # protected, ~ package."></p></div><div class="qa" data-right="2"><p class="q">Wie erkennst du im Klassendiagramm ein statisches Attribut?</p><ol><li>Es ist kursiv geschrieben.</li><li>Es ist unterstrichen.</li><li>Es steht in «static»-Klammern.</li></ol><p class="fb" data-ok="Genau – unterstrichen heißt static. Kursiv bedeutet abstrakt." data-no="Kursiv steht für abstrakt. Statische Attribute und Methoden werden unterstrichen."></p></div><div class="qa" data-right="2"><p class="q">Welche Schreibweise für eine Methode ist UML-konform?</p><ol><li>+ double berechnePreis(int minuten)</li><li>+ berechnePreis(minuten : int) : double</li><li>+ berechnePreis(int) -&gt; double</li></ol><p class="fb" data-ok="Richtig. In UML steht der Typ hinter dem Namen, getrennt durch einen Doppelpunkt." data-no="Das erste ist Java-Schreibweise. UML: name(parameter : Typ) : Rückgabetyp."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

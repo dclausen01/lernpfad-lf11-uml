@@ -1,0 +1,27 @@
+@startuml
+!include stil.iuml
+skinparam style strictuml
+hide footbox
+actor ":Kassierer" as KS
+participant ":Kasse" as K
+participant "wk:Warenkorb" as WK
+participant "p:Position" as P
+participant ":Drucker" as D
+KS -> K : abrechnen(wk)
+activate K
+K -> WK : summe()
+activate WK
+loop für jede Position p
+  WK -> P : preis()
+  activate P
+  P -->> WK : preis
+  deactivate P
+end
+WK -->> K : summe
+deactivate WK
+create participant "b:Beleg" as B
+K -->> B : <<create>>\nBeleg(summe)
+K ->> D : drucke(b)
+K -->> KS : summe
+deactivate K
+@enduml

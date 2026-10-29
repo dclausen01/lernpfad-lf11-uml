@@ -1,0 +1,30 @@
+@startuml
+!include stil.iuml
+left to right direction
+skinparam nodesep 25
+actor "Autofahrer:in" as AF
+actor "Dauerparker:in" as DP
+actor "Betreiber:in" as BT
+rectangle "Kennzeichenkamera" <<actor>> as KAM
+rectangle "Parkhaus-Steuerung" {
+  usecase "Einfahren" as UE
+  usecase "Ausfahren" as UA
+  usecase "Kennzeichen erfassen" as UK
+  usecase "Parkgebühr bezahlen\n--\n<i>extension points</i>\nRabatt" as UB
+  usecase "Kinoticket entwerten" as UKI
+  usecase "Stellplatz reservieren" as UR
+  usecase "Belegung anzeigen" as UBel
+  usecase "Tarif ändern" as UT
+}
+AF <|-- DP
+AF -- UE
+AF -- UA
+AF -- UB
+DP -- UR
+BT -- UBel
+BT -- UT
+UE ..> UK : <<include>>
+UA ..> UK : <<include>>
+UKI ..> UB : <<extend>>
+UK -- KAM
+@enduml

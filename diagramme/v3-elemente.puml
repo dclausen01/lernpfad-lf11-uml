@@ -1,0 +1,25 @@
+@startuml
+!include stil.iuml
+skinparam style strictuml
+hide footbox
+participant ":A" as A
+participant ":B" as B
+A -> B : synchron()
+activate A
+activate B
+B -->> A : Antwort
+deactivate B
+A ->> B : asynchron()
+A -> A : selbstaufruf()
+activate A
+deactivate A
+create participant ":C" as C
+A -->> C : <<create>>
+A -> C : arbeite()
+activate C
+C -->> A
+deactivate C
+A -> C : <<destroy>>
+destroy C
+deactivate A
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 40
+object "<u>anna : Kunde</u>" as anna {
+  kundenNr = 4711
+  name = "Anna Beispiel"
+}
+object "<u>a17 : Ausleihe</u>" as a17 {
+  start = 2026-05-04T08:15
+  ende = null
+}
+object "<u>eb3 : EBike</u>" as eb3 {
+  rahmennummer = "RW-0815"
+  zustand = AUSGELIEHEN
+  akkustand = 64
+}
+object "<u>bahnhof : Station</u>" as st {
+  name = "Bahnhof"
+  kapazitaet = 12
+}
+object "<u>lr1 : Lastenrad</u>" as lr1 {
+  rahmennummer = "RW-2001"
+  zustand = VERFUEGBAR
+  zuladungKg = 80
+}
+object "<u>eb7 : EBike</u>" as eb7 {
+  rahmennummer = "RW-0901"
+  zustand = VERFUEGBAR
+  akkustand = 100
+}
+anna -- a17
+a17 --> eb3
+st -- lr1
+st -- eb7
+@enduml

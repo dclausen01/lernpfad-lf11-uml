@@ -1,0 +1,16 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 60
+[*] --> frei
+state "frei" as frei
+state "reserviert" as res : entry / Anzeige rot schalten
+state "belegt" as bel : entry / Anzeige rot schalten\nexit / Anzeige grün schalten
+state "gesperrt" as ges
+frei --> res : reservieren
+res --> frei : after 30 min
+res --> bel : einparken [Kennzeichen passt]
+frei --> bel : einparken
+bel --> frei : ausparken
+frei --> ges : sperren
+ges --> frei : entsperren
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+!include stil.iuml
+|Kunde|
+start
+repeat
+  :Rad abstellen;
+  :Schloss schließen;
+  |RadWerk-System|
+  :Standort prüfen;
+repeat while () is ([Rad nicht an Station]) not ([Rad an Station])
+:Ausleihe beenden;
+fork
+  :Rechnung erstellen;
+  :Rechnung]
+  :Betrag abbuchen;
+fork again
+  :Akkustand prüfen;
+  if () then ([akku < 20 %])
+    :Ladeauftrag erstellen;
+  else ([sonst])
+  endif
+end fork
+|Kunde|
+:Bestätigung erhalten;
+stop
+@enduml

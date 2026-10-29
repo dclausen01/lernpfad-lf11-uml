@@ -1,0 +1,65 @@
+# Kursbeschreibung – Info-Lernpfad UML-Diagramme (AP2-Vorbereitung FIAE)
+# Aufbau und alle Felder: referenzen/schema.md im Lernpfad-Baukasten
+# Reiner Info-Pfad: keine Meilensteine, keine Abgaben, alle Stufen offen.
+
+titel: UML-Diagramme für die AP2
+kurzname: uml-ap2
+ueberschrift: UML-Diagramme – fit für die AP2
+untertitel: Du wiederholst alle prüfungsrelevanten UML-Diagramme, liest und zeichnest sie sicher und kennst die typischen Stolperfallen.
+badges: [Fachinformatiker:in Anwendungsentwicklung, AP2, 4 Stufen · ca. 7 Std.]
+fusszeile: BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026
+logo_zeichen: "◇"
+
+einleitung: |
+  :::notiz 👉 So nutzt du den Pfad
+  1. Alle Stufen sind offen. Arbeite der Reihe nach – oder spring direkt zu dem Diagramm, das dir noch Sorgen macht.
+  2. Zeichne die Aufgaben **auf Papier**, so wie in der Prüfung. Erst danach klappst du die Lösung auf.
+  3. Klick auf ein Diagramm, um es groß zu sehen.
+  4. Der **Spickzettel** unter „Extras“ zeigt alle Symbole auf einer Seite – ideal für die letzte Wiederholung.
+  :::
+
+  :::tipp Das Fallbeispiel
+  Fast alle Beispiele gehören zu **RadWerk**, einem ausgedachten E-Bike-Verleih. So siehst du, wie die verschiedenen
+  Diagramme dasselbe System aus unterschiedlichen Blickwinkeln beschreiben.
+  :::
+
+stufen:
+  - id: ueberblick
+    name: Überblick
+    icon: "🌱"
+    text: Wozu UML, welche Diagramme es gibt und welche in der AP2 drankommen.
+    module: [g1]
+  - id: struktur
+    name: Strukturdiagramme
+    icon: "🧱"
+    text: Klassen-, Objekt-, Komponenten- und Verteilungsdiagramm – der Aufbau eines Systems.
+    module: [s1, s2, s3, s4, s5]
+  - id: verhalten
+    name: Verhaltensdiagramme
+    icon: "🔄"
+    text: Anwendungsfall-, Aktivitäts-, Sequenz- und Zustandsdiagramm – was ein System tut.
+    module: [v1, v2, v3, v4]
+  - id: training
+    name: Prüfungstraining
+    icon: "🏆"
+    text: Das richtige Diagramm wählen, ein Fall durch alle Diagramme und die typischen Punktverluste.
+    module: [p1, p2]
+
+selbstcheck:
+  fragen:
+    - frage: Kannst du ein Klassendiagramm mit Vererbung, Aggregation und Komposition zeichnen?
+      antworten: [Kaum, Ungefähr, Sicher]
+    - frage: Kennst du den Unterschied zwischen «include» und «extend» und die Pfeilrichtung?
+      antworten: [Nein, Ungefähr, Sicher]
+    - frage: Kannst du ein Sequenzdiagramm mit alt- und loop-Fragment lesen?
+      antworten: [Nein, Ungefähr, Sicher]
+  empfehlung:
+    - {bis: 2, stufe: ueberblick, hinweis: "Starte mit dem Überblick und arbeite dich der Reihe nach durch."}
+    - {bis: 4, stufe: struktur, hinweis: "Die Grundlagen sind da. Arbeite die Struktur- und Verhaltensdiagramme durch und mach jeweils den Kurz-Check."}
+    - {stufe: training, hinweis: "Du bist schon gut dabei. Geh direkt ins Prüfungstraining – und schlag nach, wo es hakt."}
+  lehrkraft_hinweis: false
+
+moodle:
+  version: 5
+  freischaltung: offen
+  reihenfolge: frei

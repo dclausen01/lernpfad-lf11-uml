@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anwendungsfalldiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="v1">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Akteure, Systemgrenze und Anwendungsfälle aus einer Beschreibung ableiten,</li><li>«include» und «extend» mit der richtigen Pfeilrichtung einsetzen,</li><li>Generalisierung von Akteuren und Anwendungsfällen anwenden.</li></ul></div><h2>1. Wozu ein Anwendungsfalldiagramm?</h2>
+<p>Das Anwendungsfalldiagramm (Use-Case-Diagramm) beantwortet die Frage: <strong>Wer kann mit dem System was tun?</strong> Es
+zeigt die Funktionen aus Sicht der Nutzer:innen – <strong>was</strong> das System anbietet, nicht <strong>wie</strong> es das macht. Es ist
+oft das erste Diagramm im Projekt und eine gute Gesprächsgrundlage mit Kund:innen, weil es fast ohne
+Fachwissen lesbar ist.</p>
+<figure class="shot" data-src="material/v1-elemente.svg" data-desc="Die Elemente: Akteur als Strichmännchen (Person) oder als Rechteck mit «actor» (externes System), Systemgrenze mit Namen, Anwendungsfälle als Ellipsen, Assoziation als Linie, «include» und «extend» als gestrichelte Pfeile."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Darstellung</th>
+<th>Hinweis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Akteur</td>
+<td>Strichmännchen oder Rechteck mit <code>«actor»</code></td>
+<td>eine <strong>Rolle</strong>, keine konkrete Person (also „Kunde“, nicht „Anna“); steht <strong>außerhalb</strong></td>
+</tr>
+<tr>
+<td>Systemgrenze</td>
+<td>Rechteck mit Systemnamen</td>
+<td>alles darin baut das Projekt</td>
+</tr>
+<tr>
+<td>Anwendungsfall</td>
+<td>Ellipse, Name als Verb-Phrase</td>
+<td>„Rad ausleihen“, nicht „Ausleihe“</td>
+</tr>
+<tr>
+<td>Assoziation</td>
+<td>durchgezogene Linie</td>
+<td>Akteur nimmt am Anwendungsfall teil</td>
+</tr>
+</tbody>
+</table></div>
+<h2>2. «include» und «extend»</h2>
+<p>Das ist die Stelle, an der in der Prüfung die meisten Punkte verloren gehen. Beide sind gestrichelte Pfeile mit
+offener Spitze – aber sie zeigen <strong>in entgegengesetzte Richtungen</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>«include»</th>
+<th>«extend»</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bedeutung</td>
+<td>Der Basisfall enthält den anderen <strong>immer</strong>.</td>
+<td>Der andere Fall erweitert den Basisfall <strong>nur unter einer Bedingung</strong>.</td>
+</tr>
+<tr>
+<td>Pfeil</td>
+<td>vom <strong>Basisfall</strong> → zum inkludierten Fall</td>
+<td>vom <strong>erweiternden Fall</strong> → zum Basisfall</td>
+</tr>
+<tr>
+<td>Merksatz</td>
+<td>„Ich hole mir das immer dazu.“</td>
+<td>„Ich hänge mich manchmal dran.“</td>
+</tr>
+<tr>
+<td>Beispiel</td>
+<td>Rad ausleihen → Schloss öffnen</td>
+<td>Gutschein einlösen → Bezahlen</td>
+</tr>
+</tbody>
+</table></div>
+<p>Beim «extend» kannst du die Bedingung und den <strong>Erweiterungspunkt</strong> angeben. Der Erweiterungspunkt (extension
+point) steht im Basisfall unter einem Strich; die Bedingung hängt als Notiz an der Beziehung:
+<code>condition: {Kunde hat Gutscheincode}</code>.</p>
+<div class="box warn"><div class="box-title">Typische Fehler</div><ul>
+<li>Pfeilrichtung von «extend» umgedreht.</li>
+<li>«includes» oder «extends» geschrieben – richtig sind <strong>«include»</strong> und <strong>«extend»</strong> (manche Bücher schreiben es
+anders, die UML-Norm nicht).</li>
+<li>Abläufe modelliert: Anwendungsfälle werden nicht mit Pfeilen hintereinandergehängt („erst einloggen, dann
+suchen, dann bezahlen“). Dafür gibt es das Aktivitätsdiagramm.</li>
+<li>Akteure innerhalb der Systemgrenze gezeichnet.</li>
+</ul>
+</div><h2>3. Generalisierung</h2>
+<p>Auch Akteure und Anwendungsfälle können erben – mit dem bekannten hohlen Dreieck. Ein <strong>Premiumkunde</strong> ist ein
+Kunde: Er darf alles, was ein Kunde darf, und zusätzlich Räder reservieren.</p>
+<figure class="shot" data-src="material/v1-radwerk.svg" data-desc="Anwendungsfalldiagramm des RadWerk-Verleihsystems mit den Akteuren Kunde, Premiumkunde (erbt von Kunde), Servicetechniker und dem externen System Zahlungsdienst. Rad ausleihen inkludiert Schloss öffnen, Rad zurückgeben inkludiert Bezahlen. Gutschein einlösen erweitert Bezahlen am Erweiterungspunkt Rabatt unter der Bedingung „Kunde hat Gutscheincode“."></figure>
+<div class="box tip"><div class="box-title">Vorgehen in der Prüfung</div><ol>
+<li>Systemgrenze zeichnen und benennen.</li>
+<li>Akteure suchen: <strong>Wer</strong> nutzt das System? Welche <strong>fremden Systeme</strong> sind beteiligt (Bank, Zahlungsdienst,
+Sensor)?</li>
+<li>Anwendungsfälle suchen: Verben im Text („soll … können“).</li>
+<li>Akteure und Anwendungsfälle verbinden.</li>
+<li>Nach „immer“, „jedes Mal“, „schließt ein“ → «include». Nach „optional“, „falls“, „bei Bedarf“ → «extend».</li>
+</ol>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Kino-Ticketsystem</h3><span class="lvl time">15 min</span></div><p>Ein Kino lässt ein Ticketsystem entwickeln. Kund:innen sollen das <strong>Programm ansehen</strong>, <strong>Tickets kaufen</strong> und
+<strong>Tickets stornieren</strong> können. Beim Ticketkauf wird <strong>immer ein Sitzplatz gewählt</strong> und <strong>immer bezahlt</strong>.
+Die Bezahlung läuft über einen externen <strong>Zahlungsanbieter</strong>. Wer einen Rabattcode hat, kann ihn beim Bezahlen
+<strong>einlösen</strong>. An der Kasse kann auch eine <strong>Kassenkraft</strong> Tickets verkaufen und stornieren.</p>
+<p>Zeichne das Anwendungsfalldiagramm.</p>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li>Systemgrenze mit Namen, Akteure außerhalb.</li>
+<li>Der Zahlungsanbieter ist ein Akteur (Rechteck mit «actor» oder Strichmännchen).</li>
+<li>Zwei «include»-Pfeile, die von „Ticket kaufen“ wegzeigen.</li>
+<li>Ein «extend»-Pfeil, der von „Rabattcode einlösen“ auf „Bezahlen“ zeigt.</li>
+</ul>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v1-kino.svg" data-desc="Lösung Kino-Ticketsystem: Kunde und Kassenkraft sind mit Ticket kaufen und Ticket stornieren verbunden, der Kunde zusätzlich mit Programm ansehen. Ticket kaufen inkludiert Sitzplatz wählen und Bezahlen. Rabattcode einlösen erweitert Bezahlen. Bezahlen ist mit dem Akteur Zahlungsanbieter verbunden."></figure>
+<p>Wenn du einen Akteur „Person“ als Oberklasse von Kunde und Kassenkraft eingeführt hast, ist das kein Fehler –
+nötig ist es hier aber nicht.</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Fehlersuche</h3><span class="lvl time">10 min</span></div><p>Ein Kollege hat für einen Webshop gezeichnet:</p>
+<ul>
+<li>Akteur „Max Mustermann“ innerhalb der Systemgrenze</li>
+<li>„Bestellung aufgeben“ ‑‑«extends»‑‑&gt; „Bezahlen“</li>
+<li>„Einloggen“ → „Artikel suchen“ → „In den Warenkorb legen“ (durchgezogene Pfeile)</li>
+</ul>
+<p>Finde alle Fehler und schreib auf, wie es richtig wäre.</p>
+<details><summary>Lösung</summary><ol>
+<li>Akteure sind <strong>Rollen</strong> („Kunde“) und stehen <strong>außerhalb</strong> der Systemgrenze.</li>
+<li>Es heißt «extend». Inhaltlich ist es außerdem ein «include»: Wer bestellt, bezahlt immer. Also
+„Bestellung aufgeben“ ‑‑«include»‑‑&gt; „Bezahlen“.</li>
+<li>Anwendungsfälle werden nicht zu einem Ablauf verkettet. Jeder Fall wird einzeln mit dem Akteur verbunden;
+die Reihenfolge gehört in ein Aktivitätsdiagramm.</li>
+</ol>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Eine App aus deinem Alltag</h3><span class="lvl time">15 min</span></div><p>Wähle eine App, die du täglich nutzt (Messenger, Banking, Navigation …). Zeichne ihr Anwendungsfalldiagramm mit
+mindestens zwei Akteuren, sechs Anwendungsfällen, einem «include» und einem «extend» mit Bedingung.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="1"><p class="q">„Rad zurückgeben“ beinhaltet immer „Bezahlen“. Wie zeichnest du das?</p><ol><li>Rad zurückgeben ‑‑«include»‑‑&gt; Bezahlen</li><li>Bezahlen ‑‑«include»‑‑&gt; Rad zurückgeben</li><li>Bezahlen ‑‑«extend»‑‑&gt; Rad zurückgeben</li></ol><p class="fb" data-ok="Richtig. Der Pfeil zeigt vom Basisfall auf den inkludierten Fall – „ich hole mir den dazu“." data-no="Bei «include» zeigt der Pfeil vom Basisfall (Rad zurückgeben) zum Fall, der immer dazukommt (Bezahlen)."></p></div><div class="qa" data-right="2"><p class="q">Wohin zeigt der Pfeil bei «extend»?</p><ol><li>Vom Basisfall zum erweiternden Fall</li><li>Vom erweiternden Fall zum Basisfall</li><li>Es gibt bei «extend» keinen Pfeil.</li></ol><p class="fb" data-ok="Genau. Der Erweiterer zeigt auf den Fall, den er (unter einer Bedingung) erweitert." data-no="«extend» zeigt vom optionalen Fall (z. B. Gutschein einlösen) auf den Basisfall (Bezahlen) – also umgekehrt zu «include»."></p></div><div class="qa" data-right="2"><p class="q">Was gehört NICHT in ein Anwendungsfalldiagramm?</p><ol><li>Ein externes System als Akteur</li><li>Die Reihenfolge der Schritte</li><li>Die Systemgrenze mit Namen</li></ol><p class="fb" data-ok="Richtig. Reihenfolgen und Abläufe zeigt das Aktivitäts- oder Sequenzdiagramm." data-no="Externe Systeme dürfen Akteure sein, die Systemgrenze gehört dazu. Abläufe (Reihenfolge) gehören nicht hinein."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

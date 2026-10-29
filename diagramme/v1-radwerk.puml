@@ -1,0 +1,38 @@
+@startuml
+!include stil.iuml
+left to right direction
+skinparam nodesep 25
+skinparam ranksep 70
+actor Kunde
+actor Premiumkunde
+actor Servicetechniker
+rectangle "Zahlungsdienst" <<actor>> as ZD
+rectangle "RadWerk-Verleihsystem" {
+  usecase "Registrieren" as UReg
+  usecase "Verfügbare Räder\nanzeigen" as UAnz
+  usecase "Rad ausleihen" as UAus
+  usecase "Rad zurückgeben" as URueck
+  usecase "Bezahlen\n--\n<i>extension points</i>\nRabatt" as UBez
+  usecase "Gutschein einlösen" as UGut
+  usecase "Rad reservieren" as URes
+  usecase "Defekt melden" as UDef
+  usecase "Rad warten" as UWart
+  usecase "Schloss öffnen" as USchl
+}
+Kunde <|-- Premiumkunde
+Kunde -- UReg
+Kunde -- UAnz
+Kunde -- UAus
+Kunde -- URueck
+Kunde -- UDef
+Premiumkunde -- URes
+Servicetechniker -- UWart
+UAus ..> USchl : <<include>>
+URueck ..> UBez : <<include>>
+UBez -- ZD
+UGut ..> UBez : <<extend>>
+note on link
+  condition: {Kunde hat Gutscheincode}
+  extension point: Rabatt
+end note
+@enduml

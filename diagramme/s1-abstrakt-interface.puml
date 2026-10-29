@@ -1,0 +1,35 @@
+@startuml
+!include stil.iuml
+abstract class Fahrrad {
+  - rahmennummer : String
+  # kilometerstand : int
+  + Fahrrad(rahmennummer : String)
+  + {abstract} berechnePreis(minuten : int) : double
+  + getRahmennummer() : String
+}
+class EBike {
+  - akkustand : int
+  + EBike(rahmennummer : String)
+  + berechnePreis(minuten : int) : double
+  + getAkkustand() : int
+}
+class Zahlungsart <<interface>> {
+  + bezahlen(betrag : double) : boolean
+}
+class Kreditkarte {
+  - nummer : String
+  + bezahlen(betrag : double) : boolean
+}
+enum RadZustand <<enumeration>> {
+  VERFUEGBAR
+  AUSGELIEHEN
+  IN_WARTUNG
+}
+hide RadZustand methods
+Fahrrad <|-- EBike
+Zahlungsart <|.. Kreditkarte
+note bottom of Fahrrad
+  <i>kursiv</i> = abstrakt
+  (auch als {abstract})
+end note
+@enduml

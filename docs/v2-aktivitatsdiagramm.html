@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aktivitätsdiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="v2">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Abläufe mit Aktionen, Verzweigungen, Zusammenführungen und Parallelität modellieren,</li><li>Verantwortlichkeiten mit Partitionen (Swimlanes) darstellen,</li><li>Pseudocode mit Schleifen und Bedingungen in ein Aktivitätsdiagramm übersetzen.</li></ul></div><h2>1. Die Elemente</h2>
+<p>Das Aktivitätsdiagramm zeigt einen <strong>Ablauf</strong>: einen Geschäftsprozess („Wie läuft eine Rückgabe ab?“) oder einen
+Algorithmus („Wie wird der Durchschnitt berechnet?“). Es ist der moderne Nachfolger des Programmablaufplans (PAP),
+kann aber zusätzlich Parallelität und Verantwortlichkeiten darstellen.</p>
+<figure class="shot" data-src="material/v2-elemente.svg" data-desc="Alle Grundelemente: Startknoten, Aktionen, Verzweigung mit den Bedingungen [Bedingung 1] und [sonst], Zusammenführung, Gabelung und Vereinigung für parallele Aktionen, Objektknoten „Ergebnis“ und Endknoten."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Darstellung</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Startknoten</td>
+<td>gefüllter Kreis ●</td>
+<td>hier beginnt der Ablauf</td>
+</tr>
+<tr>
+<td>Aktion</td>
+<td>Rechteck mit runden Ecken</td>
+<td>ein Schritt, als Verb formuliert („Rechnung erstellen“)</td>
+</tr>
+<tr>
+<td>Kante</td>
+<td>Pfeil</td>
+<td>Reihenfolge (Kontrollfluss)</td>
+</tr>
+<tr>
+<td>Verzweigung</td>
+<td>Raute, <strong>ein</strong> Eingang, mehrere Ausgänge mit <code>[Bedingung]</code></td>
+<td>genau ein Weg wird genommen</td>
+</tr>
+<tr>
+<td>Zusammenführung</td>
+<td>Raute, mehrere Eingänge, <strong>ein</strong> Ausgang</td>
+<td>Wege laufen wieder zusammen</td>
+</tr>
+<tr>
+<td>Gabelung (Fork)</td>
+<td>dicker Balken, ein Eingang, mehrere Ausgänge</td>
+<td>ab hier laufen Zweige <strong>parallel</strong></td>
+</tr>
+<tr>
+<td>Vereinigung (Join)</td>
+<td>dicker Balken, mehrere Eingänge, ein Ausgang</td>
+<td>wartet, bis <strong>alle</strong> Zweige fertig sind</td>
+</tr>
+<tr>
+<td>Objektknoten</td>
+<td>eckiges Rechteck</td>
+<td>ein Ergebnis oder Dokument, das weitergegeben wird</td>
+</tr>
+<tr>
+<td>Endknoten</td>
+<td>Kreis mit Punkt ◉</td>
+<td>die ganze Aktivität endet</td>
+</tr>
+<tr>
+<td>Ablaufende</td>
+<td>Kreis mit X ⊗</td>
+<td>nur dieser Zweig endet</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box warn"><div class="box-title">Typische Fehler bei Verzweigungen</div><ul>
+<li>Die Bedingungen müssen sich <strong>gegenseitig ausschließen</strong> und <strong>alle Fälle abdecken</strong>. <code>[x &gt; 0]</code> und <code>[x &lt; 0]</code>
+reicht nicht – was ist mit 0? Im Zweifel <code>[sonst]</code> (oder <code>[else]</code>) verwenden.</li>
+<li>Raute und Balken nicht verwechseln: <strong>Raute = entweder–oder</strong>, <strong>Balken = gleichzeitig</strong>.</li>
+</ul>
+</div><h2>2. Endknoten oder Ablaufende?</h2>
+<figure class="shot" data-src="material/v2-ablaufende.svg" data-desc="Nach „Bestellung speichern“ teilt eine Gabelung in zwei parallele Zweige: „Nutzungsstatistik schreiben“ endet mit einem Ablaufende (Kreis mit X), „Bestätigung anzeigen“ mit einem Endknoten (Kreis mit Punkt)."></figure>
+<p>Achtung: Erreicht der rechte Zweig den <strong>Endknoten</strong>, ist die ganze Aktivität vorbei – auch wenn die Statistik
+noch nicht fertig geschrieben ist. Soll die Statistik sicher fertig werden, brauchst du vorher einen Join.</p>
+<h2>3. Partitionen (Swimlanes)</h2>
+<p>Mit <strong>Partitionen</strong> zeigst du, <strong>wer</strong> eine Aktion ausführt – eine Person, eine Abteilung oder ein System. Die
+Aktion steht in der Bahn des Verantwortlichen.</p>
+<figure class="shot" data-src="material/v2-rueckgabe.svg" data-desc="Aktivitätsdiagramm „Rad zurückgeben“ mit den Partitionen Kunde und RadWerk-System. Der Kunde stellt das Rad ab und schließt das Schloss. Das System prüft den Standort; ist das Rad nicht an einer Station, geht es zurück zum Abstellen. Danach laufen parallel „Rechnung erstellen“, „Betrag abbuchen“ und „Akkustand prüfen“ (bei Akku unter 20 % mit Ladeauftrag). Nach dem Join erhält der Kunde die Bestätigung."></figure>
+<div class="box tip"><div class="box-title">Schleifen</div><p>Eine Schleife entsteht, wenn eine Kante zu einer <strong>Zusammenführung</strong> vor einem früheren Schritt zurückführt
+(oben: zurück zu „Rad abstellen“). Die Bedingung für Wiederholen und für Weitermachen steht an den Kanten der
+Verzweigung.</p>
+</div><h2>4. Vom Pseudocode zum Diagramm</h2>
+<p>Algorithmen aus der Prüfung kommen oft als Pseudocode. So übersetzt du die Kontrollstrukturen:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pseudocode</th>
+<th>Aktivitätsdiagramm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anweisung</td>
+<td>Aktion</td>
+</tr>
+<tr>
+<td><code>wenn … dann … sonst</code></td>
+<td>Verzweigung mit zwei Guards, danach Zusammenführung</td>
+</tr>
+<tr>
+<td><code>solange … wiederhole</code> (kopfgesteuert)</td>
+<td>Verzweigung <strong>vor</strong> dem Schleifenrumpf, Rückkante davor</td>
+</tr>
+<tr>
+<td><code>wiederhole … bis</code> (fußgesteuert)</td>
+<td>Rumpf zuerst, Verzweigung <strong>danach</strong>, Rückkante zum Anfang</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code>summe := 0
+i := 0
+solange i &lt; anzahl
+    summe := summe + dauer[i]
+    i := i + 1
+ende solange
+wenn anzahl &gt; 0 dann
+    schnitt := summe / anzahl
+sonst
+    schnitt := 0
+ende wenn
+gib schnitt zurück
+</code></pre>
+<figure class="shot" data-src="material/v2-durchschnitt.svg" data-desc="Aktivitätsdiagramm zum Pseudocode: Initialisierung von summe und i, kopfgesteuerte Schleife mit der Bedingung [i &lt; anzahl], danach Verzweigung [anzahl &gt; 0] / [sonst] für die Division und Rückgabe des Durchschnitts."></figure>
+<p>Die Prüfung <code>anzahl &gt; 0</code> verhindert eine <strong>Division durch null</strong>, wenn die Liste leer ist – solche Randfälle
+werden in der AP2 gern abgefragt.</p>
+<div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Bestellung im Webshop</h3><span class="lvl time">15 min</span></div><p>Zeichne ein Aktivitätsdiagramm mit den Partitionen <strong>Kunde</strong>, <strong>Webshop</strong> und <strong>Lager</strong>:
+Der Kunde sendet eine Bestellung ab. Der Webshop prüft sie. Ist die Ware nicht vorrätig, informiert der Webshop
+den Kunden über die Lieferzeit, und der Ablauf endet. Sonst schickt der Webshop die Rechnung, <strong>während</strong> das
+Lager gleichzeitig die Ware verpackt. Sind beide fertig, versendet das Lager die Ware, und der Kunde empfängt sie.</p>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li>Drei Partitionen, jede Aktion in der richtigen Bahn.</li>
+<li>Die Verzweigung hat zwei Guards in eckigen Klammern.</li>
+<li>„Rechnung senden“ und „Ware verpacken“ stehen zwischen Fork und Join.</li>
+</ul>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v2-webshop.svg" data-desc="Lösung: Kunde sendet Bestellung ab, Webshop prüft. Bei [nicht vorrätig] wird der Kunde über die Lieferzeit informiert, dann Endknoten. Bei [vorrätig] Gabelung: Webshop sendet Rechnung, Lager verpackt Ware. Nach dem Join versendet das Lager, der Kunde empfängt die Ware, Endknoten."></figure>
+<p>Zwei Endknoten sind erlaubt. Du kannst die beiden Wege auch mit einer Zusammenführung vor einem gemeinsamen
+Endknoten vereinen.</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Maximum suchen</h3><span class="lvl time">15 min</span></div><p>Zeichne das Aktivitätsdiagramm zu diesem Pseudocode:</p>
+<pre><code>max := werte[0]
+für i von 1 bis laenge - 1
+    wenn werte[i] &gt; max dann
+        max := werte[i]
+    ende wenn
+ende für
+gib max zurück
+</code></pre>
+<details><summary>Lösung</summary><ol>
+<li>Start → Aktion <code>max := werte[0]</code> → Aktion <code>i := 1</code></li>
+<li>Zusammenführung (hier kommt später die Rückkante an) → Verzweigung mit <code>[i &lt; laenge]</code> und <code>[sonst]</code></li>
+<li>Bei <code>[i &lt; laenge]</code>: Verzweigung <code>[werte[i] &gt; max]</code> → Aktion <code>max := werte[i]</code>, <code>[sonst]</code> → direkt weiter;
+beide Wege in einer Zusammenführung vereinen → Aktion <code>i := i + 1</code> → Rückkante zur Zusammenführung aus Schritt 2</li>
+<li>Bei <code>[sonst]</code>: Aktion <code>max zurückgeben</code> → Endknoten</li>
+</ol>
+<figure class="shot" data-src="material/v2-maximum.svg" data-desc="Lösung Maximum: max := werte[0], i := 1, kopfgesteuerte Schleife mit [i &lt; laenge]. Im Rumpf Verzweigung [werte[i] &gt; max] mit Aktion max := werte[i], sonst direkt weiter, danach i := i + 1 und Rückkante. Bei [sonst] max zurückgeben und Endknoten."></figure>
+<p><code>für i von 1 bis laenge - 1</code> heißt: weitermachen, solange <code>i ≤ laenge - 1</code>, also <code>i &lt; laenge</code>.</p>
+<p>Wichtig: Die Zählschleife braucht drei Teile – Startwert, Bedingung <strong>vor</strong> dem Rumpf und das Hochzählen am Ende
+des Rumpfs.</p>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Ein Prozess aus deinem Betrieb</h3><span class="lvl time">15 min</span></div><p>Modelliere einen echten Ablauf aus deinem Ausbildungsbetrieb (z. B. Störungsticket bearbeiten, neuen
+Arbeitsplatz einrichten, Code-Review) mit mindestens zwei Partitionen, einer Verzweigung und einem parallelen
+Abschnitt.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Wie notierst du die Bedingungen an einer Verzweigung?</p><ol><li>In der Raute als Frage, z. B. „verfügbar?“</li><li>In eckigen Klammern an den ausgehenden Kanten, z. B. [verfügbar]</li><li>In runden Klammern an der eingehenden Kante</li></ol><p class="fb" data-ok="Richtig. Die Bedingungen (Guards) stehen in [ ] an den Kanten, die aus der Raute herausgehen." data-no="In UML stehen die Bedingungen als Guards in eckigen Klammern an den ausgehenden Kanten."></p></div><div class="qa" data-right="2"><p class="q">Was ist der Unterschied zwischen Endknoten ◉ und Ablaufende ⊗?</p><ol><li>Kein Unterschied, beides beendet die Aktivität.</li><li>◉ beendet die ganze Aktivität, ⊗ nur den eigenen Zweig.</li><li>⊗ beendet die ganze Aktivität, ◉ nur den eigenen Zweig.</li></ol><p class="fb" data-ok="Genau. Der Endknoten stoppt alles – auch parallele Zweige. Das Ablaufende stoppt nur den Fluss, in dem es steht." data-no="Der Endknoten (Kreis mit Punkt) beendet die ganze Aktivität. Das Ablaufende (Kreis mit X) nur seinen Zweig."></p></div><div class="qa" data-right="2"><p class="q">Was passiert an einem Synchronisationsbalken (Join)?</p><ol><li>Es geht weiter</li><li>sobald einer der eingehenden Zweige fertig ist.</li><li>Es geht erst weiter, wenn alle eingehenden Zweige fertig sind.</li><li>Es wird eine Bedingung geprüft.</li></ol><p class="fb" data-ok="Richtig. Der Join wartet auf alle parallelen Zweige." data-no="Ein Join wartet auf alle eingehenden Zweige. Auf „den ersten“ wartet die Zusammenführung (Raute)."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

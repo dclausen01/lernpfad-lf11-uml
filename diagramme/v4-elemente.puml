@@ -1,0 +1,15 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 70
+[*] --> ZustandA
+note left of ZustandA : einfacher Zustand
+state "Zustand A" as ZustandA
+state "Zustand B" as ZustandB : entry / Aktion beim Betreten\ndo / Aktivität während des Zustands\nexit / Aktion beim Verlassen\nereignisX / interne Aktion
+ZustandA --> ZustandB : ereignis [bedingung] / aktion
+ZustandB --> ZustandB : ereignisY / aktion
+ZustandB --> c : weiter
+state c <<choice>>
+c --> ZustandA : [x > 0]
+c --> [*] : [sonst]
+note right of c : Entscheidung (choice)
+@enduml

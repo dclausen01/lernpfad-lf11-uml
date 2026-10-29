@@ -1,0 +1,28 @@
+@startuml
+!include stil.iuml
+skinparam style strictuml
+hide footbox
+actor ":Kunde" as K
+participant ":App" as App
+participant ":Ausleihservice" as AS
+participant ":Schloss" as SL
+K -> App : radAusleihen(radId)
+activate App
+App -> AS : ausleihen(kundeId, radId)
+activate AS
+AS -> AS : pruefeVerfuegbarkeit(radId)
+activate AS
+deactivate AS
+alt verfuegbar
+  create participant "a:Ausleihe" as AU
+  AS -->> AU : <<create>>
+  AS ->> SL : oeffnen()
+  AS -->> App : a
+  App -->> K : "Rad entriegelt"
+else sonst
+  AS -->> App : null
+  App -->> K : "Rad nicht verfügbar"
+end
+deactivate AS
+deactivate App
+@enduml

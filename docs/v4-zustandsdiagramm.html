@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zustandsdiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="v4">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Zustände, Anfangs- und Endzustand sowie Transitionen eines Objekts modellieren,</li><li>Transitionen vollständig mit Ereignis [Bedingung] / Aktion beschriften,</li><li>entry-, do- und exit-Verhalten sowie interne Transitionen und Zeitereignisse einsetzen.</li></ul></div><h2>1. Zustände statt Abläufe</h2>
+<p>Ein <strong>Zustandsdiagramm</strong> (Zustandsautomat, State Machine) beschreibt den <strong>Lebenslauf eines einzelnen Objekts</strong>:
+Welche Zustände kann es haben, und welche Ereignisse lösen einen Wechsel aus? Typische Kandidaten sind Objekte
+mit einem „Status“-Attribut: Bestellungen, Tickets, Verträge, Fahrräder, Benutzerkonten – oder Oberflächen, die
+auf Eingaben reagieren.</p>
+<div class="box tip"><div class="box-title">Abgrenzung zum Aktivitätsdiagramm</div><ul>
+<li><strong>Aktivitätsdiagramm:</strong> Was wird <strong>getan</strong>? (Schritte, Aktionen)</li>
+<li><strong>Zustandsdiagramm:</strong> In welchem <strong>Zustand</strong> ist ein Objekt, und worauf <strong>reagiert</strong> es?
+Ein Zustand ist etwas, das eine Zeit lang <strong>andauert</strong> („ausgeliehen“). Eine Aktion ist etwas, das man <strong>tut</strong>
+(„Rad ausleihen“).</li>
+</ul>
+</div><h2>2. Die Elemente</h2>
+<figure class="shot" data-src="material/v4-elemente.svg" data-desc="Grundelemente: Anfangszustand (gefüllter Kreis), einfacher Zustand A, Zustand B mit entry-, do-, exit-Verhalten und einer internen Transition, eine Transition mit „ereignis [bedingung] / aktion“, eine Selbsttransition an B, ein Entscheidungsknoten (Raute) mit [x &gt; 0] und [sonst] sowie der Endzustand."></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Darstellung</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anfangszustand</td>
+<td>gefüllter Kreis ●</td>
+<td>hier beginnt das Leben des Objekts (genau einer je Ebene)</td>
+</tr>
+<tr>
+<td>Zustand</td>
+<td>Rechteck mit runden Ecken, Name als Adjektiv/Partizip</td>
+<td>„verfügbar“, „ausgeliehen“, „in Wartung“</td>
+</tr>
+<tr>
+<td>Transition</td>
+<td>Pfeil <code>Ereignis [Bedingung] / Aktion</code></td>
+<td>Zustandswechsel; alle drei Teile sind optional</td>
+</tr>
+<tr>
+<td>Endzustand</td>
+<td>Kreis mit Punkt ◉</td>
+<td>das Objekt hat sein Leben beendet</td>
+</tr>
+<tr>
+<td>Entscheidung (choice)</td>
+<td>Raute</td>
+<td>Weiter je nach Bedingung</td>
+</tr>
+<tr>
+<td><code>entry / …</code></td>
+<td>im Zustand</td>
+<td>läuft beim <strong>Betreten</strong></td>
+</tr>
+<tr>
+<td><code>do / …</code></td>
+<td>im Zustand</td>
+<td>läuft, <strong>solange</strong> der Zustand aktiv ist</td>
+</tr>
+<tr>
+<td><code>exit / …</code></td>
+<td>im Zustand</td>
+<td>läuft beim <strong>Verlassen</strong></td>
+</tr>
+<tr>
+<td>interne Transition</td>
+<td><code>ereignis / aktion</code> im Zustand</td>
+<td>reagiert, <strong>ohne</strong> den Zustand zu verlassen</td>
+</tr>
+<tr>
+<td>Zeitereignis</td>
+<td><code>after 15 min</code> als Ereignis</td>
+<td>Wechsel nach Ablauf einer Zeit</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box note"><div class="box-title">Begriff</div><p>Der Zustandswechsel heißt in UML <strong>Transition</strong>. Manche Lehrbücher schreiben „Transaktion“ – gemeint ist
+dasselbe, aber in der Prüfung solltest du den richtigen Begriff verwenden.</p>
+</div><h2>3. Das Fahrrad als Zustandsautomat</h2>
+<figure class="shot" data-src="material/v4-fahrrad.svg" data-desc="Zustandsdiagramm eines Fahrrads bei RadWerk mit den Zuständen verfügbar (entry / Schloss verriegeln), reserviert, ausgeliehen (entry / Uhr starten, exit / Uhr stoppen, interne Transition standortMelden / Position speichern), wird geladen (do / Akku laden) und in Wartung. Nach „zurueckgeben“ entscheidet eine Raute: [akku &lt; 20 %] führt zu „wird geladen“, [sonst] zu „verfügbar“. Eine Reservierung verfällt nach 15 Minuten. Aus „in Wartung“ führt „ausmustern“ in den Endzustand."></figure>
+<p>Achte auf diese Details:</p>
+<ul>
+<li><code>standortMelden / Position speichern</code> ist eine <strong>interne Transition</strong>. Wäre es eine Selbsttransition (Pfeil
+auf sich selbst), würde bei jeder Standortmeldung <code>exit / Uhr stoppen</code> und <code>entry / Uhr starten</code> laufen – die
+Ausleihzeit würde jedes Mal neu beginnen.</li>
+<li><code>after 15 min</code> ist ein <strong>Zeitereignis</strong>: Holt der Premiumkunde das Rad nicht ab, wird es wieder verfügbar.</li>
+<li>Von „wird geladen“ geht es mit dem Ereignis <code>geladen</code> weiter. Hier würde auch eine Transition <strong>ohne</strong> Ereignis
+passen – sie feuert automatisch, sobald das <code>do</code>-Verhalten fertig ist.</li>
+</ul>
+<div class="box warn"><div class="box-title">Typische Fehler</div><ul>
+<li>Zustände als Tätigkeiten benannt („ausleihen“ statt „ausgeliehen“).</li>
+<li>Ereignis, Bedingung und Aktion vertauscht oder die eckigen Klammern vergessen.</li>
+<li>An der Transition aus dem Anfangszustand ein Ereignis notiert. Nach UML-Norm ist dort höchstens eine Aktion
+erlaubt – das Objekt startet einfach im ersten Zustand.</li>
+<li>Bedingungen an einer Raute, die nicht alle Fälle abdecken (<code>[akku &lt; 20 %]</code> und <code>[akku &gt; 20 %]</code> – was ist bei
+genau 20 %?).</li>
+<li>Zustände ohne ausgehende Transition, die kein Endzustand sind (das Objekt hängt dort für immer fest).</li>
+</ul>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Support-Ticket</h3><span class="lvl time">15 min</span></div><p>Modelliere die Zustände eines Support-Tickets:
+Ein neu erstelltes Ticket ist <strong>neu</strong>. Es wird einem Bearbeiter zugewiesen, sofern einer verfügbar ist, und ist
+dann <strong>in Bearbeitung</strong>. Der Bearbeiter kann eine Rückfrage stellen (dabei wird eine E-Mail gesendet); das Ticket
+<strong>wartet auf den Kunden</strong>, bis die Antwort eingeht. Ist das Problem gelöst, ist das Ticket <strong>gelöst</strong>. Der Kunde
+kann es wiedereröffnen oder die Lösung bestätigen. Bestätigt er nicht innerhalb von 7 Tagen, wird es automatisch
+<strong>geschlossen</strong>. Geschlossene Tickets werden archiviert.</p>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li>Fünf Zustände, als Zustand formuliert (nicht als Tätigkeit).</li>
+<li>Die Zuweisung hat eine Bedingung in eckigen Klammern.</li>
+<li>Die Rückfrage hat eine Aktion hinter dem Schrägstrich.</li>
+<li>Für die 7 Tage gibt es ein Zeitereignis.</li>
+</ul>
+</div><details><summary>Lösung</summary><figure class="shot" data-src="material/v4-ticket.svg" data-desc="Lösung Support-Ticket: Vom Anfangszustand zu „neu“. „zuweisen [Bearbeiter verfügbar]“ führt zu „in Bearbeitung“. „rueckfrage / E-Mail senden“ führt zu „wartet auf Kunde“, „antwortErhalten“ zurück. „loesen“ führt zu „gelöst“, von dort „wiedereroeffnen“ zurück zu „in Bearbeitung“ oder „bestaetigen“ bzw. „after 7 Tage“ zu „geschlossen“ und mit „archivieren“ zum Endzustand."></figure>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Getränkeautomat</h3><span class="lvl time">15 min</span></div><p>Ein Getränkeautomat ist <strong>bereit</strong>. Wirft jemand eine Münze ein, merkt er sich den Betrag als Guthaben und ist
+<strong>kassiert</strong>. Weitere Münzen erhöhen das Guthaben, ohne dass sich der Zustand ändert. Wird ein Getränk gewählt und
+reicht das Guthaben, geht der Automat in <strong>Ausgabe</strong> und gibt das Getränk aus. Reicht es nicht, zeigt er „zu
+wenig“ an und bleibt kassiert. Mit „abbrechen“ gibt er das Geld zurück und ist wieder bereit. Nach der Ausgabe gibt
+er Wechselgeld aus und ist wieder bereit.</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/v4-automat.svg" data-desc="Lösung Getränkeautomat: bereit → kassiert mit „muenze(b) / guthaben := b“. Im Zustand kassiert stehen zwei interne Transitionen: „muenze(b) / guthaben := guthaben + b“ und „wahl(p) [guthaben &lt; preis(p)] / &quot;zu wenig&quot; anzeigen“. Von kassiert führt „wahl(p) [guthaben &gt;= preis(p)]“ zu Ausgabe (do / Getränk ausgeben) und „abbrechen / Geld zurückgeben“ zu bereit. Von Ausgabe führt eine Transition ohne Ereignis „/ Wechselgeld ausgeben“ zurück zu bereit."></figure>
+<ul>
+<li>Weitere Münzen und die zu geringe Wahl sind <strong>interne Transitionen</strong> – der Zustand wird nicht verlassen.</li>
+<li>Die Transition von „Ausgabe“ zu „bereit“ hat <strong>kein Ereignis</strong>: Sie feuert, sobald <code>do / Getränk ausgeben</code>
+fertig ist (Abschlusstransition).</li>
+</ul>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Dein Objekt</h3><span class="lvl time">15 min</span></div><p>Such dir ein Objekt aus deinem Betrieb oder Alltag mit mindestens vier Zuständen (Paket in der Zustellung,
+Leasing-Laptop, Pull-Request, Arbeitsauftrag) und zeichne seinen Zustandsautomaten mit mindestens einer
+Bedingung, einer Aktion, einem entry-Verhalten und einem Zeitereignis.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="1"><p class="q">Was bedeutet die Beschriftung <code>wahl(p) [guthaben &gt;= preis(p)] / ausgeben</code> an einer Transition?</p><ol><li>Ereignis wahl(p), Bedingung guthaben &gt;= preis(p), Aktion ausgeben</li><li>Zustand wahl(p), Ereignis guthaben &gt;= preis(p), Bedingung ausgeben</li><li>Aktion wahl(p), Bedingung ausgeben, Ereignis guthaben &gt;= preis(p)</li></ol><p class="fb" data-ok="Richtig. Ereignis [Bedingung] / Aktion – in genau dieser Reihenfolge." data-no="Die Reihenfolge ist immer: Ereignis (Auslöser) [Bedingung (Guard)] / Aktion (Effekt)."></p></div><div class="qa" data-right="2"><p class="q">Ein Zustand hat „entry / Uhr starten“. Was passiert bei einer Selbsttransition (Pfeil auf sich selbst)?</p><ol><li>Nichts – der Zustand wird nicht verlassen.</li><li>Der Zustand wird verlassen und neu betreten; entry wird erneut ausgeführt.</li><li>Das Objekt geht in den Endzustand.</li></ol><p class="fb" data-ok="Genau. Eine Selbsttransition verlässt den Zustand – exit und entry laufen erneut. Soll das nicht passieren, nimmst du eine interne Transition." data-no="Eine Selbsttransition verlässt und betritt den Zustand neu (exit und entry laufen). Nur eine interne Transition bleibt im Zustand."></p></div><div class="qa" data-right="2"><p class="q">Was darf an der Transition aus dem Anfangszustand stehen?</p><ol><li>Ein Ereignis und eine Bedingung</li><li>Höchstens eine Aktion – kein Ereignis und keine Bedingung</li><li>Nur eine Bedingung</li></ol><p class="fb" data-ok="Richtig. Laut UML startet das Objekt automatisch im ersten Zustand; erlaubt ist nur eine Aktion." data-no="Die Transition aus dem Anfangszustand hat nach UML weder Ereignis noch Bedingung – höchstens eine Aktion."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

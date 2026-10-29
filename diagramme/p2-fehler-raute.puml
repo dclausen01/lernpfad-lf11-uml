@@ -1,0 +1,16 @@
+@startuml
+!include stil.iuml
+hide members
+skinparam nodesep 40
+rectangle "✗ falsch: Raute am Teil" as F {
+  class Rechnung
+  class Rechnungsposition
+  Rechnung "1..*" --* "1" Rechnungsposition
+}
+rectangle "✓ richtig: Raute am Ganzen" as R {
+  class "Rechnung" as R2
+  class "Rechnungsposition" as P2
+  R2 "1" *-- "1..*" P2
+}
+F -[hidden]right- R
+@enduml

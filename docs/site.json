@@ -1,0 +1,110 @@
+{
+ "titel": "UML-Diagramme für die AP2",
+ "kurzname": "uml-ap2",
+ "seiten": [
+  {
+   "datei": "g1-uml-im-uberblick.html",
+   "art": "modul",
+   "id": "g1",
+   "titel": "UML im Überblick",
+   "review": "geprueft"
+  },
+  {
+   "datei": "s1-klassendiagramm-i-die-klasse.html",
+   "art": "modul",
+   "id": "s1",
+   "titel": "Klassendiagramm I: Die Klasse",
+   "review": "geprueft"
+  },
+  {
+   "datei": "s2-klassendiagramm-ii-beziehungen.html",
+   "art": "modul",
+   "id": "s2",
+   "titel": "Klassendiagramm II: Beziehungen",
+   "review": "geprueft"
+  },
+  {
+   "datei": "s3-code-klassendiagramm.html",
+   "art": "modul",
+   "id": "s3",
+   "titel": "Code ↔ Klassendiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "s4-objektdiagramm.html",
+   "art": "modul",
+   "id": "s4",
+   "titel": "Objektdiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "s5-komponenten-und-verteilungsdiagramm.html",
+   "art": "modul",
+   "id": "s5",
+   "titel": "Komponenten- und Verteilungsdiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "v1-anwendungsfalldiagramm.html",
+   "art": "modul",
+   "id": "v1",
+   "titel": "Anwendungsfalldiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "v2-aktivitatsdiagramm.html",
+   "art": "modul",
+   "id": "v2",
+   "titel": "Aktivitätsdiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "v3-sequenzdiagramm.html",
+   "art": "modul",
+   "id": "v3",
+   "titel": "Sequenzdiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "v4-zustandsdiagramm.html",
+   "art": "modul",
+   "id": "v4",
+   "titel": "Zustandsdiagramm",
+   "review": "geprueft"
+  },
+  {
+   "datei": "p1-welches-diagramm-wofur-ein-fall-vier-diagramme.html",
+   "art": "modul",
+   "id": "p1",
+   "titel": "Welches Diagramm wofür? – Ein Fall, vier Diagramme",
+   "review": "geprueft"
+  },
+  {
+   "datei": "p2-typische-prufungsfehler.html",
+   "art": "modul",
+   "id": "p2",
+   "titel": "Typische Prüfungsfehler",
+   "review": "geprueft"
+  },
+  {
+   "datei": "spickzettel.html",
+   "art": "seite",
+   "titel": "Spickzettel: UML-Notation"
+  },
+  {
+   "datei": "glossar.html",
+   "art": "seite",
+   "titel": "Glossar"
+  },
+  {
+   "datei": "index.html",
+   "art": "index",
+   "titel": "Übersicht"
+  },
+  {
+   "datei": "start.html",
+   "art": "start",
+   "titel": "🧭 Mein Lernpfad – hier geht's los"
+  }
+ ]
+}

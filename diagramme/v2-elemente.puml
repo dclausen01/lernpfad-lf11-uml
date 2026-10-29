@@ -1,0 +1,23 @@
+@startuml
+!include stil.iuml
+start
+note right: Startknoten
+:Aktion A;
+note right: Aktion (abgerundetes Rechteck)
+if () then ([Bedingung 1])
+  :Aktion B;
+else ([sonst])
+  :Aktion C;
+endif
+note right: Verzweigung und Zusammenführung\n(Raute, Bedingungen in [ ] an den Kanten)
+fork
+  :Aktion D;
+fork again
+  :Aktion E;
+end fork
+note right: Gabelung (fork) und Vereinigung (join):\nD und E laufen parallel, weiter geht es\nerst, wenn beide fertig sind
+:Ergebnis]
+note right: Objektknoten
+stop
+note right: Endknoten (ganze Aktivität endet)
+@enduml

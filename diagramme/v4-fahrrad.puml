@@ -1,0 +1,24 @@
+@startuml
+!include stil.iuml
+skinparam nodesep 60
+skinparam ranksep 55
+[*] --> verfuegbar
+state "verfügbar" as verfuegbar : entry / Schloss verriegeln
+state "reserviert" as reserviert
+state "ausgeliehen" as ausgeliehen : entry / Uhr starten\nexit / Uhr stoppen\nstandortMelden / Position speichern
+state "wird geladen" as laden : do / Akku laden
+state "in Wartung" as wartung
+state c <<choice>>
+verfuegbar --> reserviert : reservieren
+reserviert --> verfuegbar : after 15 min
+reserviert --> ausgeliehen : ausleihen
+verfuegbar --> ausgeliehen : ausleihen
+ausgeliehen --> c : zurueckgeben
+c --> laden : [akku < 20 %]
+c --> verfuegbar : [sonst]
+laden --> verfuegbar : geladen
+verfuegbar --> wartung : defektMelden
+ausgeliehen --> wartung : defektMelden / Ausleihe beenden
+wartung --> verfuegbar : reparieren
+wartung --> [*] : ausmustern
+@enduml

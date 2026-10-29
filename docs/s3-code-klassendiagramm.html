@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code ↔ Klassendiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="s3">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>aus Java-Quelltext ein Klassendiagramm mit Beziehungen und Multiplizitäten ableiten,</li><li>aus einem Klassendiagramm ein Codegerüst schreiben,</li><li>Attribute und Assoziationen ohne Doppelung darstellen.</li></ul></div><h2>1. Die Übersetzungstabelle</h2>
+<p>In der AP2 bekommst du oft Quelltext (meist Java, C# oder Pseudocode) und sollst daraus ein Klassendiagramm
+machen – oder umgekehrt. Mit dieser Tabelle klappt das in beide Richtungen:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Im Code (Java)</th>
+<th>Im Klassendiagramm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>private int menge;</code></td>
+<td>Attribut <code>- menge : int</code></td>
+</tr>
+<tr>
+<td><code>protected</code>, <code>public</code>, ohne Modifier</td>
+<td><code>#</code>, <code>+</code>, <code>~</code></td>
+</tr>
+<tr>
+<td><code>static</code></td>
+<td>unterstrichen</td>
+</tr>
+<tr>
+<td><code>abstract class</code> / <code>abstract</code> Methode</td>
+<td>Name kursiv bzw. <code>{abstract}</code></td>
+</tr>
+<tr>
+<td><code>interface Druckbar</code></td>
+<td>Klasse mit <code>«interface»</code></td>
+</tr>
+<tr>
+<td><code>class B extends A</code></td>
+<td>Generalisierung B → A (durchgezogen, hohles Dreieck)</td>
+</tr>
+<tr>
+<td><code>class B implements I</code></td>
+<td>Realisierung B → I (gestrichelt, hohles Dreieck)</td>
+</tr>
+<tr>
+<td><code>private Kunde kunde;</code></td>
+<td>Assoziation zur Klasse Kunde, Multiplizität <code>1</code> (oder <code>0..1</code>, wenn <code>null</code> erlaubt ist)</td>
+</tr>
+<tr>
+<td><code>private List&lt;Position&gt; positionen;</code></td>
+<td>Assoziation zu Position mit <code>0..*</code></td>
+</tr>
+<tr>
+<td>Objekt wird in der Klasse mit <code>new</code> erzeugt und nicht weitergegeben</td>
+<td>Hinweis auf Komposition</td>
+</tr>
+<tr>
+<td>Klasse nur als Parameter oder lokale Variable</td>
+<td>Abhängigkeit (gestrichelter Pfeil)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box warn"><div class="box-title">Typischer Fehler: doppelt modelliert</div><p>Wenn du eine Beziehung zu <code>Kunde</code> zeichnest, schreibst du <strong>nicht zusätzlich</strong> <code>- kunde : Kunde</code> in die Klasse.
+Entweder Attribut <strong>oder</strong> Linie – die Linie ist im Klassendiagramm die bessere Wahl. Den Attributnamen schreibst
+du als <strong>Rollennamen</strong> an das Linienende.</p>
+</div><h2>2. Vom Code zum Diagramm</h2>
+<p>Sieh dir diesen Quelltext eines Onlineshops an:</p>
+<pre><code class="language-java">public class Bestellung {
+    private int nummer;
+    private LocalDate datum;
+    private Kunde kunde;
+    private List&lt;Position&gt; positionen = new ArrayList&lt;&gt;();
+
+    public Bestellung(int nummer, Kunde kunde) {
+        this.nummer = nummer;
+        this.kunde = kunde;
+        this.datum = LocalDate.now();
+    }
+    public void hinzufuegen(Artikel artikel, int menge) {
+        positionen.add(new Position(artikel, menge));
+    }
+    public double gesamtpreis() {
+        double summe = 0;
+        for (Position p : positionen) {
+            summe += p.preis();
+        }
+        return summe;
+    }
+}
+
+public class Position {
+    private int menge;
+    private Artikel artikel;
+
+    public Position(Artikel artikel, int menge) {
+        this.artikel = artikel;
+        this.menge = menge;
+    }
+    public double preis() {
+        return menge * artikel.getPreis();
+    }
+}
+
+public class Artikel {
+    private String bezeichnung;
+    private double preis;
+    public double getPreis() { return preis; }
+}
+
+public class Kunde {
+    private String name;
+    public String getName() { return name; }
+}
+</code></pre>
+<div class="schritte"><ol class="steps">
+<li>Jede <code>class</code> wird ein Rechteck. Einfache Datentypen (<code>int</code>, <code>double</code>, <code>String</code>, <code>LocalDate</code>) werden Attribute.</li>
+<li><code>private Kunde kunde</code> → gerichtete Assoziation von Bestellung zu Kunde, <code>1</code> am Kunden, Rollenname <code>-kunde</code>.
+Wie viele Bestellungen ein Kunde hat, verrät der Code nicht – <code>0..*</code> ist hier eine sinnvolle Annahme.</li>
+<li><code>List&lt;Position&gt;</code> → „viele“ Positionen. Die Positionen werden <strong>in</strong> <code>hinzufuegen</code> mit <code>new</code> erzeugt und nie
+herausgegeben → <strong>Komposition</strong> mit gefüllter Raute an Bestellung. Am Anfang ist die Liste leer → <code>0..*</code>.</li>
+<li><code>private Artikel artikel</code> in Position → gerichtete Assoziation mit <code>1</code> am Artikel. Der Artikel wird von außen
+übergeben und existiert unabhängig → <strong>keine</strong> Komposition.</li>
+<li>Die Pfeilspitzen zeigen dorthin, wo das Attribut hinzeigt – Kunde und Artikel kennen ihre Bestellungen nicht.</li>
+</ol>
+</div><figure class="shot" data-src="material/s3-bestellung.svg" data-desc="Klassendiagramm zum Quelltext: Bestellung mit gerichteter Assoziation zu Kunde (Rolle -kunde, Multiplizität 1), Komposition zu Position (Rolle -positionen, 0..*) und Position mit gerichteter Assoziation zu Artikel (Rolle -artikel, Multiplizität 1)."></figure>
+<h2>3. Vom Diagramm zum Code</h2>
+<p>Umgekehrt gehst du genauso vor – nur rückwärts durch die Tabelle.</p>
+<div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Mitarbeiterverwaltung programmieren</h3><span class="lvl time">15 min</span></div><p>Schreibe das Java-Gerüst (Attribute, Konstruktoren, Methodenköpfe; Methodenrümpfe nur, wo sie sich direkt
+ergeben) zu diesem Diagramm:</p>
+<figure class="shot" data-src="material/s3-mitarbeiter.svg" data-desc="Klassendiagramm: Abteilung aggregiert 0..* Mitarbeiter (Rolle -mitarbeiter, navigierbar zu Mitarbeiter). Mitarbeiter ist abstrakt mit statischem Zähler anzahl und abstrakter Methode gehalt(). Festangestellter und Aushilfe erben von Mitarbeiter."></figure>
+<div class="checkliste"><div class="check-title">Selbstcheck</div><ul class="check">
+<li><code>Mitarbeiter</code> ist <code>abstract</code>, <code>gehalt()</code> auch.</li>
+<li><code>anzahl</code> und <code>getAnzahl()</code> sind <code>static</code>.</li>
+<li><code>Abteilung</code> hat eine Liste von Mitarbeitern – Mitarbeiter kennt seine Abteilung nicht.</li>
+<li>Die Unterklassen rufen im Konstruktor <code>super(name)</code> auf.</li>
+</ul>
+</div><details><summary>Lösung</summary><pre><code class="language-java">public class Abteilung {
+    private String name;
+    private List&lt;Mitarbeiter&gt; mitarbeiter = new ArrayList&lt;&gt;();
+
+    public void hinzufuegen(Mitarbeiter m) {
+        mitarbeiter.add(m);
+    }
+    public double gehaltssumme() {
+        double summe = 0;
+        for (Mitarbeiter m : mitarbeiter) {
+            summe += m.gehalt();
+        }
+        return summe;
+    }
+}
+
+public abstract class Mitarbeiter {
+    private String name;
+    private static int anzahl;
+
+    public Mitarbeiter(String name) {
+        this.name = name;
+        anzahl++;
+    }
+    public abstract double gehalt();
+    public static int getAnzahl() { return anzahl; }
+}
+
+public class Festangestellter extends Mitarbeiter {
+    private double monatsgehalt;
+
+    public Festangestellter(String name, double monatsgehalt) {
+        super(name);
+        this.monatsgehalt = monatsgehalt;
+    }
+    public double gehalt() { return monatsgehalt; }
+}
+
+public class Aushilfe extends Mitarbeiter {
+    private int stunden;
+    private double stundenlohn;
+
+    public Aushilfe(String name, double stundenlohn) {
+        super(name);
+        this.stundenlohn = stundenlohn;
+    }
+    public void erfasseStunden(int h) { stunden += h; }
+    public double gehalt() { return stunden * stundenlohn; }
+}
+</code></pre>
+<p>Die Aggregation ist im Code nicht anders als eine Assoziation: Die Mitarbeiter werden von außen übergeben
+(<code>hinzufuegen(m)</code>) und existieren auch ohne Abteilung weiter.</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Interface im Code finden</h3><span class="lvl time">15 min</span></div><p>Zeichne das Klassendiagramm (mit Attributen, Methoden und Beziehungen) zu diesem Code:</p>
+<pre><code class="language-java">public interface Tarif {
+    double berechne(int minuten);
+}
+public class Minutentarif implements Tarif {
+    private double preisProMinute;
+    public double berechne(int minuten) { return minuten * preisProMinute; }
+}
+public class Flatrate implements Tarif {
+    private double monatspreis;
+    public double berechne(int minuten) { return 0; }
+}
+public class Vertrag {
+    private String vertragsNr;
+    private Tarif tarif;
+    public Vertrag(String vertragsNr, Tarif tarif) { … }
+    public void tarifWechseln(Tarif neu) { this.tarif = neu; }
+}
+</code></pre>
+<details><summary>Lösung</summary><ul>
+<li><code>«interface» Tarif</code> mit <code>+ berechne(minuten : int) : double</code> (Methoden im Interface sind automatisch public).</li>
+<li><code>Minutentarif</code> (<code>- preisProMinute : double</code>) und <code>Flatrate</code> (<code>- monatspreis : double</code>) haben jeweils
+<code>+ berechne(minuten : int) : double</code> und <strong>realisieren</strong> <code>Tarif</code> (gestrichelte Linie, hohles Dreieck an Tarif).</li>
+<li><code>Vertrag</code> mit <code>- vertragsNr : String</code>, <code>+ Vertrag(vertragsNr : String, tarif : Tarif)</code>,
+<code>+ tarifWechseln(neu : Tarif) : void</code> und einer gerichteten <strong>Assoziation</strong> zu <code>Tarif</code> mit Multiplizität <code>1</code>
+und Rollenname <code>-tarif</code>. Am Vertrag ist <code>0..*</code> sinnvoll – ein Tarif kann in vielen Verträgen stecken.</li>
+<li>Keine Komposition: Der Tarif wird von außen übergeben und kann gewechselt werden.</li>
+</ul>
+</details></div><div class="box task kreativ"><div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Eigenen Code modellieren</h3><span class="lvl time">15 min</span></div><p>Nimm ein Programm aus deinem Unterricht oder deinem Betrieb mit mindestens drei Klassen und zeichne das
+Klassendiagramm dazu. Markiere, an welcher Stelle du dich zwischen Assoziation, Aggregation und Komposition
+entscheiden musstest, und begründe die Wahl.</p>
+</div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Im Code steht <code>private List&lt;Position&gt; positionen;</code> – was zeichnest du?</p><ol><li>Ein Attribut positionen : Position</li><li>Eine Assoziation zu Position mit Multiplizität 0..* (oder 1..*)</li><li>Eine Generalisierung zu Position</li></ol><p class="fb" data-ok="Richtig. Eine Liste von Objekten einer anderen Klasse wird zur Beziehung mit „viele“ an der Seite von Position." data-no="Eine Liste bedeutet „viele“. Daraus wird eine Assoziation (oder Aggregation/Komposition) mit * am anderen Ende."></p></div><div class="qa" data-right="2"><p class="q">Eine Klasse beginnt mit: public class LKW extends Fahrzeug implements Wartbar. Was gehört ins Diagramm?</p><ol><li>Zwei Generalisierungen</li><li>Eine Generalisierung zu Fahrzeug und eine Realisierung zu Wartbar</li><li>Zwei Abhängigkeiten</li></ol><p class="fb" data-ok="Genau – extends wird zur durchgezogenen, implements zur gestrichelten Linie mit hohlem Dreieck." data-no="extends → Generalisierung (durchgezogen), implements → Realisierung (gestrichelt), jeweils mit hohlem Dreieck."></p></div><div class="qa" data-right="1"><p class="q">Ein Objekt wird im Konstruktor mit new erzeugt und nie nach außen gegeben. Welche Beziehung liegt nahe?</p><ol><li>Komposition</li><li>Aggregation</li><li>Abhängigkeit</li></ol><p class="fb" data-ok="Richtig. Das Ganze erzeugt und besitzt das Teil allein – typisch für eine Komposition." data-no="Wenn das Ganze sein Teil selbst erzeugt und exklusiv besitzt, spricht das für eine Komposition."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

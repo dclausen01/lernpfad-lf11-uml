@@ -1,0 +1,15 @@
+@startuml
+!include stil.iuml
+left to right direction
+actor "Akteur\n(Person)" as P
+rectangle "Zahlungsdienst" <<actor>> as Z
+rectangle "Systemname" {
+  usecase "Basis-Anwendungsfall" as B
+  usecase "inkludierter\nAnwendungsfall" as I
+  usecase "erweiternder\nAnwendungsfall" as E
+}
+P -- B : Assoziation
+B ..> I : <<include>>
+E ..> B : <<extend>>
+I -- Z
+@enduml

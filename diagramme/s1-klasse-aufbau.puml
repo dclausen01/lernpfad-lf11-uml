@@ -1,0 +1,32 @@
+@startuml
+!include stil.iuml
+class Kunde {
+  - kundenNr : int
+  - name : String
+  # email : String
+  ~ bonuspunkte : int = 0
+  - {static} anzahlKunden : int
+  + Kunde(name : String, email : String)
+  + getName() : String
+  + setEmail(email : String) : void
+  + leiheAus(rad : Fahrrad) : Ausleihe
+  + {static} getAnzahlKunden() : int
+}
+note right of Kunde::kundenNr
+  <b>Attribute</b>
+  Sichtbarkeit name : Datentyp [= Startwert]
+end note
+note right of Kunde::anzahlKunden
+  <b>unterstrichen</b> = static
+  (gehört zur Klasse, nicht zum Objekt)
+end note
+note right of Kunde::"leiheAus(rad : Fahrrad) : Ausleihe"
+  <b>Methoden</b>
+  Sichtbarkeit name(param : Typ) : Rückgabetyp
+end note
+note left of Kunde
+  <b>Klassenname</b>
+  Singular, groß,
+  fett und zentriert
+end note
+@enduml

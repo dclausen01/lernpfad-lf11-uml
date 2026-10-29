@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UML im Überblick – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="g1">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>erklären, wozu UML in der Softwareentwicklung dient,</li><li>Struktur- und Verhaltensdiagramme unterscheiden,</li><li>die sieben AP2-relevanten Diagrammtypen benennen und einordnen.</li></ul></div><h2>1. Wozu UML?</h2>
+<p>In einem Softwareprojekt reden viele Menschen miteinander: Kund:innen, Entwickler:innen, Tester:innen, die
+Projektleitung. Damit alle dasselbe meinen, braucht es eine gemeinsame Sprache. Die <strong>Unified Modeling Language
+(UML)</strong> ist so eine Sprache – allerdings eine grafische. Sie hilft dir, Software zu</p>
+<ul>
+<li><strong>spezifizieren</strong> (Was soll das System können?),</li>
+<li><strong>visualisieren</strong> (Wie ist es aufgebaut, wie läuft etwas ab?),</li>
+<li><strong>konstruieren</strong> (Aus dem Klassendiagramm wird Code.) und</li>
+<li><strong>dokumentieren</strong> (Wie funktioniert das System, das wir gebaut haben?).</li>
+</ul>
+<p>UML ist <strong>keine Programmiersprache</strong> und an keine Programmiersprache gebunden. Sie passt aber besonders gut zur
+objektorientierten Programmierung (Java, C#, Python …).</p>
+<div class="box note"><div class="box-title">Ein bisschen Geschichte</div><p>Anfang der 1990er-Jahre gab es viele konkurrierende Notationen. Grady Booch, Ivar Jacobson und James Rumbaugh
+– die „drei Amigos“ – haben sie zusammengeführt. 1997 hat die <strong>Object Management Group (OMG)</strong> UML als Standard
+übernommen. Die aktuelle Fassung ist <strong>UML 2.5.1</strong> (2017).</p>
+</div><h2>2. Struktur oder Verhalten?</h2>
+<p>UML kennt <strong>14 Diagrammtypen</strong>. Sie teilen sich in zwei große Gruppen:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Strukturdiagramme</th>
+<th>Verhaltensdiagramme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frage</td>
+<td>Woraus besteht das System?</td>
+<td>Was tut das System, wie läuft etwas ab?</td>
+</tr>
+<tr>
+<td>Sicht</td>
+<td>statisch – eine Momentaufnahme</td>
+<td>dynamisch – verändert sich über die Zeit</td>
+</tr>
+<tr>
+<td>Beispiele</td>
+<td>Klassen-, Objekt-, Komponenten-, Verteilungsdiagramm</td>
+<td>Anwendungsfall-, Aktivitäts-, Zustands-, Sequenzdiagramm</td>
+</tr>
+</tbody>
+</table></div>
+<p>Die <strong>Interaktionsdiagramme</strong> sind eine Untergruppe der Verhaltensdiagramme. Sie zeigen, wie Objekte miteinander
+Nachrichten austauschen. Das wichtigste davon ist das Sequenzdiagramm.</p>
+<figure class="shot" data-src="material/g1-diagrammarten.svg" data-desc="Die 14 UML-Diagrammtypen als Hierarchie. Mit ★ und blauem Kasten markiert: die Diagramme aus dem AP2-Themenkatalog. Die Pfeile mit hohlem Dreieck bedeuten „ist ein“ – das ist selbst UML-Notation (Generalisierung)."></figure>
+<h2>3. Was kommt in der AP2 dran?</h2>
+<p>Im Prüfungsbereich <strong>„Planen eines Softwareproduktes“</strong> (90 Minuten) musst du UML-Diagramme lesen, ergänzen,
+korrigieren und selbst erstellen. Im Themenkatalog werden diese sieben Diagramme genannt:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Diagramm</th>
+<th>Beantwortet die Frage</th>
+<th>Modul</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Klassendiagramm</td>
+<td>Welche Klassen gibt es, wie hängen sie zusammen?</td>
+<td><a href="s1-klassendiagramm-i-die-klasse.html">S1</a>, <a href="s2-klassendiagramm-ii-beziehungen.html">S2</a>, <a href="s3-code-klassendiagramm.html">S3</a></td>
+</tr>
+<tr>
+<td>Komponentendiagramm</td>
+<td>Aus welchen Softwarebausteinen besteht das System, über welche Schnittstellen reden sie?</td>
+<td><a href="s5-komponenten-und-verteilungsdiagramm.html">S5</a></td>
+</tr>
+<tr>
+<td>Verteilungsdiagramm</td>
+<td>Welche Software läuft auf welcher Hardware?</td>
+<td><a href="s5-komponenten-und-verteilungsdiagramm.html">S5</a></td>
+</tr>
+<tr>
+<td>Anwendungsfalldiagramm</td>
+<td>Wer nutzt das System wofür?</td>
+<td><a href="v1-anwendungsfalldiagramm.html">V1</a></td>
+</tr>
+<tr>
+<td>Aktivitätsdiagramm</td>
+<td>Wie läuft ein Prozess oder Algorithmus Schritt für Schritt ab?</td>
+<td><a href="v2-aktivitatsdiagramm.html">V2</a></td>
+</tr>
+<tr>
+<td>Sequenzdiagramm</td>
+<td>Welche Objekte schicken sich in welcher Reihenfolge Nachrichten?</td>
+<td><a href="v3-sequenzdiagramm.html">V3</a></td>
+</tr>
+<tr>
+<td>Zustandsdiagramm</td>
+<td>Welche Zustände kann ein Objekt haben, und was löst einen Wechsel aus?</td>
+<td><a href="v4-zustandsdiagramm.html">V4</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>Das <strong>Objektdiagramm</strong> (<a href="s4-objektdiagramm.html">S4</a>) steht nicht ausdrücklich im Katalog. Es hilft dir aber sehr, das
+Klassendiagramm zu verstehen – deshalb ist es trotzdem dabei.</p>
+<div class="box tip"><div class="box-title">So arbeiten die Prüfungsaufgaben</div><p>Typisch sind Aufgaben wie: „Ergänzen Sie das Klassendiagramm um …“, „Erstellen Sie aus dem Quelltext ein
+Sequenzdiagramm“, „Welche Fehler enthält das Anwendungsfalldiagramm?“ oder „Modellieren Sie die Zustände eines
+Auftrags“. Fast immer bekommst du dazu eine <strong>Situationsbeschreibung</strong>. Die wichtigste Fähigkeit ist also:
+Text lesen und die passenden Elemente herausziehen.</p>
+</div><div class="box warn"><div class="box-title">Häufiger Irrtum</div><p>Das <strong>ER-Diagramm</strong> (Entity-Relationship-Modell) für Datenbanken gehört <strong>nicht</strong> zur UML. Es sieht dem
+Klassendiagramm ähnlich, hat aber eine eigene Notation (z. B. Krähenfuß). Verwechsle die beiden in der Prüfung nicht.</p>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Ordne zu</h3><span class="lvl time">5 min</span></div><p>Ordne die Diagramme der richtigen Gruppe zu: Anwendungsfalldiagramm, Klassendiagramm, Zustandsdiagramm,
+Komponentendiagramm, Sequenzdiagramm, Verteilungsdiagramm, Aktivitätsdiagramm, Objektdiagramm.</p>
+<details><summary>Lösung</summary><ul>
+<li><strong>Strukturdiagramme:</strong> Klassen-, Komponenten-, Verteilungs-, Objektdiagramm</li>
+<li><strong>Verhaltensdiagramme:</strong> Anwendungsfall-, Zustands-, Aktivitäts-, Sequenzdiagramm (das Sequenzdiagramm ist
+zusätzlich ein Interaktionsdiagramm)</li>
+</ul>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Welches Diagramm passt?</h3><span class="lvl time">5 min</span></div><p>Welches Diagramm würdest du jeweils zeichnen?</p>
+<ol>
+<li>Die Kundin möchte wissen, welche Funktionen die neue App für sie und für die Mitarbeitenden bietet.</li>
+<li>Du sollst zeigen, auf welchen Servern der Webshop und die Datenbank laufen.</li>
+<li>Eine Bestellung kann „offen“, „bezahlt“, „versendet“ oder „storniert“ sein.</li>
+<li>Du willst zeigen, in welcher Reihenfolge die App, der Server und der Zahlungsdienst miteinander kommunizieren.</li>
+</ol>
+<details><summary>Lösung</summary><ol>
+<li>Anwendungsfalldiagramm</li>
+<li>Verteilungsdiagramm</li>
+<li>Zustandsdiagramm</li>
+<li>Sequenzdiagramm</li>
+</ol>
+</details></div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Welche Aussage zu UML stimmt?</p><ol><li>UML ist eine Programmiersprache für objektorientierte Software.</li><li>UML ist eine grafische Modellierungssprache, die von der OMG standardisiert wird.</li><li>UML ist ein Werkzeug von Microsoft zum Zeichnen von Datenbanken.</li></ol><p class="fb" data-ok="Genau. UML beschreibt Software – programmiert wird damit nicht. Verantwortlich ist die Object Management Group (OMG)." data-no="UML ist keine Programmiersprache und kein Programm, sondern eine standardisierte Modellierungssprache (OMG)."></p></div><div class="qa" data-right="2"><p class="q">Zu welcher Gruppe gehört das Sequenzdiagramm?</p><ol><li>Strukturdiagramme</li><li>Verhaltensdiagramme (Interaktionsdiagramme)</li><li>Datenmodelle</li></ol><p class="fb" data-ok="Richtig. Das Sequenzdiagramm zeigt den zeitlichen Ablauf von Nachrichten – also Verhalten." data-no="Ein Sequenzdiagramm zeigt, wer wann welche Nachricht schickt. Das ist Verhalten, genauer ein Interaktionsdiagramm."></p></div><div class="qa" data-right="3"><p class="q">Welches Diagramm ist ein Strukturdiagramm?</p><ol><li>Zustandsdiagramm</li><li>Aktivitätsdiagramm</li><li>Verteilungsdiagramm</li></ol><p class="fb" data-ok="Stimmt. Das Verteilungsdiagramm zeigt den Aufbau der Hardware und welche Software wo läuft – statisch." data-no="Zustands- und Aktivitätsdiagramm beschreiben Abläufe über die Zeit, also Verhalten. Das Verteilungsdiagramm ist statisch."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

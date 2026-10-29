@@ -1,0 +1,30 @@
+@startuml
+!include stil.iuml
+class Abteilung {
+  - name : String
+  + hinzufuegen(m : Mitarbeiter) : void
+  + gehaltssumme() : double
+}
+abstract class Mitarbeiter {
+  - name : String
+  - {static} anzahl : int
+  + Mitarbeiter(name : String)
+  + {abstract} gehalt() : double
+  + {static} getAnzahl() : int
+}
+class Festangestellter {
+  - monatsgehalt : double
+  + Festangestellter(name : String, monatsgehalt : double)
+  + gehalt() : double
+}
+class Aushilfe {
+  - stunden : int
+  - stundenlohn : double
+  + Aushilfe(name : String, stundenlohn : double)
+  + erfasseStunden(h : int) : void
+  + gehalt() : double
+}
+Abteilung "0..1" o--> "0..*\n-mitarbeiter" Mitarbeiter
+Mitarbeiter <|-- Festangestellter
+Mitarbeiter <|-- Aushilfe
+@enduml

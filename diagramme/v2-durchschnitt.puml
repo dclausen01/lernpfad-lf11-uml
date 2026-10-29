@@ -1,0 +1,17 @@
+@startuml
+!include stil.iuml
+start
+:summe := 0;
+:i := 0;
+while () is ([i < anzahl])
+  :summe := summe + dauer[i];
+  :i := i + 1;
+endwhile ([sonst])
+if () then ([anzahl > 0])
+  :schnitt := summe / anzahl;
+else ([sonst])
+  :schnitt := 0;
+endif
+:schnitt zurückgeben;
+stop
+@enduml

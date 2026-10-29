@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welches Diagramm wofür? – Ein Fall, vier Diagramme – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="p1">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>zu einer Fragestellung das passende UML-Diagramm auswählen und die Wahl begründen,</li><li>eine Situationsbeschreibung in Anwendungsfall-, Klassen-, Sequenz- und Zustandsdiagramm übersetzen,</li><li>prüfen, ob mehrere Diagramme zueinander passen.</li></ul></div><h2>1. Die Entscheidungshilfe</h2>
+<p>In der Prüfung steht manchmal nicht da, <strong>welches</strong> Diagramm du zeichnen sollst – nur, was gezeigt werden soll.
+Achte auf diese Signalwörter:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Die Aufgabe fragt nach …</th>
+<th>Signalwörter</th>
+<th>Diagramm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Funktionen aus Sicht der Nutzer</td>
+<td>„Wer kann was?“, Akteure, Anforderungen, „soll … können“</td>
+<td>Anwendungsfalldiagramm</td>
+</tr>
+<tr>
+<td>Ablauf, Prozess, Algorithmus</td>
+<td>„Schritte“, „Ablauf“, „Prozess“, „wer macht was“, Pseudocode</td>
+<td>Aktivitätsdiagramm</td>
+</tr>
+<tr>
+<td>Nachrichten zwischen Objekten</td>
+<td>„Reihenfolge der Aufrufe“, „Methodenaufrufe“, „Kommunikation“</td>
+<td>Sequenzdiagramm</td>
+</tr>
+<tr>
+<td>Lebenslauf eines Objekts</td>
+<td>„Status“, „Zustände“, „kann sein: offen / bezahlt / …“</td>
+<td>Zustandsdiagramm</td>
+</tr>
+<tr>
+<td>Aufbau des Programms</td>
+<td>„Klassen“, „Attribute“, „Vererbung“, „besteht aus“</td>
+<td>Klassendiagramm</td>
+</tr>
+<tr>
+<td>Momentaufnahme mit Werten</td>
+<td>„zu einem bestimmten Zeitpunkt“, konkrete Werte</td>
+<td>Objektdiagramm</td>
+</tr>
+<tr>
+<td>Softwarebausteine und Schnittstellen</td>
+<td>„Module“, „Services“, „Schnittstellen“, „austauschbar“</td>
+<td>Komponentendiagramm</td>
+</tr>
+<tr>
+<td>Hardware und Installation</td>
+<td>„Server“, „Geräte“, „wo läuft was“, „Protokoll“</td>
+<td>Verteilungsdiagramm</td>
+</tr>
+</tbody>
+</table></div>
+<h2>2. Der Fall: Parkhaus am Hafen</h2>
+<div class="box note"><div class="box-title">Situationsbeschreibung</div><p>Die (ausgedachte) Hafenparken GmbH lässt für ihr <strong>Parkhaus am Hafen</strong> eine neue Steuerung entwickeln.</p>
+<p>Das Parkhaus hat mehrere <strong>Ebenen</strong> mit nummerierten <strong>Stellplätzen</strong>; einige davon sind <strong>Ladeplätze</strong> für
+E-Autos mit einer Ladeleistung in kW. Fährt ein <strong>Fahrzeug</strong> ein oder aus, erfasst eine <strong>Kennzeichenkamera</strong>
+das Kennzeichen; einen Papierschein gibt es nicht mehr. Für jedes Ein- und Ausfahren wird ein <strong>Parkvorgang</strong> mit
+Einfahrtszeit, Ausfahrtszeit und dem Vermerk „bezahlt“ gespeichert. Die Parkgebühr berechnet ein <strong>Tarif</strong>; zurzeit
+gibt es einen Stundentarif, weitere Tarife sollen später ohne Umbau ergänzt werden.</p>
+<p>Autofahrer:innen fahren ein, fahren aus und bezahlen die Parkgebühr am Automaten. Wer ein Kinoticket hat, kann es
+beim Bezahlen entwerten lassen und erhält Rabatt. <strong>Dauerparker:innen</strong> können zusätzlich einen Stellplatz
+reservieren. Die <strong>Betreiber:innen</strong> sehen die aktuelle Belegung und können den Tarif ändern.</p>
+<p>Bei der Ausfahrt meldet die Kamera das Kennzeichen an das Parkhaus-Objekt der Steuerung, ohne auf eine Antwort zu
+warten. Das Parkhaus sucht den zugehörigen Parkvorgang und fragt, ob bezahlt ist. Ist bezahlt, öffnet es die
+<strong>Schranke</strong> und schließt den Parkvorgang ab. Sonst zeigt es auf dem <strong>Display</strong> „Bitte zuerst bezahlen“ an.
+Jede Ausfahrt hat eine Schranke und ein Display.</p>
+<p>Ein Stellplatz ist <strong>frei</strong>, <strong>reserviert</strong>, <strong>belegt</strong> oder <strong>gesperrt</strong> (z. B. bei Reinigung). Eine Reservierung
+verfällt nach 30 Minuten. Ein reservierter Platz darf nur belegt werden, wenn das Kennzeichen zur Reservierung
+passt. Solange ein Platz reserviert oder belegt ist, leuchtet seine Anzeige rot; beim Freiwerden schaltet sie auf
+grün.</p>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Pflicht</span><h3>1 · Anwendungsfalldiagramm</h3><span class="lvl time">15 min</span></div><p>Zeichne das Anwendungsfalldiagramm der Parkhaus-Steuerung.</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-uc.svg" data-desc="Lösung: Systemgrenze „Parkhaus-Steuerung“. Akteure Autofahrer:in, Dauerparker:in (erbt von Autofahrer:in), Betreiber:in und das externe System Kennzeichenkamera. Einfahren und Ausfahren inkludieren jeweils Kennzeichen erfassen, das mit der Kamera verbunden ist. Kinoticket entwerten erweitert Parkgebühr bezahlen (Erweiterungspunkt Rabatt). Dauerparker:in reserviert Stellplätze, Betreiber:in zeigt die Belegung an und ändert den Tarif."></figure>
+<ul>
+<li>Die Kamera ist ein <strong>Akteur</strong> (externes System), nicht Teil der Steuerung.</li>
+<li>„Kennzeichen erfassen“ passiert <strong>immer</strong> beim Ein- und Ausfahren → zweimal «include».</li>
+<li>Das Kinoticket ist <strong>optional</strong> → «extend» auf „Parkgebühr bezahlen“.</li>
+<li>Dauerparker:innen dürfen alles, was Autofahrer:innen dürfen → Generalisierung der Akteure.</li>
+</ul>
+</details></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Pflicht</span><h3>2 · Klassendiagramm</h3><span class="lvl time">20 min</span></div><p>Zeichne das Klassendiagramm mit Attributen, wichtigen Methoden und allen Multiplizitäten.</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-klassen.svg" data-desc="Lösung: Parkhaus besteht aus 1..* Ebenen (Komposition), jede Ebene aus 1..* Stellplätzen (Komposition). Ladeplatz erbt von Stellplatz. Das Parkhaus kennt 1..* Schranken und 1..* Displays und hat die Methoden kennzeichenErkannt und sucheVorgang. Parkhaus nutzt genau einen Tarif (Interface), den Stundentarif realisiert. Ein Parkhaus hat 0..* Parkvorgänge; jeder Parkvorgang gehört zu genau einem Fahrzeug und zu keinem oder einem Stellplatz. Der Status eines Stellplatzes ist die Aufzählung PlatzStatus (FREI, RESERVIERT, BELEGT, GESPERRT)."></figure>
+<ul>
+<li><strong>Komposition</strong> Parkhaus → Ebene → Stellplatz: Ohne Parkhaus gibt es keine Ebenen und Plätze.</li>
+<li>„weitere Tarife ohne Umbau“ ist das Signal für ein <strong>Interface</strong> (oder eine abstrakte Klasse) <code>Tarif</code>.</li>
+<li>Der Parkvorgang kennt seinen Stellplatz nur <code>0..1</code>, weil die Kamera an der Einfahrt nicht weiß, wo das Auto
+parkt. Wenn du <code>1</code> gewählt und das begründet hast, ist das auch in Ordnung.</li>
+<li>Die Kamera ist <strong>keine</strong> Klasse der Steuerung – sie ist ein externer Akteur.</li>
+<li>Die Methoden <code>kennzeichenErkannt</code>, <code>sucheVorgang</code>, <code>istBezahlt</code> und <code>abschliessen</code> ergeben sich erst aus dem
+Ablauf der Ausfahrt (Aufgabe 3). In der Praxis wächst das Klassendiagramm mit jedem Sequenzdiagramm mit.</li>
+</ul>
+</details></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Pflicht</span><h3>3 · Sequenzdiagramm „Ausfahren“</h3><span class="lvl time">15 min</span></div><p>Zeichne das Sequenzdiagramm für die Ausfahrt.</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-seq.svg" data-desc="Lösung: Die Kennzeichenkamera (Akteur) schickt asynchron kennzeichenErkannt(kz) an :Parkhaus. Das Parkhaus sucht per Selbstaufruf den Parkvorgang pv und ruft istBezahlt() auf. Im alt-Fragment [bezahlt] ruft es oeffnen() an der Schranke und abschliessen(jetzt) am Parkvorgang auf, im Zweig [sonst] schickt es zeige(&quot;Bitte zuerst bezahlen&quot;) asynchron an das Display."></figure>
+<ul>
+<li>„ohne auf eine Antwort zu warten“ → <strong>asynchrone</strong> Nachricht von der Kamera.</li>
+<li>Zwei Fälle („Ist bezahlt … sonst …“) → <code>alt</code> mit zwei Zweigen.</li>
+<li>Prüfe den Abgleich mit dem Klassendiagramm: Jede Nachricht braucht dort eine passende Methode in der Klasse des
+Empfängers (<code>istBezahlt()</code> und <code>abschliessen()</code> in <code>Parkvorgang</code>, <code>oeffnen()</code> in <code>Schranke</code>, <code>zeige()</code> in
+<code>Display</code>), und der Sender muss den Empfänger über eine Beziehung erreichen. Genau solche Lücken zwischen zwei
+Diagrammen werden in der Prüfung gern abgefragt.</li>
+</ul>
+</details></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Pflicht</span><h3>4 · Zustandsdiagramm „Stellplatz“</h3><span class="lvl time">10 min</span></div><p>Zeichne das Zustandsdiagramm eines Stellplatzes.</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/p1-parkhaus-zustand.svg" data-desc="Lösung: Start in „frei“. reservieren führt zu „reserviert“ (entry / Anzeige rot schalten), „after 30 min“ zurück zu „frei“, „einparken [Kennzeichen passt]“ zu „belegt“. Von „frei“ führt einparken direkt zu „belegt“ (entry / Anzeige rot schalten, exit / Anzeige grün schalten), ausparken zurück zu „frei“. sperren und entsperren wechseln zwischen „frei“ und „gesperrt“."></figure>
+<ul>
+<li>Die Anzeige als <code>entry</code>/<code>exit</code>-Verhalten spart Aktionen an jeder einzelnen Transition.</li>
+<li>Ein Endzustand ist nicht nötig – ein Stellplatz „stirbt“ nicht im laufenden Betrieb.</li>
+<li>Passt das zum Klassendiagramm? Ja: Die Aufzählung <code>PlatzStatus</code> hat genau diese vier Werte, und die
+Methoden <code>belegen()</code> und <code>freigeben()</code> passen zu den Transitionen.</li>
+</ul>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>5 · Weiterdenken</h3><span class="lvl time">15 min</span></div><ol>
+<li>Welches Diagramm würdest du zeichnen, um zu zeigen, dass die Steuerung auf einem Server im Rechenzentrum der
+Hafenparken GmbH läuft und über MQTT mit Kamera und Schranke spricht? Skizziere es.</li>
+<li>Die Betreiber:innen möchten den Ablauf „Tarif ändern“ inklusive Freigabe durch eine zweite Person sehen.
+Welches Diagramm passt?</li>
+</ol>
+<details><summary>Lösung</summary><ol>
+<li>Ein <strong>Verteilungsdiagramm</strong>: Knoten <code>«device» Server</code> mit <code>«executionEnvironment»</code> (z. B. JVM oder Docker)
+und dem Artefakt der Steuerung; Knoten <code>«device» Kennzeichenkamera</code> und <code>«device» Schranke</code>;
+Kommunikationspfade mit <code>«MQTT»</code>.</li>
+<li>Ein <strong>Aktivitätsdiagramm</strong> mit zwei Partitionen (Betreiber:in, Freigebende:r) und einer Verzweigung
+„[freigegeben] / [abgelehnt]“.</li>
+</ol>
+</details></div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">„Zeigen Sie, welche Zustände eine Bestellung durchlaufen kann.“ Welches Diagramm?</p><ol><li>Aktivitätsdiagramm</li><li>Zustandsdiagramm</li><li>Sequenzdiagramm</li></ol><p class="fb" data-ok="Richtig – Zustände eines einzelnen Objekts zeigt das Zustandsdiagramm." data-no="Stichwort „Zustände eines Objekts“ → Zustandsdiagramm."></p></div><div class="qa" data-right="1"><p class="q">„Stellen Sie dar, welche Objekte in welcher Reihenfolge Nachrichten austauschen, wenn ein Fahrzeug ausfährt.“</p><ol><li>Sequenzdiagramm</li><li>Klassendiagramm</li><li>Anwendungsfalldiagramm</li></ol><p class="fb" data-ok="Genau. Reihenfolge von Nachrichten zwischen Objekten → Sequenzdiagramm." data-no="Wenn es um Nachrichten zwischen Objekten in zeitlicher Reihenfolge geht, ist es ein Sequenzdiagramm."></p></div><div class="qa" data-right="2"><p class="q">Im Sequenzdiagramm ruft :Parkhaus die Methode istBezahlt() an einem Parkvorgang auf. Was muss im Klassendiagramm stehen?</p><ol><li>Nichts – die Diagramme sind unabhängig.</li><li>Die Klasse Parkvorgang mit der Methode istBezahlt() und eine Beziehung, über die das Parkhaus den Vorgang erreicht</li><li>Eine Vererbung von Parkhaus zu Parkvorgang</li></ol><p class="fb" data-ok="Richtig. Diagramme eines Modells müssen zusammenpassen – jede Nachricht braucht eine passende Operation." data-no="Ein Modell ist ein Ganzes. Was im Sequenzdiagramm aufgerufen wird, muss es in der Klasse geben."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

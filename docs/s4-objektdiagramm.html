@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objektdiagramm – UML-Diagramme für die AP2</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="s4">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>geprüft – noch nicht freigegeben</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>den Unterschied zwischen Klasse und Objekt im Diagramm erklären,</li><li>ein Objektdiagramm mit Objektnamen, Attributwerten und Links zeichnen,</li><li>prüfen, ob ein Objektdiagramm zum Klassendiagramm passt.</li></ul></div><h2>1. Klasse oder Objekt?</h2>
+<p>Das Klassendiagramm ist der <strong>Bauplan</strong>. Das Objektdiagramm ist ein <strong>Foto</strong> des laufenden Programms: Es zeigt,
+welche Objekte gerade existieren, welche Werte sie haben und wie sie verbunden sind.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Klassendiagramm</th>
+<th>Objektdiagramm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kopf</td>
+<td><code>Kunde</code> (fett)</td>
+<td><code>anna : Kunde</code> (unterstrichen)</td>
+</tr>
+<tr>
+<td>Inhalt</td>
+<td><code>- name : String</code></td>
+<td><code>name = &quot;Anna Beispiel&quot;</code></td>
+</tr>
+<tr>
+<td>Methoden</td>
+<td>ja</td>
+<td>nein</td>
+</tr>
+<tr>
+<td>Verbindungen</td>
+<td>Assoziationen mit Multiplizitäten</td>
+<td><strong>Links</strong> – einfache Linien ohne Multiplizitäten</td>
+</tr>
+</tbody>
+</table></div>
+<p>Der Objektname darf auch fehlen: <code>: Kunde</code> (unterstrichen) heißt „irgendein Kunde“.</p>
+<h2>2. Ein Beispiel</h2>
+<p>Montag, 8:20 Uhr bei RadWerk: Anna hat um 8:15 Uhr das E-Bike RW-0815 ausgeliehen. An der Station „Bahnhof“
+stehen noch ein Lastenrad und ein zweites E-Bike.</p>
+<figure class="shot" data-src="material/s4-objekte.svg" data-desc="Objektdiagramm: anna : Kunde ist mit a17 : Ausleihe verbunden, die auf eb3 : EBike zeigt (ausgeliehen, Akku 64). Das Objekt bahnhof : Station ist mit lr1 : Lastenrad und eb7 : EBike verbunden (beide verfügbar)."></figure>
+<p>Vergleiche mit dem Klassendiagramm aus <a href="s2-klassendiagramm-ii-beziehungen.html">S2</a>:</p>
+<ul>
+<li><code>eb3</code> hängt an <strong>keiner</strong> Station – das erlaubt die Multiplizität <code>0..1</code> an Station.</li>
+<li>Die Objekte haben die Typen der <strong>konkreten</strong> Unterklassen (<code>EBike</code>, <code>Lastenrad</code>), nie die abstrakte Klasse
+<code>Fahrrad</code> – von abstrakten Klassen gibt es keine Objekte.</li>
+<li>Links übernehmen die Pfeilspitze der Assoziation, wenn sie gerichtet ist (<code>a17 → eb3</code>).</li>
+</ul>
+<div class="box warn"><div class="box-title">Typischer Fehler</div><p>Im Objektdiagramm stehen <strong>keine Multiplizitäten</strong> und <strong>keine Rauten oder Vererbungspfeile</strong>. Vererbung ist eine
+Beziehung zwischen Klassen – ein Objekt ist einfach von einer Klasse.</p>
+</div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Eine Rechnung als Objektdiagramm</h3><span class="lvl time">10 min</span></div><p>Annas Ausleihe dauert 45 Minuten. Sie bekommt die Rechnung <code>r1</code> vom 04.05.2026 mit zwei Positionen:
+„E-Bike 45 min“ für 6,75 € und „Helmverleih“ für 1,50 €. Zeichne das Objektdiagramm.</p>
+<details><summary>Lösung</summary><figure class="shot" data-src="material/s4-rechnung.svg" data-desc="Objektdiagramm: r1 : Rechnung (datum = 2026-05-04) ist mit p1 : Rechnungsposition (E-Bike 45 min, 6.75) und p2 : Rechnungsposition (Helmverleih, 1.50) verbunden."></figure>
+<p>Die Namen <code>p1</code>, <code>p2</code> darfst du frei wählen. Wichtig sind: unterstrichen, <code>name : Klasse</code>, konkrete Werte, Links
+ohne Raute und ohne Multiplizitäten.</p>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Passt das zusammen?</h3><span class="lvl time">5 min</span></div><p>Im Klassendiagramm steht <code>Tour 1 ◆— 2..20 Stopp</code>. Ein Objektdiagramm zeigt <code>t1 : Tour</code> mit genau einem Stopp
+<code>s1 : Stopp</code>, der zusätzlich mit <code>t2 : Tour</code> verbunden ist. Welche zwei Fehler findest du?</p>
+<details><summary>Lösung</summary><ol>
+<li>Eine Tour braucht mindestens <strong>2</strong> Stopps – <code>t1</code> hat nur einen.</li>
+<li>Bei einer Komposition gehört ein Teil zu <strong>höchstens einem</strong> Ganzen. <code>s1</code> darf nicht gleichzeitig zu <code>t1</code> und
+<code>t2</code> gehören.</li>
+</ol>
+</details></div><div class="box quiz"><div class="box-title">🧠 Kurz-Check</div><div class="qa" data-right="2"><p class="q">Wie wird ein Objekt im Objektdiagramm beschriftet?</p><ol><li>Kunde (fett, wie die Klasse)</li><li>anna : Kunde (unterstrichen)</li><li>«object» anna</li></ol><p class="fb" data-ok="Richtig – objektname : Klassenname, unterstrichen." data-no="Objekte erkennst du am unterstrichenen Namen in der Form objektname : Klasse."></p></div><div class="qa" data-right="2"><p class="q">Was steht im Objektdiagramm in den Attributen?</p><ol><li>Sichtbarkeit und Datentyp</li><li>Konkrete Werte wie name = &quot;Anna&quot;</li><li>Die Methoden des Objekts</li></ol><p class="fb" data-ok="Genau. Ein Objektdiagramm ist eine Momentaufnahme mit konkreten Werten. Methoden fehlen." data-no="Typen und Sichtbarkeiten stehen in der Klasse. Im Objektdiagramm stehen konkrete Werte, Methoden lässt man weg."></p></div><div class="qa" data-right="3"><p class="q">Im Klassendiagramm steht: Rechnung 1 ◆— 1..* Rechnungsposition. Welches Objektdiagramm ist ungültig?</p><ol><li>r1 mit zwei Positionen</li><li>r1 mit einer Position</li><li>r1 ganz ohne Position</li></ol><p class="fb" data-ok="Richtig. 1..* verlangt mindestens eine Position." data-no="Die Multiplizität 1..* verlangt mindestens eine Position. Eine Rechnung ohne Position widerspricht dem Klassendiagramm."></p></div></div>
+</main>
+</div>
+<footer class="site">BBZ Rendsburg-Eckernförde · Info-Lernpfad zur Prüfungsvorbereitung · Stand 10/2026</footer>
+</body>
+</html>

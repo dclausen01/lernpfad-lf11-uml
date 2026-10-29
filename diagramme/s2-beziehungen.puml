@@ -1,0 +1,42 @@
+@startuml
+!include stil.iuml
+hide members
+left to right direction
+skinparam nodesep 30
+skinparam ranksep 60
+package "Abhängigkeit" <<Rectangle>> {
+  class "Rechnung" as R2
+  class Steuerrechner
+  R2 ..> Steuerrechner : <<use>>
+}
+package "Realisierung" <<Rectangle>> {
+  class Zahlungsart <<interface>>
+  class Kreditkarte
+  Zahlungsart <|.. Kreditkarte
+}
+package "Generalisierung (Vererbung)" <<Rectangle>> {
+  class "Fahrrad" as F3
+  class EBike
+  F3 <|-- EBike
+}
+package "Komposition" <<Rectangle>> {
+  class Rechnung
+  class Rechnungsposition
+  Rechnung *-- Rechnungsposition
+}
+package "Aggregation" <<Rectangle>> {
+  class Station
+  class "Fahrrad" as F2
+  Station o-- F2
+}
+package "Gerichtete Assoziation" <<Rectangle>> {
+  class "Ausleihe" as A2
+  class Fahrrad
+  A2 --> Fahrrad
+}
+package "Assoziation" <<Rectangle>> {
+  class Kunde
+  class Ausleihe
+  Kunde -- Ausleihe
+}
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+!include stil.iuml
+skinparam style strictuml
+hide footbox
+participant ":Kennzeichenkamera" as KAM <<actor>>
+participant ":Parkhaus" as ST
+participant "pv:Parkvorgang" as PV
+participant ":Schranke" as SCH
+participant ":Display" as DIS
+KAM ->> ST : kennzeichenErkannt(kz)
+activate ST
+ST -> ST : pv := sucheVorgang(kz)
+activate ST
+deactivate ST
+ST -> PV : istBezahlt()
+activate PV
+PV -->> ST : bezahlt
+deactivate PV
+alt bezahlt
+  ST -> SCH : oeffnen()
+  activate SCH
+  SCH -->> ST
+  deactivate SCH
+  ST -> PV : abschliessen(jetzt)
+  activate PV
+  PV -->> ST
+  deactivate PV
+else sonst
+  ST ->> DIS : zeige("Bitte zuerst bezahlen")
+end
+deactivate ST
+@enduml
